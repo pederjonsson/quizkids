@@ -18,25 +18,17 @@ import se.pederjonsson.apps.quizkids.fragments.QuestionAnswerContract;
  * Created by Gaming on 2018-04-01.
  */
 
-public class TripleButtonAnswers extends LinearLayout {
+public class ButtonAnswer extends LinearLayout {
 
-    @BindView(R.id.btnanswer1)
-    public ButtonAnswer btnAnswer1;
+    @BindView(R.id.btnanswer)
+    public Button btnAnswer;
 
-    @BindView(R.id.btnanswer2)
-    public ButtonAnswer btnAnswer2;
-
-    @BindView(R.id.btnanswer3)
-    public ButtonAnswer btnAnswer3;
-
-
-    private List<Answer> mAnswers;
     private Context mContext;
     private Unbinder unbinder;
+    private Answer mAnswer;
     private QuestionAnswerContract.MainView mainView;
 
-
-    public TripleButtonAnswers(Context context, AttributeSet attrs) {
+    public ButtonAnswer(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         //TypedArray typedArrayTitle = context.obtainStyledAttributes(attrs, R.styleable.telavox_view_property);
@@ -74,23 +66,15 @@ public class TripleButtonAnswers extends LinearLayout {
         unbinder.unbind();
     }
 
-    public void setUp(List<Answer> answers, QuestionAnswerContract.MainView _mainView) {
-        mAnswers = answers;
+    public void setUp(Answer answer, QuestionAnswerContract.MainView _mainView) {
+        mAnswer = answer;
+        btnAnswer.setText(mAnswer.getTextAnswer());
         mainView = _mainView;
-        setupBtns();
-        setupListeners();
+
+        setupListener();
     }
 
-    private void setupBtns(){
-       btnAnswer1.setUp(mAnswers.get(0));
-       btnAnswer2.setUp(mAnswers.get(1));
-       btnAnswer2.setUp(mAnswers.get(2));
+    private void setupListener() {
+        btnAnswer.setOnClickListener(v -> { mainView.publishChosenAnswer(mAnswer); });
     }
-
-    private void setupListeners() {
-        btnAnswer1.setOnClickListener(v -> { mainView.publishChosenAnswer(mAnswers.get(0)); });
-        btnAnswer2.setOnClickListener(v -> { mainView.publishChosenAnswer(mAnswers.get(1)); });
-        btnAnswer3.setOnClickListener(v -> { mainView.publishChosenAnswer(mAnswers.get(2)); });
-    }
-
 }

@@ -1,6 +1,7 @@
 package se.pederjonsson.apps.quizkids.fragments;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import se.pederjonsson.apps.quizkids.Objects.Answer;
 import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
 import se.pederjonsson.apps.quizkids.R;
 import se.pederjonsson.apps.quizkids.components.TripleButtonAnswers;
@@ -20,7 +22,7 @@ import se.pederjonsson.apps.quizkids.db.Database;
  * Created by Gaming on 2018-04-01.
  */
 
-public class QuestionFragment extends Fragment {
+public class QuestionFragment extends android.support.v4.app.Fragment implements QuestionAnswerContract.MainView {
 
     private Unbinder unbinder;
 
@@ -35,7 +37,7 @@ public class QuestionFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
         Database db = new Database();
 
-        
+
         QuestionAnswers questionAnswers = db.getSampleQuestionAnswers();
         tripleBtnAnswers.setUp(questionAnswers.getAnswers());
 
@@ -46,5 +48,19 @@ public class QuestionFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         unbinder.unbind();
+    }
+
+    @Override
+    public Context getViewContext() {
+        return this.getContext();
+    }
+
+    @Override
+    public void publishChosenAnswer(Answer answer) {
+        if(answer.isCorrect()){
+            System.out.print("** correct answer");
+        } else {
+            System.out.print("** wrong answer");
+        }
     }
 }
