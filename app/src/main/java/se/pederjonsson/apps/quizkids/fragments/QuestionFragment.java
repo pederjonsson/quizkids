@@ -34,6 +34,7 @@ public class QuestionFragment extends Fragment {
         View view = inflater.inflate(R.layout.question_fragment, container, false);
         unbinder = ButterKnife.bind(this, view);
         Database db = new Database();
+        
         QuestionAnswers questionAnswers = db.getSampleQuestionAnswers();
         tripleBtnAnswers.setUp(questionAnswers.getAnswers());
 
