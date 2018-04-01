@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Quizkids</string>
+
+    <string name="start_quiz">Starta en quiz omgång</string>
+</resources>
