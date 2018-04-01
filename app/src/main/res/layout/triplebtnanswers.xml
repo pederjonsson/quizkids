@@ -10,25 +10,19 @@
     <se.pederjonsson.apps.quizkids.components.ButtonAnswer
         android:id="@+id/btnanswer1"
         android:layout_width="match_parent"
-        android:layout_marginLeft="@dimen/medium"
-        android:layout_marginRight="@dimen/medium"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
          />
 
     <se.pederjonsson.apps.quizkids.components.ButtonAnswer
         android:id="@+id/btnanswer2"
         android:layout_width="match_parent"
-        android:layout_marginLeft="@dimen/medium"
-        android:layout_marginRight="@dimen/medium"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
          />
 
     <se.pederjonsson.apps.quizkids.components.ButtonAnswer
         android:id="@+id/btnanswer3"
         android:layout_width="match_parent"
-        android:layout_marginLeft="@dimen/medium"
-        android:layout_marginRight="@dimen/medium"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
          />
 
 </LinearLayout>

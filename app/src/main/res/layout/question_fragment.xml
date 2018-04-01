@@ -4,17 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackgroundYellow"
     android:orientation="vertical"
     tools:context="se.pederjonsson.apps.quizkids.MainActivity">
 
-    <TextView
-        android:id="@+id/text_question"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
-    <se.pederjonsson.apps.quizkids.components.TripleButtonAnswers
-        android:id="@+id/triplebtnanswers"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_margin="@dimen/medium"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_question"
+            style="@style/JupiterSmallBold"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/medium" />
+<!-- https://github.com/vinc3m1/RoundedImageView -->
+        <com.makeramen.roundedimageview.RoundedImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/imageView1"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:src="@drawable/eiffel200"
+            android:scaleType="centerCrop"
+            app:riv_corner_radius="10dip"
+            app:riv_border_width="4dip"
+            app:riv_border_color="@color/colorAccent"
+            app:riv_mutate_background="true"
+            app:riv_tile_mode="clamp"
+            app:riv_oval="true" />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <se.pederjonsson.apps.quizkids.components.TripleButtonAnswers
+            android:id="@+id/triplebtnanswers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/medium" />
+
+    </RelativeLayout>
+
 
 </LinearLayout>

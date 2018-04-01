@@ -78,19 +78,12 @@ public class TripleButtonAnswers extends LinearLayout {
         mAnswers = answers;
         mainView = _mainView;
         setupBtns();
-        setupListeners();
     }
 
     private void setupBtns(){
-       btnAnswer1.setUp(mAnswers.get(0));
-       btnAnswer2.setUp(mAnswers.get(1));
-       btnAnswer2.setUp(mAnswers.get(2));
-    }
-
-    private void setupListeners() {
-        btnAnswer1.setOnClickListener(v -> { mainView.publishChosenAnswer(mAnswers.get(0)); });
-        btnAnswer2.setOnClickListener(v -> { mainView.publishChosenAnswer(mAnswers.get(1)); });
-        btnAnswer3.setOnClickListener(v -> { mainView.publishChosenAnswer(mAnswers.get(2)); });
+       btnAnswer1.setUp(mAnswers.get(0), mainView);
+       btnAnswer2.setUp(mAnswers.get(1), mainView);
+       btnAnswer3.setUp(mAnswers.get(2), mainView);
     }
 
 }

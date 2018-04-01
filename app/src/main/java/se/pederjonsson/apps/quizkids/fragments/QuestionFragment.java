@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,6 +30,9 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
     @BindView(R.id.triplebtnanswers)
     public TripleButtonAnswers tripleBtnAnswers;
 
+    @BindView(R.id.text_question)
+    public TextView textQuestion;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -37,11 +41,17 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
         unbinder = ButterKnife.bind(this, view);
         Database db = new Database();
 
-
         QuestionAnswers questionAnswers = db.getSampleQuestionAnswers();
-        tripleBtnAnswers.setUp(questionAnswers.getAnswers());
+        textQuestion.setText(questionAnswers.getTextQuestion().getQuestion());
+
+        tripleBtnAnswers.setUp(questionAnswers.getAnswers(), this);
 
         return view;
+    }
+
+    public static android.support.v4.app.Fragment newInstance() {
+        QuestionFragment questionFragment = new QuestionFragment();
+        return questionFragment;
     }
 
     @Override

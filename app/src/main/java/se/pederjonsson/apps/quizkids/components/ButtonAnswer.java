@@ -51,7 +51,7 @@ public class ButtonAnswer extends LinearLayout {
     }
 
     protected void inflate() {
-        inflate(mContext, R.layout.triplebtnanswers, this);
+        inflate(mContext, R.layout.btnanswer, this);
     }
 
     @Override

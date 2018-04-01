@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,9 +8,8 @@
     <Button
         android:id="@+id/btnanswer"
         android:layout_width="match_parent"
-        android:layout_marginLeft="@dimen/medium"
-        android:layout_marginRight="@dimen/medium"
-        android:layout_height="60dp"
+        style="@style/quizbtnstyle"
+        android:layout_height="@dimen/xxxlarge"
         tools:text="Answer" />
 
-</merge>
+</LinearLayout>
