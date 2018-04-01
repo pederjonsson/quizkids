@@ -21,17 +21,23 @@
         <item name="android:textColor">@color/colorPrimaryDark</item>
     </style>
 
-    <style name="BubblesFontMedium">
+    <style name="BubblesFontLarge">
         <item name="android:fontFamily">@font/bubblefontregular</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">@dimen/large</item>
         <item name="android:textColor">@color/colorAccent</item>
     </style>
 
-    <style name="BubblesFontBig" parent="@style/BubblesFontMedium">
+    <style name="BubblesFontXlarge" parent="@style/BubblesFontLarge">
         <item name="android:textSize">@dimen/xlarge</item>
     </style>
 
-    <style name="BubblesFontSmall" parent="@style/BubblesFontMedium">
+    <style name="BubblesFontHeader" parent="@style/BubblesFontLarge">
+        <item name="android:textSize">@dimen/xxxlarge</item>
+        <item name="android:layout_margin">@dimen/medium</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="BubblesFontSmall" parent="@style/BubblesFontLarge">
         <item name="android:textSize">@dimen/medium</item>
         <item name="android:textColor">@color/colorPrimaryDark</item>
     </style>
@@ -43,6 +49,13 @@
         <item name="android:layout_marginLeft">@dimen/medium</item>
         <item name="android:layout_marginBottom">@dimen/medium</item>
         <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="quizbtnstylemenu" parent="@style/quizbtnstyle">
+        <item name="android:background">@drawable/quizbtnmenu</item>
+        <item name="android:fontFamily">@font/bubblefontregular</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/larger</item>
     </style>
 
 </resources>

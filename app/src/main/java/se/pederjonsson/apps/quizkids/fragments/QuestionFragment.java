@@ -72,5 +72,6 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
         } else {
             System.out.print("** wrong answer");
         }
+        tripleBtnAnswers.inactivateButtons();
     }
 }

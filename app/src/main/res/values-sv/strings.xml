@@ -2,4 +2,7 @@
     <string name="app_name">Quizkids</string>
 
     <string name="start_quiz">Starta en quiz omgång</string>
+    <string name="start_quiz_journey">Frågesports resan</string>
+    <string name="correct_answer">Rätt svar!</string>
+    <string name="wrong_answer">Fel svar!</string>
 </resources>

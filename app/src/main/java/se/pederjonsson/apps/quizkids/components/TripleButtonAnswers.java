@@ -86,4 +86,10 @@ public class TripleButtonAnswers extends LinearLayout {
        btnAnswer3.setUp(mAnswers.get(2), mainView);
     }
 
+    public void inactivateButtons(){
+        btnAnswer1.inactivate();
+        btnAnswer2.inactivate();
+        btnAnswer3.inactivate();
+    }
+
 }

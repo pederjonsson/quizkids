@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical"
     android:layout_height="wrap_content">
 
     <Button
@@ -11,5 +13,15 @@
         style="@style/quizbtnstyle"
         android:layout_height="@dimen/xxxlarge"
         tools:text="Answer" />
+
+    <TextView
+        android:id="@+id/response"
+        tools:visibility="visible"
+        android:visibility="gone"
+        style="@style/BubblesFontXlarge"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:layout_marginBottom="@dimen/medium"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

@@ -4,8 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.Button;
 import android.widget.LinearLayout;
-
-import java.util.List;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,6 +21,9 @@ public class ButtonAnswer extends LinearLayout {
 
     @BindView(R.id.btnanswer)
     public Button btnAnswer;
+
+    @BindView(R.id.response)
+    public TextView response;
 
     private Context mContext;
     private Unbinder unbinder;
@@ -75,6 +77,23 @@ public class ButtonAnswer extends LinearLayout {
     }
 
     private void setupListener() {
-        btnAnswer.setOnClickListener(v -> { mainView.publishChosenAnswer(mAnswer); });
+        btnAnswer.setOnClickListener(v -> {
+            showResponse();
+            mainView.publishChosenAnswer(mAnswer); });
+    }
+
+    private void showResponse(){
+        if(mAnswer.isCorrect()){
+            response.setText(getResources().getString(R.string.correct_answer));
+            response.setTextColor(getResources().getColor(R.color.colorCorrect));
+        } else {
+            response.setText(getResources().getString(R.string.wrong_answer));
+            response.setTextColor(getResources().getColor(R.color.colorError));
+        }
+        response.setVisibility(VISIBLE);
+    }
+
+    public void inactivate(){
+        btnAnswer.setEnabled(false);
     }
 }

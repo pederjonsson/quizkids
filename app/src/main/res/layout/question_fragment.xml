@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackgroundYellow"
+    android:background="@color/colorAppBackground"
     android:orientation="vertical"
     tools:context="se.pederjonsson.apps.quizkids.MainActivity">
 
@@ -31,11 +31,11 @@
             android:src="@drawable/eiffel200"
             android:scaleType="centerCrop"
             app:riv_corner_radius="10dip"
-            app:riv_border_width="4dip"
-            app:riv_border_color="@color/colorAccent"
+            app:riv_border_width="2dip"
+            app:riv_border_color="@color/colorPrimaryDark"
             app:riv_mutate_background="true"
             app:riv_tile_mode="clamp"
-            app:riv_oval="true" />
+            app:riv_oval="false" />
 
     </LinearLayout>
 
