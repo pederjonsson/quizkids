@@ -4,4 +4,8 @@
     <string name="start_quiz_journey">Quiz journey</string>
     <string name="correct_answer">Correct answer!</string>
     <string name="wrong_answer">Wrong answer!</string>
+
+    <string name="q_geo_paris">What is the name of the tower in Paris?</string>
+
+
 </resources>

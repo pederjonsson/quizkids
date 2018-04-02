@@ -45,8 +45,7 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
         Database db = new Database();
 
         QuestionAnswers questionAnswers = db.getSampleQuestionAnswers();
-        textQuestion.setText(questionAnswers.getTextQuestion().getQuestion());
-
+        textQuestion.setText(getText(questionAnswers.getTextQuestion().getQuestionResId()));
         tripleBtnAnswers.setUp(questionAnswers.getAnswers(), this);
 
         return view;
