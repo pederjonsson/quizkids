@@ -88,6 +88,15 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
 
     @Override
     public void publishChosenAnswer(Answer answer) {
+        if(!tripleBtnAnswers.btnAnswer1.chosenAnswer){
+            tripleBtnAnswers.btnAnswer1.hide();
+        }
+        if(!tripleBtnAnswers.btnAnswer2.chosenAnswer){
+            tripleBtnAnswers.btnAnswer2.hide();
+        }
+        if(!tripleBtnAnswers.btnAnswer3.chosenAnswer){
+            tripleBtnAnswers.btnAnswer3.hide();
+        }
         if(answer.isCorrect()){
             System.out.print("** correct answer");
             playSound(R.raw.correct);
@@ -137,4 +146,5 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
             mMediaPlayer = null;
         }
     }
+
 }

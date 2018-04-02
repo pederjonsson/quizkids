@@ -6,42 +6,9 @@
     android:background="@color/colorAppBackground"
     tools:context="se.pederjonsson.apps.quizkids.MainActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:layout_margin="@dimen/medium"
-            style="@style/BubblesFontHeader"
-            android:id="@+id/startpagetext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="QuizKids" />
-
-        <Button
-            android:id="@+id/btnstart"
-            style="@style/quizbtnstylemenu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/startpagetext"
-            android:layout_marginTop="@dimen/medium"
-            android:text="@string/start_quiz" />
-
-        <Button
-            android:id="@+id/btnjourney"
-            style="@style/quizbtnstylemenu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/btnstart"
-            android:text="@string/start_quiz_journey" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
+    <FrameLayout
         android:id="@+id/fragmentcontainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
 
 </RelativeLayout>

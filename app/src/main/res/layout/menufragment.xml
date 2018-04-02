@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAppBackground"
+    tools:context="se.pederjonsson.apps.quizkids.MainActivity">
+
+    <TextView
+        android:id="@+id/startpagetext"
+        style="@style/BubblesFontHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/medium"
+        android:text="QuizKids" />
+
+    <Button
+        android:id="@+id/btnjourney"
+        style="@style/quizbtnstylemenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium"
+        android:layout_below="@+id/startpagetext"
+        android:text="@string/start_quiz_journey" />
+
+    <Button
+        android:id="@+id/btnstart"
+        style="@style/quizbtnstylemenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnjourney"
+        android:text="@string/start_quiz" />
+
+</RelativeLayout>

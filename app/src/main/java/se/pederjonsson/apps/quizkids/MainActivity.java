@@ -1,34 +1,27 @@
 package se.pederjonsson.apps.quizkids;
 
-import android.os.Handler;
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.transition.Fade;
 import android.transition.Slide;
-import android.transition.TransitionInflater;
-import android.transition.TransitionSet;
 import android.view.Gravity;
-import android.view.View;
-import android.widget.Button;
 
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
 import se.pederjonsson.apps.quizkids.db.Database;
+import se.pederjonsson.apps.quizkids.fragments.MenuFragment;
 import se.pederjonsson.apps.quizkids.fragments.QuestionFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements GameControllerContract.MainActivityView {
 
-    @BindView(R.id.btnstart)
-    public Button btnStart;
-
+    private static int SLIDE_TIME = 300;
     private Unbinder unbinder;
     Database db;
     List<QuestionAnswers> qaList;
@@ -36,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
     Slide slide = new Slide(Gravity.RIGHT);
     Slide slideout = new Slide(Gravity.LEFT);
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +38,10 @@ public class MainActivity extends AppCompatActivity {
         unbinder = ButterKnife.bind(this);
         db = new Database();
         mFragmentManager = getSupportFragmentManager();
-        slide.setDuration(500);
-        slideout.setDuration(500);
-        btnStart.setOnClickListener(v -> { startQuiz(); });
+        slide.setDuration(SLIDE_TIME);
+        slideout.setDuration(SLIDE_TIME);
+        showMenu();
+
     }
 
     @Override
@@ -57,33 +50,64 @@ public class MainActivity extends AppCompatActivity {
         unbinder.unbind();
     }
 
+    @Override
+    public void startQuickQuiz() {
 
-
-    private void startQuiz(){
-
-
-
-        qaList = db.getQuestionsByCategory(Question.Category.GEOGRAPHY);
-        QuestionAnswers questionAnswers = qaList.get(0);
-
-        showQuestionFragment(questionAnswers);
     }
 
-    private void showQuestionFragment(QuestionAnswers questionAnswers){
+    @Override
+    public Context getViewContext() {
+        return this;
+    }
+
+    @Override
+    public void showMenu() {
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+        MenuFragment fragment = MenuFragment.newInstance(this);
+        //setSlideOutTransition(fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.replace(R.id.fragmentcontainer, fragment);
+
+        commitTransaction(fragmentTransaction);
+
+    }
+
+    private void commitTransaction(FragmentTransaction fragmentTransaction){
+        if(!mFragmentManager.isStateSaved()) {
+            fragmentTransaction.commit();
+        } else {
+            fragmentTransaction.commitAllowingStateLoss();
+        }
+    }
+
+    @Override
+    public void startQuizJourney(Question.Category category) {
+        qaList = db.getQuestionsByCategory(Question.Category.GEOGRAPHY);
+        QuestionAnswers questionAnswers = qaList.get(0);
+        showQuestionFragment(questionAnswers, true);
+    }
+
+    @Override
+    public void showQuestionFragment(QuestionAnswers questionAnswers, boolean addToBackstack){
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         QuestionFragment fragment = QuestionFragment.newInstance(questionAnswers);
         setSlideInOutTransition(fragment);
         fragmentTransaction.replace(R.id.fragmentcontainer, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+        if(addToBackstack){
+            fragmentTransaction.addToBackStack(null);
+        }
+        commitTransaction(fragmentTransaction);
     }
 
     private void setSlideInOutTransition(Fragment fragment){
         fragment.setEnterTransition(slide);
+        setSlideOutTransition(fragment);
+    }
+
+    private void setSlideOutTransition(Fragment fragment){
         fragment.setExitTransition(slideout);
         fragment.setAllowEnterTransitionOverlap(false);
     }
-
 
     @Override
     protected void onDestroy() {
@@ -96,22 +120,10 @@ public class MainActivity extends AppCompatActivity {
         {
             return;
         }
-       /* Fragment previousFragment = mFragmentManager.findFragmentById(R.id.fragmentcontainer);
-        Slide slide = new Slide(Gravity.RIGHT);
-        slide.setDuration(500);
-        Slide slideout = new Slide(Gravity.LEFT);
-        slideout.setDuration(500);
-        previousFragment.setAllowEnterTransitionOverlap(false);
-        previousFragment.setExitTransition(slideout);
-
-        Fragment nextFragment = QuestionFragment.newInstance(qaList.get(1));
-        nextFragment.setEnterTransition(slide);
-        nextFragment.setAllowEnterTransitionOverlap(false);
-        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        fragmentTransaction.hide(previousFragment);
-        fragmentTransaction.replace(R.id.fragmentcontainer, nextFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commitAllowingStateLoss();*/
-       showQuestionFragment(qaList.get(1));
+       showQuestionFragment(qaList.get(1), false);
     }
+
+
+
+
 }

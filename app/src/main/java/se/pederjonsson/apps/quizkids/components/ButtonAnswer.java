@@ -75,9 +75,10 @@ public class ButtonAnswer extends LinearLayout {
 
         setupListener();
     }
-
+    public boolean chosenAnswer;
     private void setupListener() {
         btnAnswer.setOnClickListener(v -> {
+            chosenAnswer = true;
             showResponse();
             mainView.publishChosenAnswer(mAnswer); });
     }
@@ -95,5 +96,9 @@ public class ButtonAnswer extends LinearLayout {
 
     public void inactivate(){
         btnAnswer.setEnabled(false);
+    }
+
+    public void hide(){
+        btnAnswer.setVisibility(GONE);
     }
 }
