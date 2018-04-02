@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/medium"
+    android:layout_marginBottom="@dimen/medium"
+    android:layout_marginLeft="@dimen/medium"
+    android:layout_marginRight="@dimen/medium"
+    android:layout_marginTop="@dimen/margin_tiny"
     android:orientation="vertical"
     tools:context="se.pederjonsson.apps.quizkids.MainActivity">
 
@@ -13,7 +16,10 @@
         style="@style/JupiterSmallBold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/medium"
+        android:layout_marginBottom="@dimen/medium"
+        android:layout_marginLeft="@dimen/medium"
+        android:layout_marginRight="@dimen/medium"
+        android:layout_marginTop="@dimen/margin_tiny"
         android:textAlignment="center" />
     <!-- https://github.com/vinc3m1/RoundedImageView
 
@@ -25,7 +31,7 @@
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
         app:riv_border_color="@color/colorPrimaryDark"
-        app:riv_border_width="2dip"
+        app:riv_border_width="1dip"
         app:riv_corner_radius="10dip"
         app:riv_mutate_background="true"
         app:riv_oval="false"
