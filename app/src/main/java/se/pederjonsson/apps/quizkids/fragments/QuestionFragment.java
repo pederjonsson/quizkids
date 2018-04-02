@@ -2,6 +2,7 @@ package se.pederjonsson.apps.quizkids.fragments;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -33,6 +34,8 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
     @BindView(R.id.text_question)
     public TextView textQuestion;
 
+    MediaPlayer mMediaPlayer;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -61,6 +64,12 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        releaseMediaPlayer();
+    }
+
+    @Override
     public Context getViewContext() {
         return this.getContext();
     }
@@ -69,9 +78,28 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
     public void publishChosenAnswer(Answer answer) {
         if(answer.isCorrect()){
             System.out.print("** correct answer");
+            playSound(R.raw.correct);
         } else {
             System.out.print("** wrong answer");
+            playSound(R.raw.error);
         }
         tripleBtnAnswers.inactivateButtons();
+    }
+
+    private void playSound(int resId){
+        releaseMediaPlayer();
+        mMediaPlayer = MediaPlayer.create(getContext(), resId);
+        mMediaPlayer.setLooping(false);
+        mMediaPlayer.start();
+    }
+
+    private void releaseMediaPlayer() {
+        if (mMediaPlayer != null) {
+            if (mMediaPlayer.isPlaying()) {
+                mMediaPlayer.stop();
+            }
+            mMediaPlayer.release();
+            mMediaPlayer = null;
+        }
     }
 }

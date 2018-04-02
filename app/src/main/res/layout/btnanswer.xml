@@ -11,7 +11,7 @@
         android:id="@+id/btnanswer"
         android:layout_width="match_parent"
         style="@style/quizbtnstyle"
-        android:layout_height="@dimen/xxxlarge"
+        android:layout_height="wrap_content"
         tools:text="Answer" />
 
     <TextView

@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">Quizkids</string>
-
-    <string name="start_quiz">Start a quick quiz</string>
-    <string name="start_quiz_journey">The quiz journey</string>
+    <string name="start_quiz">Quick quiz</string>
+    <string name="start_quiz_journey">Quiz journey</string>
     <string name="correct_answer">Correct answer!</string>
     <string name="wrong_answer">Wrong answer!</string>
 </resources>
