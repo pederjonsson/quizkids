@@ -1,22 +1,28 @@
 package se.pederjonsson.apps.quizkids.fragments;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
+
+import com.makeramen.roundedimageview.RoundedImageView;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import se.pederjonsson.apps.quizkids.MainActivity;
 import se.pederjonsson.apps.quizkids.Objects.Answer;
+import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
 import se.pederjonsson.apps.quizkids.R;
+import se.pederjonsson.apps.quizkids.components.QuestionView;
 import se.pederjonsson.apps.quizkids.components.TripleButtonAnswers;
 import se.pederjonsson.apps.quizkids.db.Database;
 
@@ -26,13 +32,14 @@ import se.pederjonsson.apps.quizkids.db.Database;
 
 public class QuestionFragment extends android.support.v4.app.Fragment implements QuestionAnswerContract.MainView {
 
+    public static String QUESTION_DATA = "QUESTION_DATA";
     private Unbinder unbinder;
 
     @BindView(R.id.triplebtnanswers)
-    public TripleButtonAnswers tripleBtnAnswers;
+    TripleButtonAnswers tripleBtnAnswers;
 
-    @BindView(R.id.text_question)
-    public TextView textQuestion;
+    @BindView(R.id.questionview)
+    QuestionView questionView;
 
     MediaPlayer mMediaPlayer;
 
@@ -42,17 +49,20 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
 
         View view = inflater.inflate(R.layout.question_fragment, container, false);
         unbinder = ButterKnife.bind(this, view);
-        Database db = new Database();
 
-        QuestionAnswers questionAnswers = db.getSampleQuestionAnswers();
-        textQuestion.setText(getText(questionAnswers.getTextQuestion().getQuestionResId()));
+        QuestionAnswers questionAnswers = (QuestionAnswers) getArguments().getSerializable(QUESTION_DATA);
+
+        questionView.setUp(questionAnswers.getQuestion(), this);
         tripleBtnAnswers.setUp(questionAnswers.getAnswers(), this);
 
         return view;
     }
 
-    public static android.support.v4.app.Fragment newInstance() {
+    public static QuestionFragment newInstance(QuestionAnswers questionAnswers) {
         QuestionFragment questionFragment = new QuestionFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(QUESTION_DATA, questionAnswers);
+        questionFragment.setArguments(args);
         return questionFragment;
     }
 
@@ -66,6 +76,9 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
     public void onPause() {
         super.onPause();
         releaseMediaPlayer();
+        if(stopLoadingAnimationHandler != null && stopLoadingAnimationRunnable != null){
+            stopLoadingAnimationHandler.removeCallbacks(stopLoadingAnimationRunnable);
+        }
     }
 
     @Override
@@ -83,6 +96,29 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
             playSound(R.raw.error);
         }
         tripleBtnAnswers.inactivateButtons();
+        loadNewQuestion();
+
+    }
+
+    Runnable stopLoadingAnimationRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if(getActivity() != null){
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ((MainActivity)getActivity()).performTransition();
+                    }
+                });
+            }
+        }
+    };
+
+    Handler stopLoadingAnimationHandler = null;
+
+    public void loadNewQuestion() {
+        stopLoadingAnimationHandler = new Handler();
+        stopLoadingAnimationHandler.postDelayed(stopLoadingAnimationRunnable, 1000);
     }
 
     private void playSound(int resId){

@@ -9,14 +9,14 @@ import java.util.List;
 
 public class QuestionAnswers implements Serializable {
 
-    private Question textQuestion;
+    private Question question;
     private Answer textAnswer1;
     private Answer textAnswer2;
     private Answer textAnswer3;
     private List<Answer> answers;
 
     public QuestionAnswers(Question question, List<Answer> answers){
-        this.textQuestion = question;
+        this.question = question;
         this.answers = answers;
     }
 
@@ -24,12 +24,12 @@ public class QuestionAnswers implements Serializable {
         return answers;
     }
 
-    public Question getTextQuestion() {
-        return textQuestion;
+    public Question getQuestion() {
+        return question;
     }
 
-    public void setTextQuestion(Question textQuestion) {
-        this.textQuestion = textQuestion;
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 
     public Answer getTextAnswer1() {

@@ -6,6 +6,7 @@
     <string name="wrong_answer">Wrong answer!</string>
 
     <string name="q_geo_paris">What is the name of the tower in Paris?</string>
+    <string name="q_geo_mounteverest">What is the name of the highest mountain in the world?</string>
 
 
 </resources>

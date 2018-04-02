@@ -1,10 +1,12 @@
 package se.pederjonsson.apps.quizkids.Objects;
 
+import java.io.Serializable;
+
 /**
  * Created by Gaming on 2018-04-01.
  */
 
-public class Answer {
+public class Answer implements Serializable {
 
     private String textAnswer;
     private boolean isCorrect;

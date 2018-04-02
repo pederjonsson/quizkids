@@ -7,4 +7,5 @@
     <string name="wrong_answer">Fel svar!</string>
 
     <string name="q_geo_paris">Vad heter tornet i paris?</string>
+    <string name="q_geo_mounteverest">Vad heter världens högsta berg?</string>
 </resources>
