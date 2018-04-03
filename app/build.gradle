@@ -6,7 +6,7 @@ repositories {
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "27.0.2"
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "se.pederjonsson.apps.quizkids"
         minSdkVersion 21

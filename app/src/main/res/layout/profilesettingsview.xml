@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <!--
+    <Button
+        android:id="@+id/btnanswer"
+        android:layout_width="match_parent"
+        style="@style/quizbtnstyle"
+        android:layout_height="wrap_content"
+        tools:text="Answer" /> -->
+
+    <TextView
+        android:id="@+id/nametitle"
+        tools:visibility="visible"
+        android:visibility="gone"
+        style="@style/BubblesFontXlarge"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:layout_marginBottom="@dimen/medium"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/edittextname"
+        tools:visibility="visible"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
