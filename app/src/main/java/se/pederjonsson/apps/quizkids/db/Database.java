@@ -21,7 +21,6 @@ import se.pederjonsson.apps.quizkids.Objects.Answer;
 import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
 import se.pederjonsson.apps.quizkids.R;
-import se.pederjonsson.apps.quizkids.fragments.QuestionAnswerContract;
 
 /**
  * Created by Gaming on 2018-04-01.
@@ -40,6 +39,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String QA_TABLE_NAME = "profiles";
     public static final String QA_COLUMN_ID = "_id";
     public static final String QA_COLUMN_TYPE = "category";
+    public static final String QA_COLUMN_DIFFICULTY = "difficulty";
     public static final String QA_COLUMN_VALUE = "value";
 
 
@@ -67,22 +67,19 @@ public class Database extends SQLiteOpenHelper {
 
     public void createQuestionAnswerTable(SQLiteDatabase db){
         db.execSQL("CREATE TABLE IF NOT EXISTS " + QA_TABLE_NAME + "(" +
-                QA_COLUMN_ID + " TEXT, " +
+                QA_COLUMN_ID + " INTEGER PRIMARY KEY , " +
                 QA_COLUMN_TYPE + " TEXT, " +
-                QA_COLUMN_VALUE + " BLOB," +
-                "UNIQUE (" + QA_COLUMN_ID + "," + QA_COLUMN_TYPE + ") ON CONFLICT REPLACE" +
-                ")"
+                QA_COLUMN_DIFFICULTY + " INTEGER, " +
+                QA_COLUMN_VALUE + " BLOB " + ")"
         );
     }
 
-    public synchronized boolean insertQa(String key, String category, Serializable value) {
+    public synchronized boolean insertQa(String category, Serializable value) {
 
         if(value == null){
-            //LOG.error(tag + " Serializable value in DBHelper insertSetting wass null");
             return false;
         }
 
-        //LOG.debug(tag + " db insert " + type);
         SQLiteDatabase db = getWritableDatabase();
 
         byte[] bytes = objectTobytes(value);
@@ -90,27 +87,68 @@ public class Database extends SQLiteOpenHelper {
             return false;
         }
 
-        ContentValues contentValues = getQAContentValues(key, category, bytes);
+        ContentValues contentValues = getQAContentValues(category, bytes);
         db.insert(QA_TABLE_NAME, null, contentValues);
         db.close();
         return true;
     }
 
-    private ContentValues getQAContentValues(String key, String type, byte[] value) {
+    private ContentValues getQAContentValues(String type, byte[] value) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(QA_COLUMN_ID, key);
         contentValues.put(QA_COLUMN_TYPE, type);
         contentValues.put(QA_COLUMN_VALUE, value);
         return contentValues;
     }
 
-    public synchronized Object getQA(String type, ExtensionEntityKey key) {
-        if(key == null){
-            return null;
-        }
+    public synchronized Object getQA(String category, int difficultyLevel) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("SELECT " + SETTINGS_COLUMN_VALUE + " FROM " + SETTINGS_TABLE_NAME + " WHERE " +
-                SETTINGS_COLUMN_TYPE + "=? AND " + SETTINGS_COLUMN_ID + "=?", new String[]{type, key.getKey()});
+        Cursor res = db.rawQuery("SELECT " + QA_COLUMN_VALUE + " FROM " + QA_TABLE_NAME + " WHERE " +
+                QA_COLUMN_TYPE + "=? AND " + QA_COLUMN_DIFFICULTY + "=?", new String[]{category, Integer.toString(difficultyLevel)});
+
+        if (res.getCount() > 0) {
+            res.moveToFirst();
+
+            Object obj = byteToObj(res.getBlob(0));
+            db.close();
+            return obj;
+        }
+        if(res != null){
+            res.close();
+        }
+        db.close();
+        return null;
+    }
+
+    public synchronized boolean insertProfile(String firstName, Serializable value) {
+
+        if(value == null){
+            return false;
+        }
+
+        SQLiteDatabase db = getWritableDatabase();
+
+        byte[] bytes = objectTobytes(value);
+        if(bytes == null){
+            return false;
+        }
+
+        ContentValues contentValues = getProfileContentValues(firstName, bytes);
+        db.insert(PROFILE_TABLE_NAME, null, contentValues);
+        db.close();
+        return true;
+    }
+
+    private ContentValues getProfileContentValues(String firstName, byte[] value) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(PROFILE_COLUMN_ID, firstName);
+        contentValues.put(PROFILE_COLUMN_VALUE, value);
+        return contentValues;
+    }
+
+    public synchronized Object getProfile(String firstName, int difficultyLevel) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT " + PROFILE_COLUMN_VALUE + " FROM " + PROFILE_TABLE_NAME + " WHERE " +
+                PROFILE_COLUMN_ID + "=?", new String[]{firstName});
 
 
         if (res.getCount() > 0) {
