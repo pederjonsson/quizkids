@@ -90,22 +90,51 @@ public class ProfileSettingView extends LinearLayout {
         setupListener();
     }
 
+    private void cleanChoosePlayerContainer(){
+        choosePlayerContainer.removeAllViews();
+        shownChoosePlayerContainer = false;
+        choosePlayerContainer.setVisibility(GONE);
+    }
+
     private boolean shownChoosePlayerContainer = false;
     private void showChoosePlayerOrCreateNew(){
         if(shownChoosePlayerContainer){
-            choosePlayerContainer.removeAllViews();
-            shownChoosePlayerContainer = false;
-
+            cleanChoosePlayerContainer();
         } else {
             LayoutInflater factory = LayoutInflater.from(mContext);
             for (Profile profile:profiles) {
                 View view = factory.inflate(R.layout.playerlistitem, choosePlayerContainer, false);
-                ((TextView) view.findViewById(R.id.playername)).setText(profile.getName());
+                Button mBtn = ((Button) view.findViewById(R.id.btnplayername));
+                mBtn.setText("Play as " + profile.getName() + " >");
+                mBtn.setTag(profile);
+                mBtn.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Profile p = (Profile) v.getTag();
+                        gameControllerPresenter.startGame(GameController.GAMETYPE_JOURNEY, p);
+                    }
+                });
                 choosePlayerContainer.addView(view);
             }
 
             View view = factory.inflate(R.layout.playerlistitem, choosePlayerContainer, false);
-            ((TextView) view.findViewById(R.id.playername)).setText("create new player");
+
+            Button mBtn = ((Button) view.findViewById(R.id.btnplayername));
+            mBtn.setText("create new player >");
+            mBtn.setTag(new Profile("newplayer"));
+            mBtn.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Profile p = (Profile) v.getTag();
+                    if(p.getName().equals("newplayer")){
+                        //show enter name view
+                        cleanChoosePlayerContainer();
+                        showEnterName();
+                    } else {
+                        gameControllerPresenter.startGame(GameController.GAMETYPE_JOURNEY, p);
+                    }
+                }
+            });
             choosePlayerContainer.addView(view);
             choosePlayerContainer.setVisibility(VISIBLE);
             enterNewPlayerContainer.setVisibility(GONE);
@@ -125,7 +154,7 @@ public class ProfileSettingView extends LinearLayout {
         startGameButton.setOnClickListener(v -> {
 
             if(editTextName.getText() == null || editTextName.getText().toString().isEmpty()){
-                Toast.makeText(mContext, R.string.toast_pls_enter_name, Toast.LENGTH_SHORT);
+                Toast.makeText(mContext, R.string.toast_pls_enter_name, Toast.LENGTH_SHORT).show();
             } else {
                 String nameEntered = editTextName.getText().toString();
                 Profile newPlayer = new Profile(nameEntered);

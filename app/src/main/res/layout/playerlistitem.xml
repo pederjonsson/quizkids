@@ -4,9 +4,13 @@
     android:orientation="vertical"
     android:layout_height="wrap_content">
 
-    <TextView android:id="@+id/playername"
-        android:layout_height="wrap_content"
+    <Button
+        android:id="@+id/btnplayername"
+        style="@style/quizbtnstylemenuplayers"
         android:layout_width="match_parent"
-        />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/medium"
+        android:layout_marginLeft="@dimen/xlarge"
+        android:layout_marginRight="@dimen/xlarge" />
 
 </LinearLayout>

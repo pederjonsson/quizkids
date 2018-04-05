@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorAppBackground"
+    android:animateLayoutChanges="true"
     tools:context="se.pederjonsson.apps.quizkids.MainActivity">
 
     <TextView
