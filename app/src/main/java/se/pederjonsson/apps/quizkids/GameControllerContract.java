@@ -28,6 +28,7 @@ public interface GameControllerContract {
             void saveProfile(Profile profile);
             void startGame(int gametype, Profile profile);
             List<Profile> getProfiles();
+            boolean playerNameIsAvailable();
         }
         interface Interactor {
 

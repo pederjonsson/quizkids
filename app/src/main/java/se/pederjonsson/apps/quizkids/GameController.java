@@ -51,6 +51,11 @@ public class GameController implements GameControllerContract.Presenter{
         return database.getAllProfiles();
     }
 
+    @Override
+    public boolean playerNameIsAvailable() {
+        return false;
+    }
+
     private void loadQuestionsByCategory(Question.Category category){
         currentCategoryQAList = database.getQuestionsByCategory(category);
         QuestionAnswers questionAnswers = currentCategoryQAList.get(0);
