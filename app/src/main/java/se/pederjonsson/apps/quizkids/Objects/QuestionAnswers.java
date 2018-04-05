@@ -1,6 +1,7 @@
 package se.pederjonsson.apps.quizkids.Objects;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,10 +15,22 @@ public class QuestionAnswers implements Serializable {
     private Answer textAnswer2;
     private Answer textAnswer3;
     private List<Answer> answers;
+    private List<String> profileNamesThisQuestionHasBeenShownTo = new ArrayList<>();
 
     public QuestionAnswers(Question question, List<Answer> answers){
         this.question = question;
         this.answers = answers;
+    }
+
+    public void setHasBeenShownTo(String name){
+        profileNamesThisQuestionHasBeenShownTo.add(name);
+    }
+
+    public boolean hasBeenShownTo(String name){
+        if(profileNamesThisQuestionHasBeenShownTo.contains(name)){
+            return true;
+        }
+        return false;
     }
 
     public List<Answer> getAnswers() {

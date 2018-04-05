@@ -71,14 +71,16 @@ public class Database extends SQLiteOpenHelper {
 
     public void createQuestionAnswerTable(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + QA_TABLE_NAME + "(" +
-                QA_COLUMN_ID + " INTEGER PRIMARY KEY , " +
+                QA_COLUMN_ID + " INTEGER, " +
                 QA_COLUMN_TYPE + " TEXT, " +
                 QA_COLUMN_DIFFICULTY + " INTEGER, " +
-                QA_COLUMN_VALUE + " BLOB " + ")"
+                QA_COLUMN_VALUE + " BLOB," +
+                "UNIQUE (" + QA_COLUMN_ID + ") ON CONFLICT REPLACE" +
+                ")"
         );
     }
 
-    public synchronized boolean insertQa(String category, Serializable value) {
+    public synchronized boolean insertQa(String category, int difficulty, int qaId, Serializable value) {
 
         if (value == null) {
             return false;
@@ -91,31 +93,43 @@ public class Database extends SQLiteOpenHelper {
             return false;
         }
 
-        ContentValues contentValues = getQAContentValues(category, bytes);
+        ContentValues contentValues = getQAContentValues(category, difficulty, qaId, bytes);
         db.insert(QA_TABLE_NAME, null, contentValues);
         db.close();
         return true;
     }
 
-    private ContentValues getQAContentValues(String type, byte[] value) {
+    private ContentValues getQAContentValues(String type, int difficulty, int qaId, byte[] value) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(QA_COLUMN_TYPE, type);
+        contentValues.put(QA_COLUMN_ID, qaId);
+        contentValues.put(QA_COLUMN_DIFFICULTY, difficulty);
         contentValues.put(QA_COLUMN_VALUE, value);
         return contentValues;
     }
 
-    public synchronized Object getQA(String category, int difficultyLevel) {
+    public synchronized List<QuestionAnswers> getQAListByCategoryAndDifficultyLevel(String category, int difficultyLevel) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery("SELECT " + QA_COLUMN_VALUE + " FROM " + QA_TABLE_NAME + " WHERE " +
                 QA_COLUMN_TYPE + "=? AND " + QA_COLUMN_DIFFICULTY + "=?", new String[]{category, Integer.toString(difficultyLevel)});
 
+        final List<QuestionAnswers> list = new ArrayList<QuestionAnswers>();
         if (res.getCount() > 0) {
-            res.moveToFirst();
 
-            Object obj = byteToObj(res.getBlob(0));
+
+            try {
+                while (res.moveToNext()) {
+                    list.add((QuestionAnswers) byteToObj(res.getBlob(0)));
+                }
+            } finally {
+                res.close();
+            }
+
             db.close();
-            return obj;
+            return list;
         }
+
+
         if (res != null) {
             res.close();
         }
@@ -242,10 +256,10 @@ public class Database extends SQLiteOpenHelper {
         // good read when needed: https://thebhwgroup.com/blog/how-android-sqlite-onupgrade
     }
 
-
+/*
     public QuestionAnswers getSampleQuestionAnswers() {
 
-        Question q = new Question(R.string.q_geo_paris, Question.Category.GEOGRAPHY, R.drawable.eiffel200);
+        Question q = new Question(R.string.q_geo_paris, Question.Category.GEOGRAPHY, R.drawable.eiffel200, Question.DifficultyLevel.EASY);
         Answer a = new Answer("Eiffel", true);
         Answer b = new Answer("Big Ben", false);
         Answer c = new Answer("Falafel", false);
@@ -255,7 +269,7 @@ public class Database extends SQLiteOpenHelper {
         answers.add(c);
 
         return new QuestionAnswers(q, answers);
-    }
+    }*/
 
     public List<QuestionAnswers> getQuestionsByCategory(Question.Category category) {
         switch (category) {
