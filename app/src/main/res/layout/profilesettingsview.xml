@@ -31,11 +31,6 @@
             android:text="@string/what_is_your_name"
             android:textAlignment="center" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
             <EditText
                 android:id="@+id/edittextname"
                 android:layout_width="match_parent"
@@ -48,10 +43,10 @@
 
             <Button
                 android:id="@+id/startgamebtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/what_is_your_name"/>
-        </LinearLayout>
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@color/colorError"
+                android:text="@string/start"/>
 
     </LinearLayout>
 

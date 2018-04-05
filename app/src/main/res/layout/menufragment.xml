@@ -24,12 +24,21 @@
         android:layout_below="@+id/startpagetext"
         android:text="@string/start_quiz_journey" />
 
+    <se.pederjonsson.apps.quizkids.components.ProfileSettingView
+        android:id="@+id/profilesettingsview"
+        android:layout_width="match_parent"
+        android:paddingTop="@dimen/margin_medium"
+        android:paddingLeft="@dimen/margin_medium"
+        android:paddingRight="@dimen/margin_medium"
+        android:layout_below="@+id/btnjourney"
+        android:layout_height="wrap_content" />
+
     <Button
         android:id="@+id/btnstart"
         style="@style/quizbtnstylemenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnjourney"
+        android:layout_below="@+id/profilesettingsview"
         android:text="@string/start_quiz" />
 
 </RelativeLayout>

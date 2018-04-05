@@ -25,7 +25,7 @@ public class GameController implements GameControllerContract.Presenter{
 
     @Override
     public void nextQuestion() {
-        //mainActivityView.showQuestionFragment();
+        mainActivityView.showQuestionFragment(currentCategoryQAList.get(1), false);
     }
 
     @Override
@@ -40,13 +40,21 @@ public class GameController implements GameControllerContract.Presenter{
             //first show view for choose category;
             //pretend choose geo
             loadQuestionsByCategory(Question.Category.GEOGRAPHY);
+        } else if(gametype == GAMETYPE_QUICK){
+            //mixaafrågor sen
+            loadQuestionsByCategory(Question.Category.GEOGRAPHY);
         }
+    }
+
+    @Override
+    public List<Profile> getProfiles() {
+        return database.getAllProfiles();
     }
 
     private void loadQuestionsByCategory(Question.Category category){
         currentCategoryQAList = database.getQuestionsByCategory(category);
         QuestionAnswers questionAnswers = currentCategoryQAList.get(0);
-        mainActivityView.showQuestionFragment(questionAnswers, false);
+        mainActivityView.showQuestionFragment(questionAnswers, true);
         questionHasBeenShownTo(questionAnswers, playingProfile);
     }
 

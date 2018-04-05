@@ -44,6 +44,14 @@ public class DatabaseUtil {
         return qaList;
     }
 
+    public void populateDB(Database database){
+        List<QuestionAnswers> qaList = generateQAGeography();
+
+        for (QuestionAnswers q:qaList) {
+            database.insertQa(q.getQuestion().getCategoryString(), q.getQuestion().getDifficultyLevel(), q.getQuestion().getQuestionResId(), q);
+        }
+    }
+
     private QuestionAnswers generateQA(int questionResId, Question.Category category, int drawableResId, Question.DifficultyLevel difficultyLevel, String trueAnswer, String answer2, String answer3){
         return new QuestionAnswers(generateQuestion(questionResId, category,drawableResId, difficultyLevel), generateAnswers(trueAnswer, answer2, answer3));
     }

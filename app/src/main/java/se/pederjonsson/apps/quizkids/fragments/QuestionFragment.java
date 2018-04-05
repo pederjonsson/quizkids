@@ -17,6 +17,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import se.pederjonsson.apps.quizkids.GameControllerContract;
 import se.pederjonsson.apps.quizkids.MainActivity;
 import se.pederjonsson.apps.quizkids.Objects.Answer;
 import se.pederjonsson.apps.quizkids.Objects.Question;
@@ -42,6 +43,7 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
     QuestionView questionView;
 
     MediaPlayer mMediaPlayer;
+    public GameControllerContract.Presenter gameControllerPresenter;
 
     @Nullable
     @Override
@@ -58,11 +60,12 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
         return view;
     }
 
-    public static QuestionFragment newInstance(QuestionAnswers questionAnswers) {
+    public static QuestionFragment newInstance(QuestionAnswers questionAnswers, GameControllerContract.Presenter _gameControllerP) {
         QuestionFragment questionFragment = new QuestionFragment();
         Bundle args = new Bundle();
         args.putSerializable(QUESTION_DATA, questionAnswers);
         questionFragment.setArguments(args);
+        questionFragment.gameControllerPresenter = _gameControllerP;
         return questionFragment;
     }
 
@@ -116,7 +119,7 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ((MainActivity)getActivity()).performTransition();
+                        gameControllerPresenter.nextQuestion();
                     }
                 });
             }

@@ -308,4 +308,8 @@ public class Database extends SQLiteOpenHelper {
         }
     }
 
+    public void populate(){
+        dbUtil.populateDB(this);
+    }
+
 }

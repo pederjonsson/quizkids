@@ -2,6 +2,8 @@ package se.pederjonsson.apps.quizkids;
 
 import android.content.Context;
 
+import java.util.List;
+
 import se.pederjonsson.apps.quizkids.Objects.Answer;
 import se.pederjonsson.apps.quizkids.Objects.Profile;
 import se.pederjonsson.apps.quizkids.Objects.Question;
@@ -25,6 +27,7 @@ public interface GameControllerContract {
             void nextQuestion();
             void saveProfile(Profile profile);
             void startGame(int gametype, Profile profile);
+            List<Profile> getProfiles();
         }
         interface Interactor {
 

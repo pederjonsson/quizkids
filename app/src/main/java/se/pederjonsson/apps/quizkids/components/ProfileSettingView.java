@@ -74,9 +74,13 @@ public class ProfileSettingView extends LinearLayout {
         unbinder.unbind();
     }
 
-    public void setUp(List<Profile> _profiles, GameControllerContract.Presenter _gameControllerPresenter) {
+    public void setUp(GameControllerContract.Presenter _gameControllerPresenter) {
         gameControllerPresenter = _gameControllerPresenter;
-        profiles = _profiles;
+        profiles = gameControllerPresenter.getProfiles();
+
+    }
+
+    public void startJourneyBtnClicked(){
         if(profiles != null && profiles.size() > 0){
             showChoosePlayerOrCreateNew();
         } else {
@@ -86,13 +90,29 @@ public class ProfileSettingView extends LinearLayout {
         setupListener();
     }
 
+    private boolean shownChoosePlayerContainer = false;
     private void showChoosePlayerOrCreateNew(){
-        LayoutInflater factory = LayoutInflater.from(mContext);
-        for (Profile profile:profiles) {
+        if(shownChoosePlayerContainer){
+            choosePlayerContainer.removeAllViews();
+            shownChoosePlayerContainer = false;
+
+        } else {
+            LayoutInflater factory = LayoutInflater.from(mContext);
+            for (Profile profile:profiles) {
+                View view = factory.inflate(R.layout.playerlistitem, choosePlayerContainer, false);
+                ((TextView) view.findViewById(R.id.playername)).setText(profile.getName());
+                choosePlayerContainer.addView(view);
+            }
+
             View view = factory.inflate(R.layout.playerlistitem, choosePlayerContainer, false);
-            ((TextView) view.findViewById(R.id.playername)).setText(profile.getName());
+            ((TextView) view.findViewById(R.id.playername)).setText("create new player");
             choosePlayerContainer.addView(view);
+            choosePlayerContainer.setVisibility(VISIBLE);
+            enterNewPlayerContainer.setVisibility(GONE);
+            shownChoosePlayerContainer = true;
         }
+
+
     }
 
     private void showEnterName(){
@@ -103,10 +123,11 @@ public class ProfileSettingView extends LinearLayout {
     private void setupListener() {
         //edittextlistener here
         startGameButton.setOnClickListener(v -> {
-            String nameEntered = editTextName.getText().toString();
-            if(nameEntered.isEmpty()){
+
+            if(editTextName.getText() == null || editTextName.getText().toString().isEmpty()){
                 Toast.makeText(mContext, R.string.toast_pls_enter_name, Toast.LENGTH_SHORT);
             } else {
+                String nameEntered = editTextName.getText().toString();
                 Profile newPlayer = new Profile(nameEntered);
                 gameControllerPresenter.saveProfile(newPlayer);
                 gameControllerPresenter.startGame(GameController.GAMETYPE_JOURNEY, newPlayer);

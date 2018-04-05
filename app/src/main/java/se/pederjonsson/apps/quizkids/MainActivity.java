@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
 
     private static int SLIDE_TIME = 300;
     private Unbinder unbinder;
+    private GameControllerContract.Presenter gameControllerPresenter;
     Database db;
     List<QuestionAnswers> qaList;
     private FragmentManager mFragmentManager;
@@ -37,10 +38,13 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
 
         unbinder = ButterKnife.bind(this);
         db = new Database(this);
+        gameControllerPresenter = new GameController(this, db);
         mFragmentManager = getSupportFragmentManager();
         slide.setDuration(SLIDE_TIME);
         slideout.setDuration(SLIDE_TIME);
         showMenu();
+
+        db.populate();
 
     }
 
@@ -63,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
     @Override
     public void showMenu() {
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        MenuFragment fragment = MenuFragment.newInstance(this);
+        MenuFragment fragment = MenuFragment.newInstance(this, gameControllerPresenter);
         //setSlideOutTransition(fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragmentcontainer, fragment);
@@ -90,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
     @Override
     public void showQuestionFragment(QuestionAnswers questionAnswers, boolean addToBackstack){
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        QuestionFragment fragment = QuestionFragment.newInstance(questionAnswers);
+        QuestionFragment fragment = QuestionFragment.newInstance(questionAnswers, gameControllerPresenter);
         setSlideInOutTransition(fragment);
         fragmentTransaction.replace(R.id.fragmentcontainer, fragment);
         if(addToBackstack){
@@ -114,14 +118,6 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
         super.onDestroy();
     }
 
-    public void performTransition()
-    {
-        if (isDestroyed())
-        {
-            return;
-        }
-       showQuestionFragment(qaList.get(1), false);
-    }
 
 
 
