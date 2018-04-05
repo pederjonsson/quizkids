@@ -45,17 +45,13 @@ public class ProfileSettingView extends LinearLayout {
 
     private Context mContext;
     private Unbinder unbinder;
-    private GameControllerContract.MainActivityView mainActivityView;
     private List<Profile> profiles;
     private GameControllerContract.Presenter gameControllerPresenter;
-
-
 
     public ProfileSettingView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
-
 
     protected void init(Context context) {
         mContext = context;
@@ -78,8 +74,7 @@ public class ProfileSettingView extends LinearLayout {
         unbinder.unbind();
     }
 
-    public void setUp(GameControllerContract.MainActivityView _mainActivityView, List<Profile> _profiles, int gameType, GameControllerContract.Presenter _gameControllerPresenter) {
-        mainActivityView = _mainActivityView;
+    public void setUp(List<Profile> _profiles, GameControllerContract.Presenter _gameControllerPresenter) {
         gameControllerPresenter = _gameControllerPresenter;
         profiles = _profiles;
         if(profiles != null && profiles.size() > 0){

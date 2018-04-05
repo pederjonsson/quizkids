@@ -37,7 +37,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String PROFILE_COLUMN_ID = "_id";
     public static final String PROFILE_COLUMN_VALUE = "value";
 
-    public static final String QA_TABLE_NAME = "profiles";
+    public static final String QA_TABLE_NAME = "questionsanswers";
     public static final String QA_COLUMN_ID = "_id";
     public static final String QA_COLUMN_TYPE = "category";
     public static final String QA_COLUMN_DIFFICULTY = "difficulty";
@@ -73,14 +73,14 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + QA_TABLE_NAME + "(" +
                 QA_COLUMN_ID + " INTEGER, " +
                 QA_COLUMN_TYPE + " TEXT, " +
-                QA_COLUMN_DIFFICULTY + " INTEGER, " +
+                QA_COLUMN_DIFFICULTY + " TEXT, " +
                 QA_COLUMN_VALUE + " BLOB," +
                 "UNIQUE (" + QA_COLUMN_ID + ") ON CONFLICT REPLACE" +
                 ")"
         );
     }
 
-    public synchronized boolean insertQa(String category, int difficulty, int qaId, Serializable value) {
+    public synchronized boolean insertQa(String category, String difficulty, int qaId, Serializable value) {
 
         if (value == null) {
             return false;
@@ -99,7 +99,7 @@ public class Database extends SQLiteOpenHelper {
         return true;
     }
 
-    private ContentValues getQAContentValues(String type, int difficulty, int qaId, byte[] value) {
+    private ContentValues getQAContentValues(String type, String difficulty, int qaId, byte[] value) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(QA_COLUMN_TYPE, type);
         contentValues.put(QA_COLUMN_ID, qaId);
@@ -108,10 +108,12 @@ public class Database extends SQLiteOpenHelper {
         return contentValues;
     }
 
-    public synchronized List<QuestionAnswers> getQAListByCategoryAndDifficultyLevel(String category, int difficultyLevel) {
+    public synchronized List<QuestionAnswers> getQAListByCategoryAndDifficultyLevel(String category, String difficultyLevel) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery("SELECT " + QA_COLUMN_VALUE + " FROM " + QA_TABLE_NAME + " WHERE " +
-                QA_COLUMN_TYPE + "=? AND " + QA_COLUMN_DIFFICULTY + "=?", new String[]{category, Integer.toString(difficultyLevel)});
+                QA_COLUMN_TYPE + "=? "
+                /*"AND " + QA_COLUMN_DIFFICULTY + "=?"*/
+                , new String[]{category});
 
         final List<QuestionAnswers> list = new ArrayList<QuestionAnswers>();
         if (res.getCount() > 0) {
@@ -130,6 +132,32 @@ public class Database extends SQLiteOpenHelper {
         }
 
 
+        if (res != null) {
+            res.close();
+        }
+        db.close();
+        return null;
+    }
+
+    public synchronized List<QuestionAnswers> getAllQA() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT ALL " + QA_COLUMN_VALUE + " FROM " + QA_TABLE_NAME, null);
+
+        final List<QuestionAnswers> list = new ArrayList<QuestionAnswers>();
+        if (res.getCount() > 0) {
+
+
+            try {
+                while (res.moveToNext()) {
+                    list.add((QuestionAnswers) byteToObj(res.getBlob(0)));
+                }
+            } finally {
+                res.close();
+            }
+
+            db.close();
+            return list;
+        }
         if (res != null) {
             res.close();
         }

@@ -14,7 +14,9 @@ import org.junit.runner.RunWith;
 import java.util.List;
 
 import se.pederjonsson.apps.quizkids.Objects.Profile;
+import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
 import se.pederjonsson.apps.quizkids.db.Database;
+import se.pederjonsson.apps.quizkids.db.DatabaseUtil;
 
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
@@ -35,30 +37,30 @@ public class DatabaseTest {
         assertEquals("se.pederjonsson.apps.quizkids", appContext.getPackageName());
     }
 
-    private Database dbHelper;
+    private Database database;
 
     @Before
     public void setUp() {
-        dbHelper = new Database(InstrumentationRegistry.getTargetContext());
+        database = new Database(InstrumentationRegistry.getTargetContext());
     }
 
     @After
     public void finish() {
-        dbHelper.close();
+        database.close();
     }
 
     @Test
     public void testPreConditions() {
-        assertNotNull(dbHelper);
+        assertNotNull(database);
     }
 
     @Test
-    public void testShouldAddExtensionKey() throws Exception {
+    public void testProfileModInDB() throws Exception {
 
         Profile p = new Profile("mats");
         p.setAge(3);
-        dbHelper.insertProfile("mats", p);
-        List<Profile> firstResult = dbHelper.getAllProfiles();
+        database.insertProfile("mats", p);
+        List<Profile> firstResult = database.getAllProfiles();
 
         assertNotNull (firstResult);
 
@@ -69,18 +71,69 @@ public class DatabaseTest {
         firstProfile.setAge(4);
 
         //this is to test that update works
-        dbHelper.insertProfile(firstProfile.getName(), firstProfile);
-        Object secondResult = dbHelper.getProfileByName(firstProfile.getName());
+        database.insertProfile(firstProfile.getName(), firstProfile);
+        Object secondResult = database.getProfileByName(firstProfile.getName());
         assertNotNull (secondResult);
 
         assertTrue(((Profile)secondResult).getAge() == 4);
     }
 
     @Test
+    public void testQA() throws Exception {
+
+        DatabaseUtil databaseUtil = new DatabaseUtil();
+        List<QuestionAnswers> qaList = databaseUtil.generateQAGeography();
+        QuestionAnswers firstQA = qaList.get(0);
+
+        database.insertQa(firstQA.getQuestion().getCategoryString(), firstQA.getQuestion().getDifficultyLevel(), firstQA.getQuestion().getQuestionResId(), firstQA);
+
+
+        List<QuestionAnswers> qaListFromDB = database.getAllQA();
+        assertNotNull (qaListFromDB);
+        QuestionAnswers qaFromDB = qaListFromDB.get(0);
+        assertNotNull (qaFromDB);
+
+        qaFromDB.setHasBeenShownTo("mats");
+        assertTrue(qaFromDB.hasBeenShownTo("mats"));
+
+        database.insertQa(qaFromDB.getQuestion().getCategoryString(), qaFromDB.getQuestion().getDifficultyLevel(), qaFromDB.getQuestion().getQuestionResId(), qaFromDB);
+        List<QuestionAnswers> qaListFromDB2 = database.getAllQA();
+                //database.getQAListByCategoryAndDifficultyLevel(qaFromDB.getQuestion().getCategoryString(), qaFromDB.getQuestion().getDifficultyLevel());
+
+        QuestionAnswers qaFromDB2 = qaListFromDB2.get(0);
+        assertTrue(qaFromDB2.hasBeenShownTo("mats"));
+    }
+
+    @Test
+    public void testQAWithSpecifiedRequest() throws Exception {
+
+        DatabaseUtil databaseUtil = new DatabaseUtil();
+        List<QuestionAnswers> qaList = databaseUtil.generateQAGeography();
+        QuestionAnswers firstQA = qaList.get(0);
+
+        database.insertQa(firstQA.getQuestion().getCategoryString(), firstQA.getQuestion().getDifficultyLevel(), firstQA.getQuestion().getQuestionResId(), firstQA);
+
+
+        List<QuestionAnswers> qaListFromDB = database.getQAListByCategoryAndDifficultyLevel(firstQA.getQuestion().getCategoryString(), firstQA.getQuestion().getDifficultyLevel());
+        assertNotNull (qaListFromDB);
+        QuestionAnswers qaFromDB = qaListFromDB.get(0);
+        assertNotNull (qaFromDB);
+
+        qaFromDB.setHasBeenShownTo("mats");
+        assertTrue(qaFromDB.hasBeenShownTo("mats"));
+
+        database.insertQa(qaFromDB.getQuestion().getCategoryString(), qaFromDB.getQuestion().getDifficultyLevel(), qaFromDB.getQuestion().getQuestionResId(), qaFromDB);
+        List<QuestionAnswers> qaListFromDB2 = database.getQAListByCategoryAndDifficultyLevel(qaFromDB.getQuestion().getCategoryString(), qaFromDB.getQuestion().getDifficultyLevel());
+
+        QuestionAnswers qaFromDB2 = qaListFromDB2.get(0);
+        assertTrue(qaFromDB2.hasBeenShownTo("mats"));
+    }
+
+    @Test
     public void testCreateTableTwice(){
         Exception exception = null;
         try {
-            dbHelper.createProfilesTable(dbHelper.getWritableDatabase());
+            database.createProfilesTable(database.getWritableDatabase());
         } catch (Exception ex){
             exception = ex;
         }

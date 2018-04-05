@@ -27,15 +27,15 @@ public class Question implements Serializable {
     }
 
     public enum DifficultyLevel {
-       EASY(1), MEDIUM(2), HARD(3);
+       EASY("easy"), MEDIUM("medium"), HARD("hard");
 
-        public int getDifficultyLevel() {
+        public String getDifficultyLevel() {
             return difficultyLevel;
         }
 
-        private int difficultyLevel;
+        private String difficultyLevel;
 
-        DifficultyLevel(int _difficultyLevel) {
+        DifficultyLevel(String _difficultyLevel) {
             difficultyLevel = _difficultyLevel;
         }
     }
@@ -62,7 +62,7 @@ public class Question implements Serializable {
         return category.category;
     }
 
-    public int getDifficultyLevel() {
+    public String getDifficultyLevel() {
         return difficultyLevel.difficultyLevel;
     }
 
