@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
         setContentView(R.layout.activity_main);
 
         unbinder = ButterKnife.bind(this);
-        db = new Database();
+        db = new Database(this);
         mFragmentManager = getSupportFragmentManager();
         slide.setDuration(SLIDE_TIME);
         slideout.setDuration(SLIDE_TIME);

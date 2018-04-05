@@ -7,10 +7,13 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import se.pederjonsson.apps.quizkids.Objects.Answer;
+import se.pederjonsson.apps.quizkids.Objects.Profile;
 import se.pederjonsson.apps.quizkids.R;
 import se.pederjonsson.apps.quizkids.fragments.QuestionAnswerContract;
 
@@ -57,7 +60,7 @@ public class ProfileSettingView extends LinearLayout {
         unbinder.unbind();
     }
 
-    public void setUp(QuestionAnswerContract.MainView _mainView) {
+    public void setUp(QuestionAnswerContract.MainView _mainView, List<Profile> profiles) {
         mainView = _mainView;
         setupListener();
     }

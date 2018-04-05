@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import se.pederjonsson.apps.quizkids.Objects.Answer;
+import se.pederjonsson.apps.quizkids.Objects.Profile;
 import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
 import se.pederjonsson.apps.quizkids.R;
@@ -47,16 +48,19 @@ public class Database extends SQLiteOpenHelper {
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-    }{
+    }
+
+    {
         dbUtil = new DatabaseUtil();
     }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         createProfilesTable(db);
         createQuestionAnswerTable(db);
     }
 
-    public void createProfilesTable(SQLiteDatabase db){
+    public void createProfilesTable(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + PROFILE_TABLE_NAME + "(" +
                 PROFILE_COLUMN_ID + " TEXT, " +
                 PROFILE_COLUMN_VALUE + " BLOB," +
@@ -65,7 +69,7 @@ public class Database extends SQLiteOpenHelper {
         );
     }
 
-    public void createQuestionAnswerTable(SQLiteDatabase db){
+    public void createQuestionAnswerTable(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + QA_TABLE_NAME + "(" +
                 QA_COLUMN_ID + " INTEGER PRIMARY KEY , " +
                 QA_COLUMN_TYPE + " TEXT, " +
@@ -76,14 +80,14 @@ public class Database extends SQLiteOpenHelper {
 
     public synchronized boolean insertQa(String category, Serializable value) {
 
-        if(value == null){
+        if (value == null) {
             return false;
         }
 
         SQLiteDatabase db = getWritableDatabase();
 
         byte[] bytes = objectTobytes(value);
-        if(bytes == null){
+        if (bytes == null) {
             return false;
         }
 
@@ -112,7 +116,7 @@ public class Database extends SQLiteOpenHelper {
             db.close();
             return obj;
         }
-        if(res != null){
+        if (res != null) {
             res.close();
         }
         db.close();
@@ -121,14 +125,14 @@ public class Database extends SQLiteOpenHelper {
 
     public synchronized boolean insertProfile(String firstName, Serializable value) {
 
-        if(value == null){
+        if (value == null) {
             return false;
         }
 
         SQLiteDatabase db = getWritableDatabase();
 
         byte[] bytes = objectTobytes(value);
-        if(bytes == null){
+        if (bytes == null) {
             return false;
         }
 
@@ -145,7 +149,7 @@ public class Database extends SQLiteOpenHelper {
         return contentValues;
     }
 
-    public synchronized Object getProfile(String firstName, int difficultyLevel) {
+    public synchronized Object getProfileByName(String firstName) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery("SELECT " + PROFILE_COLUMN_VALUE + " FROM " + PROFILE_TABLE_NAME + " WHERE " +
                 PROFILE_COLUMN_ID + "=?", new String[]{firstName});
@@ -158,7 +162,33 @@ public class Database extends SQLiteOpenHelper {
             db.close();
             return obj;
         }
-        if(res != null){
+        if (res != null) {
+            res.close();
+        }
+        db.close();
+        return null;
+    }
+
+    public synchronized List<Profile> getAllProfiles() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT ALL " + PROFILE_COLUMN_VALUE + " FROM " + PROFILE_TABLE_NAME, null);
+
+        final List<Profile> list = new ArrayList<Profile>();
+        if (res.getCount() > 0) {
+
+
+            try {
+                while (res.moveToNext()) {
+                    list.add((Profile) byteToObj(res.getBlob(0)));
+                }
+            } finally {
+                res.close();
+            }
+
+            db.close();
+            return list;
+        }
+        if (res != null) {
             res.close();
         }
         db.close();
@@ -213,7 +243,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public QuestionAnswers getSampleQuestionAnswers(){
+    public QuestionAnswers getSampleQuestionAnswers() {
 
         Question q = new Question(R.string.q_geo_paris, Question.Category.GEOGRAPHY, R.drawable.eiffel200);
         Answer a = new Answer("Eiffel", true);
@@ -227,8 +257,8 @@ public class Database extends SQLiteOpenHelper {
         return new QuestionAnswers(q, answers);
     }
 
-    public List<QuestionAnswers> getQuestionsByCategory(Question.Category category){
-        switch (category){
+    public List<QuestionAnswers> getQuestionsByCategory(Question.Category category) {
+        switch (category) {
             case GEOGRAPHY:
                 return dbUtil.generateQAGeography();
             default:
