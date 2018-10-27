@@ -36,6 +36,7 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
     public static String CATEGORY_DATA = "CATEGORY_DATA";
     private Unbinder unbinder;
     public GameControllerContract.MainActivityView mainActivityView;
+    public GameControllerContract.Presenter mGameControllerPresenter;
 
     MediaPlayer mMediaPlayer;
 
@@ -72,9 +73,10 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
         }
     }
 
-    public static CategoryFragment newInstance(GameControllerContract.MainActivityView _mainActivityView) {
+    public static CategoryFragment newInstance(GameControllerContract.MainActivityView _mainActivityView, GameControllerContract.Presenter _gamecontrollerPresenter) {
         CategoryFragment categoryFragment = new CategoryFragment();
         categoryFragment.mainActivityView = _mainActivityView;
+        categoryFragment.mGameControllerPresenter = _gamecontrollerPresenter;
       /*  Bundle args = new Bundle();
         args.putSerializable(CATEGORY_DATA, questionAnswers);
         questionFragment.setArguments(args);*/
@@ -100,7 +102,8 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
 
     @Override
     public void categoryClicked(CategoryItem categoryItem) {
-        mainActivityView.startQuizJourney(categoryItem.getCategory());
+        //mainActivityView.startQuizJourney(categoryItem.getCategory());
+        mGameControllerPresenter.loadQuestionsByCategory(categoryItem.getCategory());
     }
 
     private void playSound(int resId){

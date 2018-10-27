@@ -29,6 +29,7 @@ public interface GameControllerContract {
             void saveProfile(Profile profile);
             void startGame(int gametype, Profile profile);
             List<Profile> getProfiles();
+            void loadQuestionsByCategory(Question.Category category);
             boolean playerNameIsAvailable();
         }
         interface Interactor {

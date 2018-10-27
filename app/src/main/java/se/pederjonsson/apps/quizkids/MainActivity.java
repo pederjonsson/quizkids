@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
     @Override
     public void showCategories() {
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        CategoryFragment fragment = CategoryFragment.newInstance(this);
+        CategoryFragment fragment = CategoryFragment.newInstance(this, gameControllerPresenter);
         setSlideInOutTransition(fragment);
         fragmentTransaction.replace(R.id.fragmentcontainer, fragment);
       //  if(addToBackstack){

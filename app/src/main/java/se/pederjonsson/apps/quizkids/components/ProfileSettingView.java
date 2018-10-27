@@ -157,7 +157,7 @@ public class ProfileSettingView extends LinearLayout {
                 Toast.makeText(mContext, R.string.toast_pls_enter_name, Toast.LENGTH_SHORT).show();
             } else {
                 String nameEntered = editTextName.getText().toString();
-                checkPlayerNameAvailable();
+                //checkPlayerNameAvailable();
                 Profile newPlayer = new Profile(nameEntered);
                 gameControllerPresenter.saveProfile(newPlayer);
                 gameControllerPresenter.startGame(GameController.GAMETYPE_JOURNEY, newPlayer);

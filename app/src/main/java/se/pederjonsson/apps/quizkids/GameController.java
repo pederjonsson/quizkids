@@ -39,7 +39,8 @@ public class GameController implements GameControllerContract.Presenter{
         if(gametype == GAMETYPE_JOURNEY){
             //first show view for choose category;
             //pretend choose geo
-            loadQuestionsByCategory(Question.Category.GEOGRAPHY);
+           // loadQuestionsByCategory(Question.Category.GEOGRAPHY);
+            mainActivityView.showCategories();
         } else if(gametype == GAMETYPE_QUICK){
             //mixaafrågor sen
             loadQuestionsByCategory(Question.Category.GEOGRAPHY);
@@ -56,7 +57,8 @@ public class GameController implements GameControllerContract.Presenter{
         return false;
     }
 
-    private void loadQuestionsByCategory(Question.Category category){
+    @Override
+    public void loadQuestionsByCategory(Question.Category category){
         currentCategoryQAList = database.getQuestionsByCategory(category);
         QuestionAnswers questionAnswers = currentCategoryQAList.get(0);
         mainActivityView.showQuestionFragment(questionAnswers, true);
