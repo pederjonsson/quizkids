@@ -18,5 +18,12 @@
     <string name="q_geo_paris">What is the name of the tower in Paris?</string>
     <string name="q_geo_mounteverest">What is the name of the highest mountain in the world?</string>
     <string name="q_buildings_burjikhalifa">In what city lies the tallest building in the world, Burji khalifa</string>
+    <string name="q_buildings_burjikhalifa4">In what city lies the tallest building in the world, Burji khalifa4</string>
+    <string name="q_buildings_burjikhalifa5">In what city lies the tallest building in the world, Burji khalifa5</string>
+    <string name="q_buildings_burjikhalifa6">In what city lies the tallest building in the world, Burji khalifa6</string>
+    <string name="q_buildings_burjikhalifa7">In what city lies the tallest building in the world, Burji khalifa7</string>
+    <string name="q_buildings_burjikhalifa8">In what city lies the tallest building in the world, Burji khalifa8</string>
+    <string name="q_buildings_burjikhalifa9">In what city lies the tallest building in the world, Burji khalifa9</string>
+    <string name="q_buildings_burjikhalifa10">In what city lies the tallest building in the world, Burji khalifa10</string>
 
 </resources>
