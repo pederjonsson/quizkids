@@ -7,7 +7,6 @@ import se.pederjonsson.apps.quizkids.Objects.Answer;
 import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
 import se.pederjonsson.apps.quizkids.R;
-import se.pederjonsson.apps.quizkids.fragments.QuestionAnswerContract;
 
 /**
  * Created by Gaming on 2018-04-01.

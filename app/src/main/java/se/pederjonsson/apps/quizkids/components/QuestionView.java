@@ -7,15 +7,12 @@ import android.widget.TextView;
 
 import com.makeramen.roundedimageview.RoundedImageView;
 
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import se.pederjonsson.apps.quizkids.Objects.Answer;
 import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.R;
-import se.pederjonsson.apps.quizkids.fragments.QuestionAnswerContract;
+import se.pederjonsson.apps.quizkids.fragments.Question.QuestionAnswerContract;
 
 /**
  * Created by Gaming on 2018-04-01.

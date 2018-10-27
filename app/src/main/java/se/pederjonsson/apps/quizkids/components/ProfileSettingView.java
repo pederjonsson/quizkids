@@ -11,7 +11,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import se.pederjonsson.apps.quizkids.Objects.Answer;
 import se.pederjonsson.apps.quizkids.R;
-import se.pederjonsson.apps.quizkids.fragments.QuestionAnswerContract;
+import se.pederjonsson.apps.quizkids.fragments.Question.QuestionAnswerContract;
 
 /**
  * Created by Gaming on 2018-04-01.

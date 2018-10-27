@@ -2,7 +2,6 @@ package se.pederjonsson.apps.quizkids.components;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
 import java.util.List;
@@ -12,7 +11,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import se.pederjonsson.apps.quizkids.Objects.Answer;
 import se.pederjonsson.apps.quizkids.R;
-import se.pederjonsson.apps.quizkids.fragments.QuestionAnswerContract;
+import se.pederjonsson.apps.quizkids.fragments.Question.QuestionAnswerContract;
 
 /**
  * Created by Gaming on 2018-04-01.

@@ -39,10 +39,15 @@ public class Question implements Serializable {
     }
 
     public enum Category {
+        BUILDINGS,
         GEOGRAPHY,
         SCIENCE,
         MATH,
-        ABC
+        ABC,
+        OCEAN,
+        ANIMALS,
+        SUPERHEROES,
+        SPORT
     }
     private Category category;
     public Category getCategory() {

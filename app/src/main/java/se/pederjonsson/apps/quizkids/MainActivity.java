@@ -17,7 +17,8 @@ import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
 import se.pederjonsson.apps.quizkids.db.Database;
 import se.pederjonsson.apps.quizkids.fragments.MenuFragment;
-import se.pederjonsson.apps.quizkids.fragments.QuestionFragment;
+import se.pederjonsson.apps.quizkids.fragments.Question.QuestionFragment;
+import se.pederjonsson.apps.quizkids.fragments.category.CategoryFragment;
 
 public class MainActivity extends AppCompatActivity implements GameControllerContract.MainActivityView {
 
@@ -82,9 +83,21 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
 
     @Override
     public void startQuizJourney(Question.Category category) {
-        qaList = db.getQuestionsByCategory(Question.Category.GEOGRAPHY);
+        qaList = db.getQuestionsByCategory(category);
         QuestionAnswers questionAnswers = qaList.get(0);
         showQuestionFragment(questionAnswers, true);
+    }
+
+    @Override
+    public void showCategories() {
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+        CategoryFragment fragment = CategoryFragment.newInstance(this);
+        setSlideInOutTransition(fragment);
+        fragmentTransaction.replace(R.id.fragmentcontainer, fragment);
+      //  if(addToBackstack){
+            fragmentTransaction.addToBackStack(null);
+        //}
+        commitTransaction(fragmentTransaction);
     }
 
     @Override

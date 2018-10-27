@@ -32,7 +32,10 @@ public class MenuFragment extends android.support.v4.app.Fragment {
         View view = inflater.inflate(R.layout.menufragment, container, false);
         unbinder = ButterKnife.bind(this, view);
         btnStart.setOnClickListener(v -> { mainActivityView.startQuickQuiz();});
-        btnJourney.setOnClickListener(v -> { mainActivityView.startQuizJourney(Question.Category.GEOGRAPHY);});
+        btnJourney.setOnClickListener(v -> {
+            //mainActivityView.startQuizJourney(Question.Category.GEOGRAPHY);
+            mainActivityView.showCategories();
+        });
         return view;
     }
 

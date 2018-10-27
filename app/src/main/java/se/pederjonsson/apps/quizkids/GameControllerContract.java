@@ -16,6 +16,7 @@ public interface GameControllerContract {
         interface MainActivityView {
             Context getViewContext();
             void startQuizJourney(Question.Category category);
+            void showCategories();
             void startQuickQuiz();
             void showQuestionFragment(QuestionAnswers questionAnswers,boolean addToBackstack);
             void showMenu();
