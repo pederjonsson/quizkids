@@ -95,9 +95,11 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
         }
         if(answer.isCorrect()){
             System.out.print("** correct answer");
+            gameControllerPresenter.answered(true);
             playSound(R.raw.correct);
         } else {
             System.out.print("** wrong answer");
+            gameControllerPresenter.answered(false);
             playSound(R.raw.error);
         }
         tripleBtnAnswers.inactivateButtons();

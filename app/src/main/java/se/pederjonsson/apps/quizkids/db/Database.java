@@ -287,7 +287,7 @@ public class Database extends SQLiteOpenHelper {
 /*
     public QuestionAnswers getSampleQuestionAnswers() {
 
-        Question q = new Question(R.string.q_geo_paris, Question.Category.GEOGRAPHY, R.drawable.eiffel200, Question.DifficultyLevel.EASY);
+        Question q = new Question(R.string.q_geo_paris, Question.Category.GEOGRAPHY, R.drawable.question_eiffel200, Question.DifficultyLevel.EASY);
         Answer a = new Answer("Eiffel", true);
         Answer b = new Answer("Big Ben", false);
         Answer c = new Answer("Falafel", false);

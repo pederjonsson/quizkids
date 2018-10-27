@@ -6,17 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-
-import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
-import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.R;
+import se.pederjonsson.apps.quizkids.components.CategoryItemView;
 
 public class CategoryAdapter extends BaseAdapter {
 
@@ -71,30 +68,18 @@ public class CategoryAdapter extends BaseAdapter {
   public class ViewHolder extends RecyclerView.ViewHolder {
         private CategoryItem mCategoryItem;
 
-        @BindView(R.id.icon)
-        RoundedImageView icon;
+        @BindView(R.id.categoryitemview)
+        CategoryItemView categoryItemView;
 
         public void setItem(CategoryItem categoryItem) {
             mCategoryItem = categoryItem;
-            icon.setOnClickListener(v -> mView.categoryClicked(mCategoryItem));
-            setIcon();
+            categoryItemView.setOnClickListener(v -> mView.categoryClicked(mCategoryItem));
+            categoryItemView.setUp(mCategoryItem, mView.getCurrentProfile());
         }
 
         public ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
         }
-
-        private void setIcon(){
-            switch (mCategoryItem.getCategory().name().toString()){
-                case "GEOGRAPHY"  : icon.setImageDrawable(mView.getViewContext().getDrawable(R.drawable.pyramids));
-                case "SCIENCE"  : icon.setImageDrawable(mView.getViewContext().getDrawable(R.drawable.pyramids));
-                case "MATH"  : icon.setImageDrawable(mView.getViewContext().getDrawable(R.drawable.pyramids));
-                case "ABC"  : icon.setImageDrawable(mView.getViewContext().getDrawable(R.drawable.pyramids));
-                default:  icon.setImageDrawable(mView.getViewContext().getDrawable(R.drawable.pyramids));
-            }
-        }
     }
-
-
 }

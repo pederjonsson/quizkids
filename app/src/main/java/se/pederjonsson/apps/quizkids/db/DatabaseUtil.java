@@ -21,7 +21,7 @@ public class DatabaseUtil {
     public List<QuestionAnswers> getSampleQuestion(){
         List<QuestionAnswers> qaList = new ArrayList<>();
 
-        Question q = new Question(R.string.q_geo_paris, Question.Category.GEOGRAPHY, R.drawable.eiffel200, Question.DifficultyLevel.EASY);
+        Question q = new Question(R.string.q_geo_paris, Question.Category.GEOGRAPHY, R.drawable.question_eiffel200, Question.DifficultyLevel.EASY);
         Answer a = new Answer("Eiffel", true);
         Answer b = new Answer("Big Ben", false);
         Answer c = new Answer("Falafel", false);
@@ -38,8 +38,50 @@ public class DatabaseUtil {
     public List<QuestionAnswers> generateQAGeography(){
         List<QuestionAnswers> qaList = new ArrayList<>();
 
-        qaList.add(generateQA(R.string.q_geo_paris, Question.Category.GEOGRAPHY, R.drawable.eiffel200, Question.DifficultyLevel.EASY,"Eiffel", "Big Ben", "Falafel"));
-        qaList.add(generateQA(R.string.q_geo_mounteverest, Question.Category.GEOGRAPHY, R.drawable.mnteverest, Question.DifficultyLevel.EASY,"Mount Everest", "Kilimanjaro", "Big Mac"));
+        qaList.add(generateQA(R.string.q_geo_paris, Question.Category.GEOGRAPHY, R.drawable.question_eiffel200, Question.DifficultyLevel.EASY,"Eiffel", "Big Ben", "Falafel"));
+        qaList.add(generateQA(R.string.q_geo_mounteverest, Question.Category.GEOGRAPHY, R.drawable.question_mnteverest, Question.DifficultyLevel.EASY,"Mount Everest", "Kilimanjaro", "Big Mac"));
+        qaList.add(generateQA(R.string.q_geo_paris, Question.Category.GEOGRAPHY, R.drawable.question_eiffel200, Question.DifficultyLevel.EASY,"Eiffel", "Big Ben", "Falafel"));
+        qaList.add(generateQA(R.string.q_geo_mounteverest, Question.Category.GEOGRAPHY, R.drawable.question_mnteverest, Question.DifficultyLevel.EASY,"Mount Everest", "Kilimanjaro", "Big Mac"));
+        qaList.add(generateQA(R.string.q_geo_paris, Question.Category.GEOGRAPHY, R.drawable.question_eiffel200, Question.DifficultyLevel.EASY,"Eiffel", "Big Ben", "Falafel"));
+        qaList.add(generateQA(R.string.q_geo_mounteverest, Question.Category.GEOGRAPHY, R.drawable.question_mnteverest, Question.DifficultyLevel.EASY,"Mount Everest", "Kilimanjaro", "Big Mac"));
+        qaList.add(generateQA(R.string.q_geo_paris, Question.Category.GEOGRAPHY, R.drawable.question_eiffel200, Question.DifficultyLevel.EASY,"Eiffel", "Big Ben", "Falafel"));
+        qaList.add(generateQA(R.string.q_geo_mounteverest, Question.Category.GEOGRAPHY, R.drawable.question_mnteverest, Question.DifficultyLevel.EASY,"Mount Everest", "Kilimanjaro", "Big Mac"));
+        qaList.add(generateQA(R.string.q_geo_paris, Question.Category.GEOGRAPHY, R.drawable.question_eiffel200, Question.DifficultyLevel.EASY,"Eiffel", "Big Ben", "Falafel"));
+        qaList.add(generateQA(R.string.q_geo_mounteverest, Question.Category.GEOGRAPHY, R.drawable.question_mnteverest, Question.DifficultyLevel.EASY,"Mount Everest", "Kilimanjaro", "Big Mac"));
+
+        return qaList;
+    }
+
+    public List<QuestionAnswers> generateQABuildings(){
+        List<QuestionAnswers> qaList = new ArrayList<>();
+
+        qaList.add(generateQA(R.string.q_geo_paris, Question.Category.BUILDINGS, R.drawable.question_eiffel200, Question.DifficultyLevel.EASY,"Eiffel", "Big Ben", "Falafel"));
+        qaList.add(generateQA(R.string.q_geo_mounteverest, Question.Category.BUILDINGS, R.drawable.question_mnteverest, Question.DifficultyLevel.EASY,"Mount Everest", "Kilimanjaro", "Big Mac"));
+        qaList.add(generateQA(R.string.q_geo_paris, Question.Category.BUILDINGS, R.drawable.question_eiffel200, Question.DifficultyLevel.EASY,"Eiffel", "Big Ben", "Falafel"));
+        qaList.add(generateQA(R.string.q_geo_mounteverest, Question.Category.BUILDINGS, R.drawable.question_mnteverest, Question.DifficultyLevel.EASY,"Mount Everest", "Kilimanjaro", "Big Mac"));
+        qaList.add(generateQA(R.string.q_geo_paris, Question.Category.BUILDINGS, R.drawable.question_eiffel200, Question.DifficultyLevel.EASY,"Eiffel", "Big Ben", "Falafel"));
+        qaList.add(generateQA(R.string.q_geo_mounteverest, Question.Category.BUILDINGS, R.drawable.question_mnteverest, Question.DifficultyLevel.EASY,"Mount Everest", "Kilimanjaro", "Big Mac"));
+        qaList.add(generateQA(R.string.q_geo_paris, Question.Category.BUILDINGS, R.drawable.question_eiffel200, Question.DifficultyLevel.EASY,"Eiffel", "Big Ben", "Falafel"));
+        qaList.add(generateQA(R.string.q_geo_mounteverest, Question.Category.BUILDINGS, R.drawable.question_mnteverest, Question.DifficultyLevel.EASY,"Mount Everest", "Kilimanjaro", "Big Mac"));
+        qaList.add(generateQA(R.string.q_geo_paris, Question.Category.BUILDINGS, R.drawable.question_eiffel200, Question.DifficultyLevel.EASY,"Eiffel", "Big Ben", "Falafel"));
+        qaList.add(generateQA(R.string.q_geo_mounteverest, Question.Category.BUILDINGS, R.drawable.question_mnteverest, Question.DifficultyLevel.EASY,"Mount Everest", "Kilimanjaro", "Big Mac"));
+
+        return qaList;
+    }
+
+    public List<QuestionAnswers> generateQAScience(){
+        List<QuestionAnswers> qaList = new ArrayList<>();
+
+        qaList.add(generateQA(R.string.q_geo_paris, Question.Category.SCIENCE, R.drawable.question_eiffel200, Question.DifficultyLevel.EASY,"Eiffel", "Big Ben", "Falafel"));
+        qaList.add(generateQA(R.string.q_geo_mounteverest, Question.Category.SCIENCE, R.drawable.question_mnteverest, Question.DifficultyLevel.EASY,"Mount Everest", "Kilimanjaro", "Big Mac"));
+        qaList.add(generateQA(R.string.q_geo_paris, Question.Category.SCIENCE, R.drawable.question_eiffel200, Question.DifficultyLevel.EASY,"Eiffel", "Big Ben", "Falafel"));
+        qaList.add(generateQA(R.string.q_geo_mounteverest, Question.Category.SCIENCE, R.drawable.question_mnteverest, Question.DifficultyLevel.EASY,"Mount Everest", "Kilimanjaro", "Big Mac"));
+        qaList.add(generateQA(R.string.q_geo_paris, Question.Category.SCIENCE, R.drawable.question_eiffel200, Question.DifficultyLevel.EASY,"Eiffel", "Big Ben", "Falafel"));
+        qaList.add(generateQA(R.string.q_geo_mounteverest, Question.Category.SCIENCE, R.drawable.question_mnteverest, Question.DifficultyLevel.EASY,"Mount Everest", "Kilimanjaro", "Big Mac"));
+        qaList.add(generateQA(R.string.q_geo_paris, Question.Category.SCIENCE, R.drawable.question_eiffel200, Question.DifficultyLevel.EASY,"Eiffel", "Big Ben", "Falafel"));
+        qaList.add(generateQA(R.string.q_geo_mounteverest, Question.Category.SCIENCE, R.drawable.question_mnteverest, Question.DifficultyLevel.EASY,"Mount Everest", "Kilimanjaro", "Big Mac"));
+        qaList.add(generateQA(R.string.q_geo_paris, Question.Category.SCIENCE, R.drawable.question_eiffel200, Question.DifficultyLevel.EASY,"Eiffel", "Big Ben", "Falafel"));
+        qaList.add(generateQA(R.string.q_geo_mounteverest, Question.Category.SCIENCE, R.drawable.question_mnteverest, Question.DifficultyLevel.EASY,"Mount Everest", "Kilimanjaro", "Big Mac"));
 
         return qaList;
     }

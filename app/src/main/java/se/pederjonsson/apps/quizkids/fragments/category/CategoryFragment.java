@@ -20,6 +20,7 @@ import se.pederjonsson.apps.quizkids.GameControllerContract;
 import se.pederjonsson.apps.quizkids.MainActivity;
 import se.pederjonsson.apps.quizkids.Objects.Answer;
 import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
+import se.pederjonsson.apps.quizkids.Objects.Profile;
 import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
 import se.pederjonsson.apps.quizkids.R;
@@ -64,6 +65,11 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
             mAdapter.notifyDataSetChanged();
         }
         return view;
+    }
+
+    @Override
+    public Profile getCurrentProfile() {
+        return mGameControllerPresenter.getPlayingProfile();
     }
 
     private void getCategoryData(){

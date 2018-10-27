@@ -31,6 +31,9 @@ public interface GameControllerContract {
             List<Profile> getProfiles();
             void loadQuestionsByCategory(Question.Category category);
             boolean playerNameIsAvailable();
+            void addClearedCategory(Question.Category clearedCategory);
+            void answered(Boolean val);
+            Profile getPlayingProfile();
         }
         interface Interactor {
 

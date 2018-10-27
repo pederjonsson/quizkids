@@ -1,5 +1,6 @@
 package se.pederjonsson.apps.quizkids;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import se.pederjonsson.apps.quizkids.Objects.Profile;
@@ -13,9 +14,13 @@ public class GameController implements GameControllerContract.Presenter{
     private Database database;
     private List<QuestionAnswers> currentCategoryQAList;
     private Profile playingProfile;
+    private Question.Category currentCategory;
+    int currentQuestionInCategory = 0;
+    private List<Boolean> currentAnswers;
 
     public static int GAMETYPE_JOURNEY = 1;
     public static int GAMETYPE_QUICK = 2;
+    public static int MAX_QUESTIONS_IN_CATEGORY = 9;
 
     public GameController(GameControllerContract.MainActivityView _mainActivityView, Database _database){
         mainActivityView = _mainActivityView;
@@ -24,13 +29,44 @@ public class GameController implements GameControllerContract.Presenter{
     }
 
     @Override
+    public void answered(Boolean val){
+        currentAnswers.add(val);
+    }
+
+    @Override
     public void nextQuestion() {
-        mainActivityView.showQuestionFragment(currentCategoryQAList.get(1), false);
+        if(currentQuestionInCategory == MAX_QUESTIONS_IN_CATEGORY){
+            boolean allcorrect = true;
+            for (Boolean answerCorrect: currentAnswers){
+                if(!answerCorrect){
+                    allcorrect = false;
+                    break;
+                }
+            }
+            if(allcorrect){
+                addClearedCategory(currentCategory);
+            }
+            startGame(GAMETYPE_JOURNEY, playingProfile);
+        } else {
+            currentQuestionInCategory++;
+            mainActivityView.showQuestionFragment(currentCategoryQAList.get(currentQuestionInCategory), false);
+        }
+    }
+
+    @Override
+    public Profile getPlayingProfile() {
+        return playingProfile;
     }
 
     @Override
     public void saveProfile(Profile profile) {
         database.insertProfile(profile.getName(), profile);
+    }
+
+    @Override
+    public void addClearedCategory(Question.Category clearedCategory) {
+        playingProfile.addClearedCategory(clearedCategory);
+        saveProfile(playingProfile);
     }
 
     @Override
@@ -59,9 +95,12 @@ public class GameController implements GameControllerContract.Presenter{
 
     @Override
     public void loadQuestionsByCategory(Question.Category category){
+        currentAnswers = new ArrayList<>();
+        currentCategory = category;
+        currentQuestionInCategory = 0;
         currentCategoryQAList = database.getQuestionsByCategory(category);
-        QuestionAnswers questionAnswers = currentCategoryQAList.get(0);
-        mainActivityView.showQuestionFragment(questionAnswers, true);
+        QuestionAnswers questionAnswers = currentCategoryQAList.get(currentQuestionInCategory);
+        mainActivityView.showQuestionFragment(questionAnswers, false);
         questionHasBeenShownTo(questionAnswers, playingProfile);
     }
 

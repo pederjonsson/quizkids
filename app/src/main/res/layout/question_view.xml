@@ -23,7 +23,7 @@
         android:textAlignment="center" />
     <!-- https://github.com/vinc3m1/RoundedImageView
 
-                android:src="@drawable/eiffel200"
+                android:src="@drawaquestion_eiffel200l200"
                 -->
     <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/imageView1"
