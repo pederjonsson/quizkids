@@ -58,4 +58,9 @@
         <item name="android:textSize">@dimen/larger</item>
     </style>
 
+    <style name="quizbtnstylemenuplayers" parent="@style/quizbtnstylemenu">
+        <item name="android:textSize">@dimen/medium</item>
+        <item name="android:textColor">@color/colorTurquoise</item>
+    </style>
+
 </resources>

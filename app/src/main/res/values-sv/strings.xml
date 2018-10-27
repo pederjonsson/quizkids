@@ -8,4 +8,8 @@
 
     <string name="q_geo_paris">Vad heter tornet i paris?</string>
     <string name="q_geo_mounteverest">Vad heter världens högsta berg?</string>
+
+    <string name="what_is_your_name">Spelarens namn?</string>
+    <string name="toast_pls_enter_name">Vänligen fyll i spelarens namn först</string>
+    <string name="start">starta</string>
 </resources>

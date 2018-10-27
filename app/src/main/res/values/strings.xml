@@ -8,5 +8,9 @@
     <string name="q_geo_paris">What is the name of the tower in Paris?</string>
     <string name="q_geo_mounteverest">What is the name of the highest mountain in the world?</string>
 
+    <string name="what_is_your_name">Player name?</string>
+    <string name="toast_pls_enter_name">Please enter your name first</string>
+    <string name="start">Start</string>
+
 
 </resources>

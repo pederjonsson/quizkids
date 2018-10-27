@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/enter_new_player_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/xxlarge"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/nametitle"
+            style="@style/BubblesFontXlarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/medium"
+            android:text="@string/what_is_your_name"
+            android:textAlignment="center"
+            android:textColor="@color/colorTurquoise" />
+
+        <EditText
+            android:id="@+id/edittextname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/xxlarge"
+            android:layout_marginRight="@dimen/xxlarge"
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖabcdefghijklmnopqrstuvwxyzåäö0123456789"
+            android:hint="@string/what_is_your_name"
+            android:imeOptions="actionGo"
+            android:inputType="textCapCharacters"
+            android:maxLines="1"
+            android:textColor="@color/colorTurquoise" />
+
+        <Button
+            android:id="@+id/startgamebtn"
+            style="@style/quizbtnstylemenuplayers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/medium"
+            android:layout_marginTop="@dimen/medium"
+            android:layout_marginLeft="@dimen/xlarge"
+            android:layout_marginRight="@dimen/xlarge"
+            android:text="@string/start" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/chooseplayercontainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/xxlarge"
+        android:visibility="gone">
+
+    </LinearLayout>
+
+</LinearLayout>

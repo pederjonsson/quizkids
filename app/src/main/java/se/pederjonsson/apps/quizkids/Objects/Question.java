@@ -16,45 +16,65 @@ public class Question implements Serializable {
     private int drawableResID = -1;
     private int questionResId;
     private DifficultyLevel difficultyLevel;
+    private Category category;
 
-    public Question(int resId, Category _category, int _drawable/*, DifficultyLevel _difficultyLevel*/){
+
+    public Question(int resId, Category _category, int _drawable, DifficultyLevel _difficultyLevel){
         this.questionResId = resId;
         this.category = _category;
         this.drawableResID = _drawable;
-        //this.difficultyLevel = _difficultyLevel;
+        this.difficultyLevel = _difficultyLevel;
     }
 
     public enum DifficultyLevel {
-       EASY(1), MEDIUM(2), HARD(3);
+       EASY("easy"), MEDIUM("medium"), HARD("hard");
 
-        public int getDifficultyLevel() {
+        public String getDifficultyLevel() {
             return difficultyLevel;
         }
 
-        private int difficultyLevel;
+        private String difficultyLevel;
 
-        DifficultyLevel(int _difficultyLevel) {
+        DifficultyLevel(String _difficultyLevel) {
             difficultyLevel = _difficultyLevel;
         }
     }
 
     public enum Category {
-        BUILDINGS,
-        GEOGRAPHY,
-        SCIENCE,
-        MATH,
-        ABC,
-        OCEAN,
-        ANIMALS,
-        SUPERHEROES,
-        SPORT
+
+        BUILDINGS("buildings"),
+        OCEAN("ocean"),
+        ANIMALS("animals"),
+        SUPERHEROES("superheroes"),
+        SPORT("sport"),
+        GEOGRAPHY("geography"),
+        SCIENCE("science"),
+        MATH("math"),
+        ABC("abc");
+
+        public String getCategory(){return category;}
+        private String category;
+
+        Category(String _category){
+            category = _category;
+        }
     }
-    private Category category;
+
     public Category getCategory() {
         return category;
     }
 
+    public String getCategoryString() {
+        return category.category;
+    }
 
+    public String getDifficultyLevel() {
+        return difficultyLevel.difficultyLevel;
+    }
+
+    public DifficultyLevel getDifficultyLevelEnum() {
+        return difficultyLevel;
+    }
 
     public int getDrawableResID(){
         return this.drawableResID;
