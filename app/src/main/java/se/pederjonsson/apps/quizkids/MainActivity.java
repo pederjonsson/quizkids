@@ -11,10 +11,15 @@ import android.view.Gravity;
 
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
+import se.pederjonsson.apps.quizkids.Objects.Profile;
 import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
+import se.pederjonsson.apps.quizkids.components.NavbarView;
+import se.pederjonsson.apps.quizkids.components.ResultView;
 import se.pederjonsson.apps.quizkids.db.Database;
 import se.pederjonsson.apps.quizkids.fragments.MenuFragment;
 import se.pederjonsson.apps.quizkids.fragments.Question.QuestionFragment;
@@ -26,6 +31,13 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
     private Unbinder unbinder;
     private GameControllerContract.Presenter gameControllerPresenter;
     Database db;
+
+    @BindView(R.id.navbar)
+    NavbarView navbarView;
+
+    @BindView(R.id.resultview)
+    ResultView resultView;
+
     List<QuestionAnswers> qaList;
     private FragmentManager mFragmentManager;
 
@@ -36,10 +48,10 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         unbinder = ButterKnife.bind(this);
+        resultView.show(false);
         db = new Database(this);
-        gameControllerPresenter = new GameController(this, db);
+        gameControllerPresenter = new GameController(this, db, navbarView);
         mFragmentManager = getSupportFragmentManager();
         slide.setDuration(SLIDE_TIME);
         slideout.setDuration(SLIDE_TIME);
@@ -47,6 +59,12 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
 
         db.populate();
 
+    }
+
+    @Override
+    public void showResultView(CategoryItem categoryItem, Profile profile) {
+        resultView.setUp(categoryItem, profile);
+        resultView.show(true);
     }
 
     @Override
@@ -83,13 +101,6 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
         } else {
             fragmentTransaction.commitAllowingStateLoss();
         }
-    }
-
-    @Override
-    public void startQuizJourney(Question.Category category) {
-        qaList = db.getQuestionsByCategory(category);
-        QuestionAnswers questionAnswers = qaList.get(0);
-        showQuestionFragment(questionAnswers, true);
     }
 
     @Override

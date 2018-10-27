@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="@dimen/xxlarge"
-    android:layout_height="@dimen/xxlarge">
+    android:layout_width="@dimen/xxxxlarge"
+    android:layout_height="@dimen/xxxlarge">
 
-   <!-- <se.pederjonsson.apps.quizkids.ui.Squircle
-        android:layout_width="@dimen/xxxxlarge"
-        android:layout_height="@dimen/xxxxlarge" />
-
-    <ImageView
-        android:layout_width="@dimen/xlarge"
-        android:layout_height="@dimen/xlarge"
-        android:layout_centerInParent="true"
-        android:id="@+id/icon"/>-->
-
-    <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+    <RelativeLayout
+        android:layout_width="@dimen/xxlarge"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_height="@dimen/xxlarge">
+    <com.makeramen.roundedimageview.RoundedImageView
         android:layout_width="@dimen/xlarge"
         android:layout_height="@dimen/xlarge"
         android:layout_centerInParent="true"
@@ -33,6 +28,20 @@
         android:layout_alignParentRight="true"
         android:layout_width="18dp"
         android:layout_height="18dp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/title"
+        android:maxLines="1"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        style="@style/JupiterSmallestBold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_tiny"
+        android:textAlignment="center" />
 
 
 

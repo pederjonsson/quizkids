@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.List;
 
 import se.pederjonsson.apps.quizkids.Objects.Answer;
+import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
 import se.pederjonsson.apps.quizkids.Objects.Profile;
 import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
@@ -18,22 +19,23 @@ public interface GameControllerContract {
 
         interface MainActivityView {
             Context getViewContext();
-            void startQuizJourney(Question.Category category);
             void showCategories();
             void startQuickQuiz();
             void showQuestionFragment(QuestionAnswers questionAnswers,boolean addToBackstack);
             void showMenu();
+            void showResultView(CategoryItem categoryItem, Profile profile);
         }
         interface Presenter {
             void nextQuestion();
             void saveProfile(Profile profile);
             void startGame(int gametype, Profile profile);
             List<Profile> getProfiles();
-            void loadQuestionsByCategory(Question.Category category);
+            void loadQuestionsByCategory(CategoryItem category);
             boolean playerNameIsAvailable();
             void addClearedCategory(Question.Category clearedCategory);
             void answered(Boolean val);
             Profile getPlayingProfile();
+            void hideMainNavbar();
         }
         interface Interactor {
 

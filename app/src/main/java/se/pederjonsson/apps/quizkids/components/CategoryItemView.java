@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.makeramen.roundedimageview.RoundedImageView;
 
@@ -24,6 +25,9 @@ public class CategoryItemView extends RelativeLayout {
 
     @BindView(R.id.icon)
     RoundedImageView icon;
+
+    @BindView(R.id.title)
+    TextView title;
 
     @BindView(R.id.checkmark)
     ImageView checkMark;
@@ -61,6 +65,7 @@ public class CategoryItemView extends RelativeLayout {
     public void setUp(CategoryItem _categoryItem, Profile profile) {
         categoryItem = _categoryItem;
         playingProfile = profile;
+        title.setText(categoryItem.getName().toLowerCase());
         setIcon();
         setCheckMark();
     }
@@ -75,7 +80,7 @@ public class CategoryItemView extends RelativeLayout {
        
         switch (categoryItem.getCategory().name().toString()){
             case "BUILDINGS"  :
-                icon.setImageDrawable(mContext.getDrawable(R.drawable.icon_pyramids_24));
+                icon.setImageDrawable(mContext.getDrawable(R.drawable.icon_pyramids_64));
                 break;
             case "SCIENCE"  :
                 icon.setImageDrawable(mContext.getDrawable(R.drawable.icon_atom_64));
@@ -84,16 +89,20 @@ public class CategoryItemView extends RelativeLayout {
                 icon.setImageDrawable(mContext.getDrawable(R.drawable.icon_pyramids_64));
                 break;
             case "MATH"  :
-                icon.setImageDrawable(mContext.getDrawable(R.drawable.icon_pyramids_24));
+                icon.setImageDrawable(mContext.getDrawable(R.drawable.icon_pyramids_64));
                 break;
             case "ABC"  :
-                icon.setImageDrawable(mContext.getDrawable(R.drawable.icon_pyramids_24));
+                icon.setImageDrawable(mContext.getDrawable(R.drawable.icon_pyramids_64));
                 break;
 
             default:
-                icon.setImageDrawable(null);
+                icon.setImageDrawable(mContext.getDrawable(R.drawable.icon_pyramids_64));
                 break;
         }
+    }
+
+    public void showTitle(){
+        title.setVisibility(VISIBLE);
     }
 
 }

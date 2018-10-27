@@ -59,6 +59,12 @@ public class MenuFragment extends android.support.v4.app.Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        gameControllerPresenter.hideMainNavbar();
+    }
+
+    @Override
     public void onDetach() {
         super.onDetach();
         unbinder.unbind();

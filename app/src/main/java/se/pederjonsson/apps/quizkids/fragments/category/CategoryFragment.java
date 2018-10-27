@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ import se.pederjonsson.apps.quizkids.Objects.Profile;
 import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
 import se.pederjonsson.apps.quizkids.R;
+import se.pederjonsson.apps.quizkids.components.NavbarView;
 import se.pederjonsson.apps.quizkids.components.QuestionView;
 import se.pederjonsson.apps.quizkids.components.TripleButtonAnswers;
 import se.pederjonsson.apps.quizkids.fragments.Question.QuestionAnswerContract;
@@ -44,6 +46,9 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
     @BindView(R.id.gridview)
     GridView gridView;
 
+    @BindView(R.id.navbar)
+    NavbarView navbarView;
+
     private CategoryAdapter mAdapter;
     List<CategoryItem> categories;
 
@@ -54,6 +59,8 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
         View view = inflater.inflate(R.layout.category_fragment, container, false);
         unbinder = ButterKnife.bind(this, view);
 
+        navbarView.showTitle(getString(R.string.categories));
+        navbarView.show(true);
       //  QuestionAnswers questionAnswers = (QuestionAnswers) getArguments().getSerializable(CATEGORY_DATA);
         mAdapter = new CategoryAdapter(null, this);
 
@@ -108,8 +115,7 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
 
     @Override
     public void categoryClicked(CategoryItem categoryItem) {
-        //mainActivityView.startQuizJourney(categoryItem.getCategory());
-        mGameControllerPresenter.loadQuestionsByCategory(categoryItem.getCategory());
+        mGameControllerPresenter.loadQuestionsByCategory(categoryItem);
     }
 
     private void playSound(int resId){

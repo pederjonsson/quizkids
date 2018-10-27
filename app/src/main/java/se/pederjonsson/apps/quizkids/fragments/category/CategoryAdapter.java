@@ -75,6 +75,7 @@ public class CategoryAdapter extends BaseAdapter {
             mCategoryItem = categoryItem;
             categoryItemView.setOnClickListener(v -> mView.categoryClicked(mCategoryItem));
             categoryItemView.setUp(mCategoryItem, mView.getCurrentProfile());
+            categoryItemView.showTitle();
         }
 
         public ViewHolder(View view) {

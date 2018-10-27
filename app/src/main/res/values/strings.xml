@@ -4,13 +4,16 @@
     <string name="start_quiz_journey">Quiz journey</string>
     <string name="correct_answer">Correct answer!</string>
     <string name="wrong_answer">Wrong answer!</string>
+    <string name="categories">Categories</string>
+    <string name="congratulations">Congratulations</string>
+    <string name="continuegame">Continue</string>
 
-    <string name="q_geo_paris">What is the name of the tower in Paris?</string>
-    <string name="q_geo_mounteverest">What is the name of the highest mountain in the world?</string>
+
 
     <string name="what_is_your_name">Player name?</string>
     <string name="toast_pls_enter_name">Please enter your name first</string>
     <string name="start">Start</string>
 
-
+    <string name="q_geo_paris">What is the name of the tower in Paris?</string>
+    <string name="q_geo_mounteverest">What is the name of the highest mountain in the world?</string>
 </resources>

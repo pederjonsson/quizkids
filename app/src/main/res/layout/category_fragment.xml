@@ -6,11 +6,18 @@
     android:background="@color/colorAppBackground"
     android:orientation="vertical">
 
+    <se.pederjonsson.apps.quizkids.components.NavbarView
+        android:id="@+id/navbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        />
+
     <GridView
         android:id="@+id/gridview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="4"
+        android:numColumns="3"
         android:clipToPadding="false"
         android:verticalSpacing="@dimen/margin_medium"
         android:horizontalSpacing="@dimen/margin_medium"
