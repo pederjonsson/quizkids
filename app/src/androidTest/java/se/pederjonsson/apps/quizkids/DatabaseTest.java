@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import se.pederjonsson.apps.quizkids.Objects.Profile;
 import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
@@ -38,6 +39,7 @@ public class DatabaseTest {
     }
 
     private Database database;
+    Logger l = Logger.getGlobal();
 
     @Before
     public void setUp() {
@@ -101,6 +103,7 @@ public class DatabaseTest {
                 //database.getQAListByCategoryAndDifficultyLevel(qaFromDB.getQuestion().getCategoryString(), qaFromDB.getQuestion().getDifficultyLevel());
 
         QuestionAnswers qaFromDB2 = qaListFromDB2.get(0);
+        l.info("**** " + qaFromDB2.getQuestion().toString());
         assertTrue(qaFromDB2.hasBeenShownTo("mats"));
     }
 
@@ -111,8 +114,12 @@ public class DatabaseTest {
         List<QuestionAnswers> qaList = databaseUtil.generateQAGeography();
         QuestionAnswers firstQA = qaList.get(0);
 
+
+
         database.insertQa(firstQA.getQuestion().getCategoryString(), firstQA.getQuestion().getDifficultyLevel(), firstQA.getQuestion().getQuestionResId(), firstQA);
 
+
+        l.info("**** firstQA.getQuestion().getCategoryString() " + firstQA.getQuestion().getCategoryString());
 
         List<QuestionAnswers> qaListFromDB = database.getQAListByCategoryAndDifficultyLevel(firstQA.getQuestion().getCategoryString(), firstQA.getQuestion().getDifficultyLevel());
         assertNotNull (qaListFromDB);

@@ -51,12 +51,6 @@ public class QuestionView extends LinearLayout {
         unbinder = ButterKnife.bind(this);
     }
 
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        unbinder.unbind();
-    }
-
     public void setUp(Question _question, QuestionAnswerContract.MainView _mainView) {
         question = _question;
         mainView = _mainView;

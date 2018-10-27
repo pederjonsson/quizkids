@@ -1,6 +1,7 @@
 package se.pederjonsson.apps.quizkids;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
     private Unbinder unbinder;
     private GameControllerContract.Presenter gameControllerPresenter;
     Database db;
+    MediaPlayer mMediaPlayer;
 
     @BindView(R.id.navbar)
     NavbarView navbarView;
@@ -63,8 +65,26 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
 
     @Override
     public void showResultView(CategoryItem categoryItem, Profile profile) {
+        playSound(R.raw.drumroll);
         resultView.setUp(categoryItem, profile);
         resultView.show(true);
+    }
+
+    private void playSound(int resId){
+        releaseMediaPlayer();
+        mMediaPlayer = MediaPlayer.create(this, resId);
+        mMediaPlayer.setLooping(false);
+        mMediaPlayer.start();
+    }
+
+    private void releaseMediaPlayer() {
+        if (mMediaPlayer != null) {
+            if (mMediaPlayer.isPlaying()) {
+                mMediaPlayer.stop();
+            }
+            mMediaPlayer.release();
+            mMediaPlayer = null;
+        }
     }
 
     @Override
@@ -142,8 +162,9 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
         super.onDestroy();
     }
 
-
-
-
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+        releaseMediaPlayer();
+    }
 }

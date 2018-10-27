@@ -57,11 +57,6 @@ public class CategoryItemView extends RelativeLayout {
         unbinder = ButterKnife.bind(this);
     }
 
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-    }
-
     public void setUp(CategoryItem _categoryItem, Profile profile) {
         categoryItem = _categoryItem;
         playingProfile = profile;

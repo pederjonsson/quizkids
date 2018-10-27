@@ -2,6 +2,7 @@ package se.pederjonsson.apps.quizkids.db;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import se.pederjonsson.apps.quizkids.Objects.Answer;
 import se.pederjonsson.apps.quizkids.Objects.Question;
@@ -14,6 +15,7 @@ import se.pederjonsson.apps.quizkids.R;
 
 public class DatabaseUtil {
 
+    Logger l = Logger.getGlobal();
     public DatabaseUtil(){
 
     }
@@ -57,7 +59,7 @@ public class DatabaseUtil {
 
         qaList.add(generateQA(R.string.q_geo_paris, Question.Category.BUILDINGS, R.drawable.question_eiffel200, Question.DifficultyLevel.EASY,"Eiffel", "Big Ben", "Falafel"));
         qaList.add(generateQA(R.string.q_geo_mounteverest, Question.Category.BUILDINGS, R.drawable.question_mnteverest, Question.DifficultyLevel.EASY,"Mount Everest", "Kilimanjaro", "Big Mac"));
-        qaList.add(generateQA(R.string.q_geo_paris, Question.Category.BUILDINGS, R.drawable.question_eiffel200, Question.DifficultyLevel.EASY,"Eiffel", "Big Ben", "Falafel"));
+        qaList.add(generateQA(R.string.q_buildings_burjikhalifa, Question.Category.BUILDINGS, R.drawable.q_burjikhalifa, Question.DifficultyLevel.EASY,"Dubai", "London", "New York"));
         qaList.add(generateQA(R.string.q_geo_mounteverest, Question.Category.BUILDINGS, R.drawable.question_mnteverest, Question.DifficultyLevel.EASY,"Mount Everest", "Kilimanjaro", "Big Mac"));
         qaList.add(generateQA(R.string.q_geo_paris, Question.Category.BUILDINGS, R.drawable.question_eiffel200, Question.DifficultyLevel.EASY,"Eiffel", "Big Ben", "Falafel"));
         qaList.add(generateQA(R.string.q_geo_mounteverest, Question.Category.BUILDINGS, R.drawable.question_mnteverest, Question.DifficultyLevel.EASY,"Mount Everest", "Kilimanjaro", "Big Mac"));
@@ -87,9 +89,13 @@ public class DatabaseUtil {
     }
 
     public void populateDB(Database database){
-        List<QuestionAnswers> qaList = generateQAGeography();
+        insertQaIntoDB(generateQAGeography(), database);
+        insertQaIntoDB(generateQABuildings(), database);
+    }
 
+    private void insertQaIntoDB(List<QuestionAnswers> qaList, Database database){
         for (QuestionAnswers q:qaList) {
+            l.info("**** insert " + q.getQuestion().getCategoryString());
             database.insertQa(q.getQuestion().getCategoryString(), q.getQuestion().getDifficultyLevel(), q.getQuestion().getQuestionResId(), q);
         }
     }

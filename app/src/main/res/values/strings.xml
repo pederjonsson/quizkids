@@ -7,6 +7,7 @@
     <string name="categories">Categories</string>
     <string name="congratulations">Congratulations</string>
     <string name="continuegame">Continue</string>
+    <string name="youclearedcategory">you have successfully completed category</string>
 
 
 
@@ -16,4 +17,6 @@
 
     <string name="q_geo_paris">What is the name of the tower in Paris?</string>
     <string name="q_geo_mounteverest">What is the name of the highest mountain in the world?</string>
+    <string name="q_buildings_burjikhalifa">In what city lies the tallest building in the world, Burji khalifa</string>
+
 </resources>

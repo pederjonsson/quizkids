@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     tools:context="se.pederjonsson.apps.quizkids.MainActivity"
-    android:background="@color/colorAppBackground"
+    android:background="@drawable/backkidssmall"
     android:layout_height="match_parent">
 
     <RelativeLayout
@@ -12,13 +12,26 @@
         android:animateLayoutChanges="true">
 
         <TextView
+            android:layout_alignParentTop="true"
             android:id="@+id/startpagetext"
             style="@style/BubblesFontHeader"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:textAlignment="center"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_margin="@dimen/medium"
+            android:padding="@dimen/small"
+
+            android:background="@color/colorAppBackground"
+            android:textColor="@color/colorTurquoise"
+
+            android:layout_margin="0dp"
             android:text="QuizKids" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/startpagetext"
+            android:background="@color/colorPrimaryDark"/>
 
         <Button
             android:id="@+id/btnjourney"
@@ -26,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/startpagetext"
-            android:layout_marginTop="@dimen/medium"
+            android:layout_marginTop="@dimen/xlarge"
             android:text="@string/start_quiz_journey" />
 
         <se.pederjonsson.apps.quizkids.components.ProfileSettingView

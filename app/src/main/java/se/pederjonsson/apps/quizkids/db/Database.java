@@ -16,6 +16,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import se.pederjonsson.apps.quizkids.Objects.Answer;
 import se.pederjonsson.apps.quizkids.Objects.Profile;
@@ -43,6 +44,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String QA_COLUMN_DIFFICULTY = "difficulty";
     public static final String QA_COLUMN_VALUE = "value";
 
+    Logger l = Logger.getGlobal();
 
     DatabaseUtil dbUtil;
 
@@ -300,12 +302,18 @@ public class Database extends SQLiteOpenHelper {
     }*/
 
     public List<QuestionAnswers> getQuestionsByCategory(Question.Category category) {
+        l.info("**** getQuestionsByCategory-" + category.name().toString().toLowerCase() + "----");
+        return getQAListByCategoryAndDifficultyLevel(category.name().toString().toLowerCase(), "" );
+        /*
         switch (category) {
             case GEOGRAPHY:
                 return dbUtil.generateQAGeography();
+            case BUILDINGS:
+                return getQAListByCategoryAndDifficultyLevel(category.name(), "" );
+                //return dbUtil.generateQABuildings();
             default:
                 return dbUtil.generateQAGeography();
-        }
+        }*/
     }
 
     public void populate(){

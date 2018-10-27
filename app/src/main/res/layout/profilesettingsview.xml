@@ -12,7 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/xxlarge"
+        android:background="@drawable/quizbtnmenu"
+        android:paddingBottom="@dimen/medium"
+        android:layout_marginBottom="@dimen/medium"
         android:visibility="gone">
 
         <TextView
@@ -20,7 +22,8 @@
             style="@style/BubblesFontXlarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/medium"
+            android:layout_marginBottom="@dimen/small"
+            android:layout_marginTop="@dimen/small"
             android:text="@string/what_is_your_name"
             android:textAlignment="center"
             android:textColor="@color/colorTurquoise" />

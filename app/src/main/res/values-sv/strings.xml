@@ -11,7 +11,11 @@
     <string name="start">starta</string>
     <string name="congratulations">Grattis</string>
     <string name="continuegame">Fortsätt</string>
+    <string name="youclearedcategory">Du har klarat kategorin</string>
+
 
     <string name="q_geo_paris">Vad heter tornet i paris?</string>
     <string name="q_geo_mounteverest">Vad heter världens högsta berg?</string>
+
+    <string name="q_buildings_burjikhalifa">I vilken stad ligger världens högsta byggnad, Burji khalifa</string>
 </resources>

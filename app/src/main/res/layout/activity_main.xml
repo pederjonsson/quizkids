@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    android:background="@color/colorAppBackground"
+
     tools:context="se.pederjonsson.apps.quizkids.MainActivity">
 
     <se.pederjonsson.apps.quizkids.components.NavbarView
@@ -15,6 +15,7 @@
         />
 
     <FrameLayout
+        android:background="@color/colorAppBackground"
         android:layout_below="@+id/navbar"
         android:layout_alignWithParentIfMissing="true"
         android:id="@+id/fragmentcontainer"

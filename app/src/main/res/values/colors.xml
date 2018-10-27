@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#5e6472</color>
     <color name="colorAccent">#F5a9ee</color>
     <color name="colorAppBackground">#ffffff</color>
+    <color name="colorAppBackgroundalpha">#ccffffff</color>
     <color name="colorTurquoise">#61caed</color>
     <color name="colorError">#F74721</color>
     <color name="colorCorrect">#83A666</color>

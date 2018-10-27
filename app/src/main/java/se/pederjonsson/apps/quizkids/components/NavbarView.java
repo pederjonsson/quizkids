@@ -65,11 +65,6 @@ public class NavbarView extends RelativeLayout {
         unbinder = ButterKnife.bind(this);
     }
 
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-    }
-
     public void setUp() {
     }
 

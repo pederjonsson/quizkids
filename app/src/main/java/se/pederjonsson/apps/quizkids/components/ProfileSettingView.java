@@ -68,12 +68,6 @@ public class ProfileSettingView extends LinearLayout {
         unbinder = ButterKnife.bind(this);
     }
 
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        unbinder.unbind();
-    }
-
     public void setUp(GameControllerContract.Presenter _gameControllerPresenter) {
         gameControllerPresenter = _gameControllerPresenter;
         profiles = gameControllerPresenter.getProfiles();

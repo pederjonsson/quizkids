@@ -65,16 +65,11 @@ public class ResultView extends RelativeLayout {
         unbinder = ButterKnife.bind(this);
     }
 
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-    }
-
     public void setUp(CategoryItem categoryItem, Profile profile) {
         categoryItemView.setUp(categoryItem, profile);
         categoryItemView.showTitle();
         showTitle(mContext.getString(R.string.congratulations) + " " + profile.getName() + "!");
-        subtitle.setText("Du har klarat kategorin");
+        subtitle.setText(mContext.getString(R.string.youclearedcategory));
         btnContinue.setOnClickListener(v -> {
             show(false);
         });

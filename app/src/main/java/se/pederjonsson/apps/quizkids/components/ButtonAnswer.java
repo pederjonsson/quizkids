@@ -62,12 +62,6 @@ public class ButtonAnswer extends LinearLayout {
         unbinder = ButterKnife.bind(this);
     }
 
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        unbinder.unbind();
-    }
-
     public void setUp(Answer answer, QuestionAnswerContract.MainView _mainView) {
         mAnswer = answer;
         btnAnswer.setText(mAnswer.getTextAnswer());

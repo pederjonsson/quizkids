@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAppBackground"
     tools:context="se.pederjonsson.apps.quizkids.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorAppBackground"
+
         android:orientation="vertical">
 
         <se.pederjonsson.apps.quizkids.components.QuestionView
