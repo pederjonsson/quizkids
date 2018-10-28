@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -68,7 +70,13 @@ public class TripleButtonAnswers extends LinearLayout {
     }
 
     public void setUp(List<Answer> answers, QuestionAnswerContract.MainView _mainView) {
-        mAnswers = answers;
+
+        List<Answer> answersCopy = new ArrayList<>();
+        answersCopy.add(answers.get(0));
+        answersCopy.add(answers.get(1));
+        answersCopy.add(answers.get(2));
+        Collections.shuffle(answersCopy);
+        mAnswers = answersCopy;
         mainView = _mainView;
         setupBtns();
     }
