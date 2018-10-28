@@ -117,7 +117,8 @@ public class GameController implements GameControllerContract.Presenter{
         QuestionAnswers questionAnswers = currentCategoryQAList.get(currentQuestionInCategory);
         mainActivityView.showQuestionFragment(questionAnswers, false);
         questionHasBeenShownTo(questionAnswers, playingProfile);
-        navbarView.showTitle(currentCategory.name());
+       // navbarView.showTitle(currentCategory.getCategory());
+        navbarView.showTitle(currentCategory.getCategoryTranslated(mainActivityView.getViewContext()));
         navbarView.show(true);
         navbarView.clearScore();
         navbarView.showScore();

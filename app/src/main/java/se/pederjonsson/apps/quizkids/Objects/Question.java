@@ -1,8 +1,12 @@
 package se.pederjonsson.apps.quizkids.Objects;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
+
+import se.pederjonsson.apps.quizkids.R;
 
 /**
  * Created by Gaming on 2018-04-01.
@@ -39,20 +43,28 @@ public class Question implements Serializable {
             difficultyLevel = _difficultyLevel;
         }
     }
+    static Logger l = Logger.getGlobal();
 
     public enum Category {
 
         BUILDINGS("buildings"),
-        OCEAN("ocean"),
-        ANIMALS("animals"),
-        SUPERHEROES("superheroes"),
-        SPORT("sport"),
         GEOGRAPHY("geography"),
         SCIENCE("science"),
         MATH("math"),
-        ABC("abc");
+        ABC("abc"),
+        OCEAN("ocean"),
+        ANIMALS("animals"),
+        SUPERHEROES("superheroes"),
+        SPORT("sport");
 
         public String getCategory(){return category;}
+
+        public String getCategoryTranslated(Context mContext){
+            int stringId = mContext.getResources().getIdentifier(category, "string", mContext.getPackageName());
+            String catTranslated = mContext.getString(stringId);
+            l.info("**** catTranslated = " + catTranslated);
+            return mContext.getString(stringId);
+        }
         private String category;
 
         Category(String _category){

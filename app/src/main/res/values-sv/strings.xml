@@ -11,11 +11,32 @@
     <string name="start">starta</string>
     <string name="congratulations">Grattis</string>
     <string name="continuegame">Fortsätt</string>
+    <string name="playas">spela som</string>
+    <string name="create_new_player">skapa ny spelare</string>
     <string name="youclearedcategory">Du har klarat kategorin</string>
 
+    <!-- categories -->
+    <string name="buildings">byggnader</string>
+    <string name="geography">geografi</string>
+    <string name="science">vetenskap</string>
+    <string name="math">matte</string>
+    <string name="abc">abc</string>
+    <string name="ocean">havet</string>
+    <string name="animals">djur</string>
+    <string name="superheroes">superhjältar</string>
+    <string name="sport">sport</string>
 
-    <string name="q_geo_paris">Vad heter tornet i paris?</string>
-    <string name="q_geo_mounteverest">Vad heter världens högsta berg?</string>
 
+    <string name="q_buildings_paris">Vad heter tornet i paris?</string>
+    <string name="q_buildings_mounteverest">Vad heter världens högsta berg?</string>
     <string name="q_buildings_burjikhalifa">I vilken stad ligger världens högsta byggnad, Burji khalifa</string>
+    <string name="q_buildings_stbasil">I vilken stad ligger Vasilijkatedralen</string>
+    <string name="q_buildings_stbasil_correctanswer">Moskva</string>
+
+    <string name="q_buildings_burjikhalifa5">In what city lies the tallest building in the world, Burji khalifa5</string>
+    <string name="q_buildings_burjikhalifa6">In what city lies the tallest building in the world, Burji khalifa6</string>
+    <string name="q_buildings_burjikhalifa7">In what city lies the tallest building in the world, Burji khalifa7</string>
+    <string name="q_buildings_burjikhalifa8">In what city lies the tallest building in the world, Burji khalifa8</string>
+    <string name="q_buildings_burjikhalifa9">In what city lies the tallest building in the world, Burji khalifa9</string>
+    <string name="q_buildings_burjikhalifa10">In what city lies the tallest building in the world, Burji khalifa10</string>
 </resources>

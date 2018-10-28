@@ -316,8 +316,8 @@ public class Database extends SQLiteOpenHelper {
         }*/
     }
 
-    public void populate(){
-        dbUtil.populateDB(this);
+    public void populate(Context context){
+        dbUtil.populateDB(this, context);
     }
 
 }

@@ -99,7 +99,7 @@ public class ProfileSettingView extends LinearLayout {
             for (Profile profile:profiles) {
                 View view = factory.inflate(R.layout.playerlistitem, choosePlayerContainer, false);
                 Button mBtn = ((Button) view.findViewById(R.id.btnplayername));
-                mBtn.setText("Play as " + profile.getName() + " >");
+                mBtn.setText(mContext.getString(R.string.playas) + " " + profile.getName() + " >");
                 mBtn.setTag(profile);
                 mBtn.setOnClickListener(new OnClickListener() {
                     @Override
@@ -114,7 +114,7 @@ public class ProfileSettingView extends LinearLayout {
             View view = factory.inflate(R.layout.playerlistitem, choosePlayerContainer, false);
 
             Button mBtn = ((Button) view.findViewById(R.id.btnplayername));
-            mBtn.setText("create new player >");
+            mBtn.setText(mContext.getString(R.string.create_new_player) + " >");
             mBtn.setTag(new Profile("newplayer"));
             mBtn.setOnClickListener(new OnClickListener() {
                 @Override

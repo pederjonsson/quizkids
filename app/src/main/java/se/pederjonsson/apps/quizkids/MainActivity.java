@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
         slideout.setDuration(SLIDE_TIME);
         showMenu();
 
-        db.populate();
+        db.populate(this);
 
     }
 

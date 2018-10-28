@@ -7,18 +7,32 @@
     <string name="categories">Categories</string>
     <string name="congratulations">Congratulations</string>
     <string name="continuegame">Continue</string>
+    <string name="playas">play as</string>
+    <string name="create_new_player">create new player</string>
     <string name="youclearedcategory">you have successfully completed category</string>
 
+    <!-- categories -->
+    <string name="buildings">buildings</string>
+    <string name="geography">geography</string>
+    <string name="science">science</string>
+    <string name="math">math</string>
+    <string name="abc">abc</string>
+    <string name="ocean">ocean</string>
+    <string name="animals">animals</string>
+    <string name="superheroes">superheroes</string>
+    <string name="sport">sport</string>
 
 
     <string name="what_is_your_name">Player name?</string>
     <string name="toast_pls_enter_name">Please enter your name first</string>
     <string name="start">Start</string>
 
-    <string name="q_geo_paris">What is the name of the tower in Paris?</string>
-    <string name="q_geo_mounteverest">What is the name of the highest mountain in the world?</string>
+    <string name="q_buildings_paris">What is the name of the tower in Paris?</string>
+    <string name="q_buildings_mounteverest">What is the name of the highest mountain in the world?</string>
     <string name="q_buildings_burjikhalifa">In what city lies the tallest building in the world, Burji khalifa</string>
-    <string name="q_buildings_burjikhalifa4">In what city lies the tallest building in the world, Burji khalifa4</string>
+    <string name="q_buildings_stbasil">In what city lies the st basils cathedral</string>
+    <string name="q_buildings_stbasil_correctanswer">Moscow</string>
+
     <string name="q_buildings_burjikhalifa5">In what city lies the tallest building in the world, Burji khalifa5</string>
     <string name="q_buildings_burjikhalifa6">In what city lies the tallest building in the world, Burji khalifa6</string>
     <string name="q_buildings_burjikhalifa7">In what city lies the tallest building in the world, Burji khalifa7</string>

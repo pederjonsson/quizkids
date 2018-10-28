@@ -60,7 +60,7 @@ public class CategoryItemView extends RelativeLayout {
     public void setUp(CategoryItem _categoryItem, Profile profile) {
         categoryItem = _categoryItem;
         playingProfile = profile;
-        title.setText(categoryItem.getName().toLowerCase());
+        title.setText(categoryItem.getCategory().getCategoryTranslated(mContext));
         setIcon();
         setCheckMark();
     }
