@@ -1,8 +1,9 @@
-package se.pederjonsson.apps.quizkids;
+package se.pederjonsson.apps.quizkids.fragments.Question;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import se.pederjonsson.apps.quizkids.GameControllerContract;
 import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
 import se.pederjonsson.apps.quizkids.Objects.Profile;
 import se.pederjonsson.apps.quizkids.Objects.Question;
@@ -10,9 +11,9 @@ import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
 import se.pederjonsson.apps.quizkids.components.NavbarView;
 import se.pederjonsson.apps.quizkids.db.Database;
 
-public class GameController implements GameControllerContract.Presenter{
+public class QuestionGameController implements GameControllerContract.QuestionPresenter{
 
-    private GameControllerContract.MainActivityView mainActivityView;
+    private GameControllerContract.QuestionActivityView questionActivityView;
     private Database database;
     private List<QuestionAnswers> currentCategoryQAList;
     private Profile playingProfile;
@@ -26,8 +27,8 @@ public class GameController implements GameControllerContract.Presenter{
     public static int MAX_QUESTIONS_IN_CATEGORY = 9;
     private NavbarView navbarView;
 
-    public GameController(GameControllerContract.MainActivityView _mainActivityView, Database _database, NavbarView _navbar){
-        mainActivityView = _mainActivityView;
+    public QuestionGameController(GameControllerContract.QuestionActivityView _questionActivityView, Database _database, NavbarView _navbar){
+        questionActivityView = _questionActivityView;
         navbarView = _navbar;
         database = _database;
     }
@@ -53,12 +54,12 @@ public class GameController implements GameControllerContract.Presenter{
             hideMainNavbar();
             if(allcorrect){
                 addClearedCategory(currentCategory);
-                mainActivityView.showResultView(currentCategoryItem, playingProfile);
+                questionActivityView.showResultView(currentCategoryItem, playingProfile);
             }
             startGame(GAMETYPE_JOURNEY, playingProfile);
         } else {
             currentQuestionInCategory++;
-            mainActivityView.showQuestionFragment(currentCategoryQAList.get(currentQuestionInCategory), false);
+            questionActivityView.showQuestionFragment(currentCategoryQAList.get(currentQuestionInCategory), false);
         }
     }
 
@@ -70,6 +71,11 @@ public class GameController implements GameControllerContract.Presenter{
     @Override
     public Profile getPlayingProfile() {
         return playingProfile;
+    }
+
+    @Override
+    public void setPlayingProfile(Profile profile) {
+        playingProfile = profile;
     }
 
     @Override
@@ -90,7 +96,7 @@ public class GameController implements GameControllerContract.Presenter{
             //first show view for choose category;
             //pretend choose geo
            // loadQuestionsByCategory(Question.Category.GEOGRAPHY);
-            mainActivityView.showCategories();
+           // questionActivityView.showCategories();
         } else if(gametype == GAMETYPE_QUICK){
             //mixaafrågor sen
             loadQuestionsByCategory(new CategoryItem(Question.Category.GEOGRAPHY));
@@ -115,10 +121,10 @@ public class GameController implements GameControllerContract.Presenter{
         currentQuestionInCategory = 0;
         currentCategoryQAList = database.getQuestionsByCategory(categoryItem.getCategory());
         QuestionAnswers questionAnswers = currentCategoryQAList.get(currentQuestionInCategory);
-        mainActivityView.showQuestionFragment(questionAnswers, false);
+        questionActivityView.showQuestionFragment(questionAnswers, false);
         questionHasBeenShownTo(questionAnswers, playingProfile);
        // navbarView.showTitle(currentCategory.getCategory());
-        navbarView.showTitle(currentCategory.getCategoryTranslated(mainActivityView.getViewContext()));
+        navbarView.showTitle(currentCategory.getCategoryTranslated(questionActivityView.getViewContext()));
         navbarView.show(true);
         navbarView.clearScore();
         navbarView.showScore();

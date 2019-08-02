@@ -15,12 +15,10 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import se.pederjonsson.apps.quizkids.GameController;
+import se.pederjonsson.apps.quizkids.MenuGameController;
 import se.pederjonsson.apps.quizkids.GameControllerContract;
-import se.pederjonsson.apps.quizkids.Objects.Answer;
 import se.pederjonsson.apps.quizkids.Objects.Profile;
 import se.pederjonsson.apps.quizkids.R;
-import se.pederjonsson.apps.quizkids.fragments.Question.QuestionAnswerContract;
 
 /**
  * Created by Gaming on 2018-04-01.
@@ -46,7 +44,7 @@ public class ProfileSettingView extends LinearLayout {
     private Context mContext;
     private Unbinder unbinder;
     private List<Profile> profiles;
-    private GameControllerContract.Presenter gameControllerPresenter;
+    private GameControllerContract.MenuPresenter gameControllerMenuPresenter;
 
     public ProfileSettingView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -68,9 +66,9 @@ public class ProfileSettingView extends LinearLayout {
         unbinder = ButterKnife.bind(this);
     }
 
-    public void setUp(GameControllerContract.Presenter _gameControllerPresenter) {
-        gameControllerPresenter = _gameControllerPresenter;
-        profiles = gameControllerPresenter.getProfiles();
+    public void setUp(GameControllerContract.MenuPresenter _gameControllerMenuPresenter) {
+        gameControllerMenuPresenter = _gameControllerMenuPresenter;
+        profiles = gameControllerMenuPresenter.getProfiles();
 
     }
 
@@ -105,7 +103,7 @@ public class ProfileSettingView extends LinearLayout {
                     @Override
                     public void onClick(View v) {
                         Profile p = (Profile) v.getTag();
-                        gameControllerPresenter.startGame(GameController.GAMETYPE_JOURNEY, p);
+                        gameControllerMenuPresenter.startGame(MenuGameController.GAMETYPE_JOURNEY, p);
                     }
                 });
                 choosePlayerContainer.addView(view);
@@ -125,7 +123,7 @@ public class ProfileSettingView extends LinearLayout {
                         cleanChoosePlayerContainer();
                         showEnterName();
                     } else {
-                        gameControllerPresenter.startGame(GameController.GAMETYPE_JOURNEY, p);
+                        gameControllerMenuPresenter.startGame(MenuGameController.GAMETYPE_JOURNEY, p);
                     }
                 }
             });
@@ -153,8 +151,8 @@ public class ProfileSettingView extends LinearLayout {
                 String nameEntered = editTextName.getText().toString();
                 //checkPlayerNameAvailable();
                 Profile newPlayer = new Profile(nameEntered);
-                gameControllerPresenter.saveProfile(newPlayer);
-                gameControllerPresenter.startGame(GameController.GAMETYPE_JOURNEY, newPlayer);
+                gameControllerMenuPresenter.saveProfile(newPlayer);
+                gameControllerMenuPresenter.startGame(MenuGameController.GAMETYPE_JOURNEY, newPlayer);
             }
         });
     }

@@ -1,15 +1,14 @@
 package se.pederjonsson.apps.quizkids.fragments.category;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,17 +17,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import se.pederjonsson.apps.quizkids.GameControllerContract;
-import se.pederjonsson.apps.quizkids.MainActivity;
-import se.pederjonsson.apps.quizkids.Objects.Answer;
 import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
 import se.pederjonsson.apps.quizkids.Objects.Profile;
 import se.pederjonsson.apps.quizkids.Objects.Question;
-import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
+import se.pederjonsson.apps.quizkids.QuestionActivity;
 import se.pederjonsson.apps.quizkids.R;
 import se.pederjonsson.apps.quizkids.components.NavbarView;
-import se.pederjonsson.apps.quizkids.components.QuestionView;
-import se.pederjonsson.apps.quizkids.components.TripleButtonAnswers;
-import se.pederjonsson.apps.quizkids.fragments.Question.QuestionAnswerContract;
 
 /**
  * Created by Gaming on 2018-04-01.
@@ -39,7 +33,7 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
     public static String CATEGORY_DATA = "CATEGORY_DATA";
     private Unbinder unbinder;
     public GameControllerContract.MainActivityView mainActivityView;
-    public GameControllerContract.Presenter mGameControllerPresenter;
+    public GameControllerContract.MenuPresenter mGameControllerMenuPresenter;
 
     MediaPlayer mMediaPlayer;
 
@@ -76,7 +70,7 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
 
     @Override
     public Profile getCurrentProfile() {
-        return mGameControllerPresenter.getPlayingProfile();
+        return mGameControllerMenuPresenter.getPlayingProfile();
     }
 
     private void getCategoryData(){
@@ -86,10 +80,10 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
         }
     }
 
-    public static CategoryFragment newInstance(GameControllerContract.MainActivityView _mainActivityView, GameControllerContract.Presenter _gamecontrollerPresenter) {
+    public static CategoryFragment newInstance(GameControllerContract.MainActivityView _mainActivityView, GameControllerContract.MenuPresenter _gamecontrollerMenuPresenter) {
         CategoryFragment categoryFragment = new CategoryFragment();
         categoryFragment.mainActivityView = _mainActivityView;
-        categoryFragment.mGameControllerPresenter = _gamecontrollerPresenter;
+        categoryFragment.mGameControllerMenuPresenter = _gamecontrollerMenuPresenter;
       /*  Bundle args = new Bundle();
         args.putSerializable(CATEGORY_DATA, questionAnswers);
         questionFragment.setArguments(args);*/
@@ -115,7 +109,11 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
 
     @Override
     public void categoryClicked(CategoryItem categoryItem) {
-        mGameControllerPresenter.loadQuestionsByCategory(categoryItem);
+        //mGameControllerPresenter.loadQuestionsByCategory(categoryItem);
+        Intent intent = new Intent(getActivity(), QuestionActivity.class);
+        intent.putExtra(QuestionActivity.CATEGORY_ITEM, categoryItem);
+        intent.putExtra(QuestionActivity.PROFILE_ITEM, mGameControllerMenuPresenter.getPlayingProfile());
+        getActivity().startActivityForResult(intent, 1);
     }
 
     private void playSound(int resId){

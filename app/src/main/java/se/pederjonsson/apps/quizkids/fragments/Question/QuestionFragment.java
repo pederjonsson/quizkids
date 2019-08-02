@@ -36,7 +36,7 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
     QuestionView questionView;
 
     MediaPlayer mMediaPlayer;
-    public GameControllerContract.Presenter gameControllerPresenter;
+    public GameControllerContract.QuestionPresenter gameControllerPresenter;
 
     @Nullable
     @Override
@@ -53,7 +53,7 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
         return view;
     }
 
-    public static QuestionFragment newInstance(QuestionAnswers questionAnswers, GameControllerContract.Presenter _gameControllerP) {
+    public static QuestionFragment newInstance(QuestionAnswers questionAnswers, GameControllerContract.QuestionPresenter _gameControllerP) {
         QuestionFragment questionFragment = new QuestionFragment();
         Bundle args = new Bundle();
         args.putSerializable(QUESTION_DATA, questionAnswers);

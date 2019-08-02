@@ -17,28 +17,68 @@ import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
 public interface GameControllerContract {
 
 
-        interface MainActivityView {
-            Context getViewContext();
-            void showCategories();
-            void startQuickQuiz();
-            void showQuestionFragment(QuestionAnswers questionAnswers,boolean addToBackstack);
-            void showMenu();
-            void showResultView(CategoryItem categoryItem, Profile profile);
-        }
-        interface Presenter {
-            void nextQuestion();
-            void saveProfile(Profile profile);
-            void startGame(int gametype, Profile profile);
-            List<Profile> getProfiles();
-            void loadQuestionsByCategory(CategoryItem category);
-            boolean playerNameIsAvailable();
-            void addClearedCategory(Question.Category clearedCategory);
-            void answered(Boolean val);
-            Profile getPlayingProfile();
-            void hideMainNavbar();
-        }
-        interface Interactor {
+    interface MainActivityView {
+        Context getViewContext();
 
-        }
+        void showCategories();
+
+        void startQuickQuiz();
+
+        void showMenu();
+    }
+
+    interface QuestionActivityView extends MainActivityView {
+
+        void showQuestionFragment(QuestionAnswers questionAnswers, boolean addToBackstack);
+
+        void showResultView(CategoryItem categoryItem, Profile profile);
+    }
+
+    interface MenuPresenter {
+
+        void saveProfile(Profile profile);
+
+        void startGame(int gametype, Profile profile);
+
+        List<Profile> getProfiles();
+
+        boolean playerNameIsAvailable();
+
+        Profile getPlayingProfile();
+
+        void setPlayingProfile(Profile profile);
+
+        void hideMainNavbar();
+    }
+
+    interface QuestionPresenter {
+
+        void nextQuestion();
+
+        void saveProfile(Profile profile);
+
+        List<Profile> getProfiles();
+
+        void loadQuestionsByCategory(CategoryItem category);
+
+        boolean playerNameIsAvailable();
+
+        void addClearedCategory(Question.Category clearedCategory);
+
+        void answered(Boolean val);
+
+        Profile getPlayingProfile();
+
+        void setPlayingProfile(Profile profile);
+
+        void hideMainNavbar();
+
+        void startGame(int gametype, Profile profile);
+
+    }
+
+    interface Interactor {
+
+    }
 
 }

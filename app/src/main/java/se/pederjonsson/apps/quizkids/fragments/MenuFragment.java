@@ -10,10 +10,9 @@ import android.widget.Button;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import se.pederjonsson.apps.quizkids.GameController;
+import se.pederjonsson.apps.quizkids.MenuGameController;
 import se.pederjonsson.apps.quizkids.GameControllerContract;
 import se.pederjonsson.apps.quizkids.Objects.Profile;
-import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.R;
 import se.pederjonsson.apps.quizkids.components.ProfileSettingView;
 
@@ -21,7 +20,7 @@ public class MenuFragment extends android.support.v4.app.Fragment {
 
     private Unbinder unbinder;
     public GameControllerContract.MainActivityView mainActivityView;
-    public GameControllerContract.Presenter gameControllerPresenter;
+    public GameControllerContract.MenuPresenter gameControllerMenuPresenter;
 
     @BindView(R.id.btnstart)
     Button btnStart;
@@ -44,24 +43,24 @@ public class MenuFragment extends android.support.v4.app.Fragment {
             //mainActivityView.startQuizJourney(Question.Category.GEOGRAPHY);
             mainActivityView.showCategories();
         });*/
-        profileSettingView.setUp(gameControllerPresenter);
+        profileSettingView.setUp(gameControllerMenuPresenter);
         btnJourney.setOnClickListener(v -> { profileSettingView.startJourneyBtnClicked();});
-        btnStart.setOnClickListener(v -> { gameControllerPresenter.startGame(GameController.GAMETYPE_QUICK, new Profile("quickspelare"));});
+        btnStart.setOnClickListener(v -> { gameControllerMenuPresenter.startGame(MenuGameController.GAMETYPE_QUICK, new Profile("quickspelare"));});
 
         return view;
     }
 
-    public static MenuFragment newInstance(GameControllerContract.MainActivityView _mainActivityView, GameControllerContract.Presenter _gameControllerP) {
+    public static MenuFragment newInstance(GameControllerContract.MainActivityView _mainActivityView, GameControllerContract.MenuPresenter _gameControllerP) {
         MenuFragment menuFragment = new MenuFragment();
         menuFragment.mainActivityView = _mainActivityView;
-        menuFragment.gameControllerPresenter = _gameControllerP;
+        menuFragment.gameControllerMenuPresenter = _gameControllerP;
         return menuFragment;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        gameControllerPresenter.hideMainNavbar();
+        gameControllerMenuPresenter.hideMainNavbar();
     }
 
     @Override

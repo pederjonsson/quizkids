@@ -15,6 +15,7 @@ import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import se.pederjonsson.apps.quizkids.GameControllerContract;
 import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
 import se.pederjonsson.apps.quizkids.Objects.Profile;
 import se.pederjonsson.apps.quizkids.R;
@@ -44,6 +45,7 @@ public class ResultView extends RelativeLayout {
     private Context mContext;
     private Unbinder unbinder;
     private Profile playingProfile;
+    private GameControllerContract.QuestionActivityView questionActivityView;
 
     public ResultView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -65,13 +67,14 @@ public class ResultView extends RelativeLayout {
         unbinder = ButterKnife.bind(this);
     }
 
-    public void setUp(CategoryItem categoryItem, Profile profile) {
+    public void setUp(CategoryItem categoryItem, Profile profile, GameControllerContract.QuestionActivityView _questionActivityView) {
+        questionActivityView = _questionActivityView;
         categoryItemView.setUp(categoryItem, profile);
         categoryItemView.showTitle();
         showTitle(mContext.getString(R.string.congratulations) + " " + profile.getName() + "!");
         subtitle.setText(mContext.getString(R.string.youclearedcategory));
         btnContinue.setOnClickListener(v -> {
-            show(false);
+            questionActivityView.showCategories();
         });
         btnContinue.setText(mContext.getString(R.string.continuegame));
     }

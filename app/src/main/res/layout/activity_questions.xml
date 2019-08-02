@@ -22,4 +22,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <se.pederjonsson.apps.quizkids.components.ResultView
+        android:id="@+id/resultview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </RelativeLayout>
