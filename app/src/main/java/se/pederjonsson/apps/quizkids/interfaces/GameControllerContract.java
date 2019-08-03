@@ -31,7 +31,7 @@ public interface GameControllerContract {
 
         void showQuestionFragment(QuestionAnswers questionAnswers, boolean addToBackstack);
 
-        void showResultView(CategoryItem categoryItem, Profile profile);
+        void showResultView(CategoryItem categoryItem, Profile profile, int amountCorrect, Boolean allCorrect);
     }
 
     interface MenuPresenter {

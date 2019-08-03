@@ -64,19 +64,23 @@ public class QuestionActivity extends AppCompatActivity implements GameControlle
             gameControllerPresenter.setPlayingProfile(playingProfile);
             gameControllerPresenter.loadQuestionsByCategory(categoryItem);
             db.populate(this);
-        } else{
+        } else {
             finish();
         }
     }
 
     @Override
-    public void showResultView(CategoryItem categoryItem, Profile profile) {
-        playSound(R.raw.drumroll);
-        resultView.setUp(categoryItem, profile, this);
+    public void showResultView(CategoryItem categoryItem, Profile profile, int amountCorrect, Boolean allCorrect) {
+        if (allCorrect) {
+            playSound(R.raw.drumroll);
+            resultView.setUp(categoryItem, profile, this);
+        } else {
+            resultView.setUpNotAllCorrect(categoryItem, profile, this, amountCorrect);
+        }
         resultView.show(true);
     }
 
-    private void playSound(int resId){
+    private void playSound(int resId) {
         releaseMediaPlayer();
         mMediaPlayer = MediaPlayer.create(this, resId);
         mMediaPlayer.setLooping(false);
@@ -114,8 +118,8 @@ public class QuestionActivity extends AppCompatActivity implements GameControlle
         //not used here
     }
 
-    private void commitTransaction(FragmentTransaction fragmentTransaction){
-        if(!mFragmentManager.isStateSaved()) {
+    private void commitTransaction(FragmentTransaction fragmentTransaction) {
+        if (!mFragmentManager.isStateSaved()) {
             fragmentTransaction.commit();
         } else {
             fragmentTransaction.commitAllowingStateLoss();
@@ -135,23 +139,23 @@ public class QuestionActivity extends AppCompatActivity implements GameControlle
     }
 
     @Override
-    public void showQuestionFragment(QuestionAnswers questionAnswers, boolean addToBackstack){
+    public void showQuestionFragment(QuestionAnswers questionAnswers, boolean addToBackstack) {
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         QuestionFragment fragment = QuestionFragment.newInstance(questionAnswers, gameControllerPresenter);
         setSlideInOutTransition(fragment);
         fragmentTransaction.replace(R.id.fragmentcontainer, fragment);
-        if(addToBackstack){
+        if (addToBackstack) {
             fragmentTransaction.addToBackStack(null);
         }
         commitTransaction(fragmentTransaction);
     }
 
-    private void setSlideInOutTransition(Fragment fragment){
+    private void setSlideInOutTransition(Fragment fragment) {
         fragment.setEnterTransition(slide);
         setSlideOutTransition(fragment);
     }
 
-    private void setSlideOutTransition(Fragment fragment){
+    private void setSlideOutTransition(Fragment fragment) {
         fragment.setExitTransition(slideout);
         fragment.setAllowEnterTransitionOverlap(false);
     }
@@ -165,5 +169,12 @@ public class QuestionActivity extends AppCompatActivity implements GameControlle
     protected void onPause() {
         super.onPause();
         releaseMediaPlayer();
+        resultView.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        resultView.onResume();
     }
 }

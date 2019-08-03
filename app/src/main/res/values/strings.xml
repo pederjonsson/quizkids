@@ -6,6 +6,12 @@
     <string name="wrong_answer">Wrong answer!</string>
     <string name="categories">Categories</string>
     <string name="congratulations">Congratulations</string>
+    <string name="nice_work">Good job</string>
+    <string name="you_answered_correctly_on">You answered correctly on</string>
+    <string name="questions">frågor</string>
+    <string name="of">out of</string>
+    <string name="one_question">one question</string>
+    <string name="better_luck_next_time">better luck next time</string>
     <string name="continuegame">Continue</string>
     <string name="playas">play as</string>
     <string name="create_new_player">create new player</string>

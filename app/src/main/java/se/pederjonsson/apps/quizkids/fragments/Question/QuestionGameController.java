@@ -11,7 +11,7 @@ import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
 import se.pederjonsson.apps.quizkids.components.NavbarView;
 import se.pederjonsson.apps.quizkids.db.Database;
 
-public class QuestionGameController implements GameControllerContract.QuestionPresenter{
+public class QuestionGameController implements GameControllerContract.QuestionPresenter {
 
     private GameControllerContract.QuestionActivityView questionActivityView;
     private Database database;
@@ -27,36 +27,39 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
     public static int MAX_QUESTIONS_IN_CATEGORY = 9;
     private NavbarView navbarView;
 
-    public QuestionGameController(GameControllerContract.QuestionActivityView _questionActivityView, Database _database, NavbarView _navbar){
+    public QuestionGameController(GameControllerContract.QuestionActivityView _questionActivityView, Database _database, NavbarView _navbar) {
         questionActivityView = _questionActivityView;
         navbarView = _navbar;
         database = _database;
     }
 
     @Override
-    public void answered(Boolean val){
+    public void answered(Boolean val) {
         currentAnswers.add(val);
         navbarView.setScore(val, currentQuestionInCategory);
     }
 
     @Override
     public void nextQuestion() {
-        if(currentQuestionInCategory == MAX_QUESTIONS_IN_CATEGORY){
+        if (currentQuestionInCategory == MAX_QUESTIONS_IN_CATEGORY) {
             boolean allcorrect = true;
-            for (Boolean answerCorrect: currentAnswers){
-                if(!answerCorrect){
+            int correctCounter = 0;
+            for (Boolean answerCorrect : currentAnswers) {
+                if (!answerCorrect) {
                     allcorrect = false;
-                    break;
+                } else {
+                    correctCounter++;
                 }
             }
 
             navbarView.clearScore();
             hideMainNavbar();
-            if(allcorrect){
+            if (allcorrect) {
                 addClearedCategory(currentCategory);
-                questionActivityView.showResultView(currentCategoryItem, playingProfile);
             }
-            startGame(GAMETYPE_JOURNEY, playingProfile);
+            questionActivityView.showResultView(currentCategoryItem, playingProfile, correctCounter, allcorrect);
+
+            //startGame(GAMETYPE_JOURNEY, playingProfile);
         } else {
             currentQuestionInCategory++;
             questionActivityView.showQuestionFragment(currentCategoryQAList.get(currentQuestionInCategory), false);
@@ -92,12 +95,12 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
     @Override
     public void startGame(int gametype, Profile profile) {
         playingProfile = profile;
-        if(gametype == GAMETYPE_JOURNEY){
+        if (gametype == GAMETYPE_JOURNEY) {
             //first show view for choose category;
             //pretend choose geo
-           // loadQuestionsByCategory(Question.Category.GEOGRAPHY);
-           // questionActivityView.showCategories();
-        } else if(gametype == GAMETYPE_QUICK){
+            // loadQuestionsByCategory(Question.Category.GEOGRAPHY);
+            // questionActivityView.showCategories();
+        } else if (gametype == GAMETYPE_QUICK) {
             //mixaafrågor sen
             loadQuestionsByCategory(new CategoryItem(Question.Category.GEOGRAPHY));
         }
@@ -114,7 +117,7 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
     }
 
     @Override
-    public void loadQuestionsByCategory(CategoryItem categoryItem){
+    public void loadQuestionsByCategory(CategoryItem categoryItem) {
         currentCategoryItem = categoryItem;
         currentAnswers = new ArrayList<>();
         currentCategory = categoryItem.getCategory();
@@ -123,19 +126,19 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
         QuestionAnswers questionAnswers = currentCategoryQAList.get(currentQuestionInCategory);
         questionActivityView.showQuestionFragment(questionAnswers, false);
         questionHasBeenShownTo(questionAnswers, playingProfile);
-       // navbarView.showTitle(currentCategory.getCategory());
+        // navbarView.showTitle(currentCategory.getCategory());
         navbarView.showTitle(currentCategory.getCategoryTranslated(questionActivityView.getViewContext()));
         navbarView.show(true);
         navbarView.clearScore();
         navbarView.showScore();
     }
 
-    private void questionHasBeenShownTo(QuestionAnswers qa, Profile profile){
+    private void questionHasBeenShownTo(QuestionAnswers qa, Profile profile) {
         qa.setHasBeenShownTo(profile.getName());
         updateOrSaveQA(qa);
     }
 
-    private void updateOrSaveQA(QuestionAnswers qa){
+    private void updateOrSaveQA(QuestionAnswers qa) {
         database.insertQa(qa.getQuestion().getCategoryString(), qa.getQuestion().getDifficultyLevel(), qa.getQuestion().getQuestionResId(), qa);
     }
 }

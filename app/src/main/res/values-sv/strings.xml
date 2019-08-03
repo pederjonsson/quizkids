@@ -10,6 +10,12 @@
     <string name="toast_pls_enter_name">Vänligen fyll i spelarens namn först</string>
     <string name="start">starta</string>
     <string name="congratulations">Grattis</string>
+    <string name="nice_work">Bra jobbat</string>
+    <string name="you_answered_correctly_on">Du svarade rätt på</string>
+    <string name="questions">frågor</string>
+    <string name="of">av</string>
+    <string name="one_question">en fråga</string>
+    <string name="better_luck_next_time">nästa gång klarar du det</string>
     <string name="continuegame">Fortsätt</string>
     <string name="playas">spela som</string>
     <string name="create_new_player">skapa ny spelare</string>
