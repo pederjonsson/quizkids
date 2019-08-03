@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/medium"
-    android:layout_marginLeft="@dimen/medium"
-    android:layout_marginRight="@dimen/medium"
+    android:layout_marginBottom="@dimen/small"
     android:layout_marginTop="@dimen/margin_tiny"
     android:orientation="vertical"
     tools:context="se.pederjonsson.apps.quizkids.MainActivity">
@@ -16,22 +15,18 @@
         style="@style/JupiterSmallBold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/medium"
-        android:layout_marginLeft="@dimen/medium"
-        android:layout_marginRight="@dimen/medium"
+        android:layout_marginLeft="@dimen/small"
+        android:layout_marginRight="@dimen/small"
         android:layout_marginTop="@dimen/margin_tiny"
         android:textAlignment="center" />
     <!-- https://github.com/vinc3m1/RoundedImageView
 
                 android:src="@drawaquestion_eiffel200l200"
                 -->
-    
-    <android.support.v7.widget.AppCompatImageView
-        android:layout_width="@dimen/xxlarge"
-        android:layout_height="@dimen/xxlarge"
-        android:background="@drawable/ic_play_circle_filled_black_24dp"
-        android:id="@+id/texttospeechbtn"
-        />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
     <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/imageView1"
         android:layout_width="match_parent"
@@ -40,8 +35,31 @@
         app:riv_border_color="@color/colorPrimaryDark"
         app:riv_border_width="1dip"
         app:riv_corner_radius="10dip"
+        android:layout_marginTop="@dimen/medium"
+        android:layout_marginLeft="@dimen/margin_lagom"
+        android:layout_marginRight="@dimen/margin_lagom"
         app:riv_mutate_background="true"
         app:riv_oval="false"
         app:riv_tile_mode="clamp" />
+
+    <RelativeLayout
+        android:layout_width="@dimen/xxlarge"
+        android:layout_height="@dimen/xxlarge"
+        android:background="@drawable/circle_play_btn_background"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="@dimen/tiny"
+        >
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="@dimen/xxlarge"
+            android:layout_height="@dimen/xxlarge"
+            android:background="@drawable/ic_play_circle_filled_black_24dp"
+            android:id="@+id/texttospeechbtn"
+            />
+    </RelativeLayout>
+
+
+</RelativeLayout>
+
 
 </LinearLayout>
