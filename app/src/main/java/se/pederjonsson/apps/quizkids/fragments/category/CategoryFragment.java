@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,23 +50,20 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.category_fragment, container, false);
         unbinder = ButterKnife.bind(this, view);
-
         navbarView.showTitle(getString(R.string.categories));
         navbarView.show(true);
-      //  QuestionAnswers questionAnswers = (QuestionAnswers) getArguments().getSerializable(CATEGORY_DATA);
-        mAdapter = new CategoryAdapter(null, this);
-
-        gridView.setAdapter(mAdapter);
-
-        getCategoryData();
-        if(categories != null && mAdapter.getCount() == 0){
-            mAdapter.setData(categories);
-            mAdapter.notifyDataSetChanged();
-        }
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mGameControllerMenuPresenter.loadPlayingProfile(mGameControllerMenuPresenter.getPlayingProfile().getName());
+        mAdapter = new CategoryAdapter(null, this);
+        gridView.setAdapter(mAdapter);
+        getCategoryData();
     }
 
     @Override
@@ -73,10 +71,14 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
         return mGameControllerMenuPresenter.getPlayingProfile();
     }
 
-    private void getCategoryData(){
+    private void getCategoryData() {
         categories = new ArrayList<>();
-        for (Question.Category category : Question.Category.values()){
+        for (Question.Category category : Question.Category.values()) {
             categories.add(new CategoryItem(category));
+        }
+        if (categories != null) {
+            mAdapter.setData(categories);
+            mAdapter.notifyDataSetChanged();
         }
     }
 
@@ -84,9 +86,6 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
         CategoryFragment categoryFragment = new CategoryFragment();
         categoryFragment.mainActivityView = _mainActivityView;
         categoryFragment.mGameControllerMenuPresenter = _gamecontrollerMenuPresenter;
-      /*  Bundle args = new Bundle();
-        args.putSerializable(CATEGORY_DATA, questionAnswers);
-        questionFragment.setArguments(args);*/
         return categoryFragment;
     }
 
@@ -109,14 +108,13 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
 
     @Override
     public void categoryClicked(CategoryItem categoryItem) {
-        //mGameControllerPresenter.loadQuestionsByCategory(categoryItem);
         Intent intent = new Intent(getActivity(), QuestionActivity.class);
         intent.putExtra(QuestionActivity.CATEGORY_ITEM, categoryItem);
         intent.putExtra(QuestionActivity.PROFILE_ITEM, mGameControllerMenuPresenter.getPlayingProfile());
         getActivity().startActivityForResult(intent, 1);
     }
 
-    private void playSound(int resId){
+    private void playSound(int resId) {
         releaseMediaPlayer();
         mMediaPlayer = MediaPlayer.create(getContext(), resId);
         mMediaPlayer.setLooping(false);

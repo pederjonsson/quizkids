@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -196,6 +197,7 @@ public class Database extends SQLiteOpenHelper {
             res.moveToFirst();
             Object obj = byteToObj(res.getBlob(0));
             db.close();
+            Log.i("DB", "getprofilebyname found match that will be returned");
             return obj;
         }
         if (res != null) {

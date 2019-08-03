@@ -48,6 +48,8 @@ public interface GameControllerContract {
 
         void setPlayingProfile(Profile profile);
 
+        void loadPlayingProfile(String name);
+
         void hideMainNavbar();
     }
 

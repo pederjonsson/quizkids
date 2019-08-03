@@ -39,6 +39,11 @@
     <string name="q_buildings_sphinx_answer2">Kleopatra</string>
     <string name="q_buildings_sphinx_answer3">Öken lejonet</string>
 
+    <string name="q_buildings_chinesewall">Vad kallas denna byggnad?</string>
+    <string name="q_buildings_chinesewall_correct_answer">Den kinesiska muren</string>
+    <string name="q_buildings_chinesewall_answer2">Den japanska väggen</string>
+    <string name="q_buildings_chinesewall_answer3">Taiwananesiska djungel muren</string>
+
     <string name="q_buildings_burjikhalifa5">In what city lies the tallest building in the world, Burji khalifa5</string>
     <string name="q_buildings_burjikhalifa6">In what city lies the tallest building in the world, Burji khalifa6</string>
     <string name="q_buildings_burjikhalifa7">In what city lies the tallest building in the world, Burji khalifa7</string>

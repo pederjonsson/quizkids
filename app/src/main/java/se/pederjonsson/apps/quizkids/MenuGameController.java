@@ -1,5 +1,7 @@
 package se.pederjonsson.apps.quizkids;
 
+import android.util.Log;
+
 import java.util.List;
 
 import se.pederjonsson.apps.quizkids.Objects.Profile;
@@ -59,6 +61,12 @@ public class MenuGameController implements GameControllerContract.MenuPresenter 
     @Override
     public List<Profile> getProfiles() {
         return database.getAllProfiles();
+    }
+
+    @Override
+    public void loadPlayingProfile(String name) {
+        playingProfile = (Profile) database.getProfileByName(name);
+        playingProfile.getClearedCategories();
     }
 
     @Override
