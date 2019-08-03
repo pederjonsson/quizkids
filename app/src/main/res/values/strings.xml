@@ -27,11 +27,22 @@
     <string name="toast_pls_enter_name">Please enter your name first</string>
     <string name="start">Start</string>
 
+    <!-- ******************** BUILDINGS ************************** -->
     <string name="q_buildings_paris">What is the name of the tower in Paris?</string>
     <string name="q_buildings_mounteverest">What is the name of the highest mountain in the world?</string>
     <string name="q_buildings_burjikhalifa">In what city lies the tallest building in the world, Burji khalifa</string>
+
     <string name="q_buildings_stbasil">In what city lies the st basils cathedral</string>
     <string name="q_buildings_stbasil_correctanswer">Moscow</string>
+    <string name="q_buildings_stbasil_answer2">Helsinki</string>
+
+    <string name="q_buildings_sphinx">What is this mysterious building in egypt called</string>
+    <string name="q_buildings_sphinx_correct_answer">The Sphinx</string>
+    <string name="q_buildings_sphinx_answer2">Cleopatra</string>
+    <string name="q_buildings_sphinx_answer3">The desert lion</string>
+
+
+
 
     <string name="q_buildings_burjikhalifa5">In what city lies the tallest building in the world, Burji khalifa5</string>
     <string name="q_buildings_burjikhalifa6">In what city lies the tallest building in the world, Burji khalifa6</string>
@@ -40,4 +51,6 @@
     <string name="q_buildings_burjikhalifa9">In what city lies the tallest building in the world, Burji khalifa9</string>
     <string name="q_buildings_burjikhalifa10">In what city lies the tallest building in the world, Burji khalifa10</string>
 
+
+    <!-- ******************* GEOGRAPHY ************************* -->
 </resources>

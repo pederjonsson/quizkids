@@ -21,6 +21,7 @@ import se.pederjonsson.apps.quizkids.components.ResultView;
 import se.pederjonsson.apps.quizkids.db.Database;
 import se.pederjonsson.apps.quizkids.fragments.Question.QuestionFragment;
 import se.pederjonsson.apps.quizkids.fragments.Question.QuestionGameController;
+import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
 
 public class QuestionActivity extends AppCompatActivity implements GameControllerContract.QuestionActivityView {
 

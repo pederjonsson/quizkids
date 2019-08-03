@@ -25,6 +25,13 @@
 
                 android:src="@drawaquestion_eiffel200l200"
                 -->
+    
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="@dimen/xxlarge"
+        android:layout_height="@dimen/xxlarge"
+        android:background="@drawable/ic_play_circle_filled_black_24dp"
+        android:id="@+id/texttospeechbtn"
+        />
     <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/imageView1"
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package se.pederjonsson.apps.quizkids;
+package se.pederjonsson.apps.quizkids.interfaces;
 
 import android.content.Context;
 

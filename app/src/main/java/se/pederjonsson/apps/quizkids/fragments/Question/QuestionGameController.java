@@ -3,7 +3,7 @@ package se.pederjonsson.apps.quizkids.fragments.Question;
 import java.util.ArrayList;
 import java.util.List;
 
-import se.pederjonsson.apps.quizkids.GameControllerContract;
+import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
 import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
 import se.pederjonsson.apps.quizkids.Objects.Profile;
 import se.pederjonsson.apps.quizkids.Objects.Question;

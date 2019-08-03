@@ -12,8 +12,7 @@ import android.view.ViewGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import se.pederjonsson.apps.quizkids.GameControllerContract;
-import se.pederjonsson.apps.quizkids.MainActivity;
+import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
 import se.pederjonsson.apps.quizkids.Objects.Answer;
 import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
 import se.pederjonsson.apps.quizkids.R;
@@ -75,6 +74,13 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
         if(stopLoadingAnimationHandler != null && stopLoadingAnimationRunnable != null){
             stopLoadingAnimationHandler.removeCallbacks(stopLoadingAnimationRunnable);
         }
+        questionView.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        questionView.onResume();
     }
 
     @Override

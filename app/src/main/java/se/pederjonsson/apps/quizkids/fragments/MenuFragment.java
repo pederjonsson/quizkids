@@ -11,7 +11,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import se.pederjonsson.apps.quizkids.MenuGameController;
-import se.pederjonsson.apps.quizkids.GameControllerContract;
+import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
 import se.pederjonsson.apps.quizkids.Objects.Profile;
 import se.pederjonsson.apps.quizkids.R;
 import se.pederjonsson.apps.quizkids.components.ProfileSettingView;
@@ -38,7 +38,7 @@ public class MenuFragment extends android.support.v4.app.Fragment {
         View view = inflater.inflate(R.layout.menufragment, container, false);
         unbinder = ButterKnife.bind(this, view);
 
-/* btnStart.setOnClickListener(v -> { mainActivityView.startQuickQuiz();});
+        /* btnStart.setOnClickListener(v -> { mainActivityView.startQuickQuiz();});
         btnJourney.setOnClickListener(v -> {
             //mainActivityView.startQuizJourney(Question.Category.GEOGRAPHY);
             mainActivityView.showCategories();

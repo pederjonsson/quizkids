@@ -32,6 +32,12 @@
     <string name="q_buildings_burjikhalifa">I vilken stad ligger världens högsta byggnad, Burji khalifa</string>
     <string name="q_buildings_stbasil">I vilken stad ligger Vasilijkatedralen</string>
     <string name="q_buildings_stbasil_correctanswer">Moskva</string>
+    <string name="q_buildings_stbasil_answer2">Helsingfors</string>
+
+    <string name="q_buildings_sphinx">Vad kallas denna mystiska byggnad i egypten</string>
+    <string name="q_buildings_sphinx_correct_answer">Sphinx</string>
+    <string name="q_buildings_sphinx_answer2">Kleopatra</string>
+    <string name="q_buildings_sphinx_answer3">Öken lejonet</string>
 
     <string name="q_buildings_burjikhalifa5">In what city lies the tallest building in the world, Burji khalifa5</string>
     <string name="q_buildings_burjikhalifa6">In what city lies the tallest building in the world, Burji khalifa6</string>

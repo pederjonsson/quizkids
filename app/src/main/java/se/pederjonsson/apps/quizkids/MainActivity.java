@@ -15,10 +15,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import se.pederjonsson.apps.quizkids.components.NavbarView;
-import se.pederjonsson.apps.quizkids.components.ResultView;
+
 import se.pederjonsson.apps.quizkids.db.Database;
 import se.pederjonsson.apps.quizkids.fragments.MenuFragment;
 import se.pederjonsson.apps.quizkids.fragments.category.CategoryFragment;
+import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
 
 public class MainActivity extends AppCompatActivity implements GameControllerContract.MainActivityView {
 
@@ -89,12 +90,9 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
     public void showMenu() {
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         MenuFragment fragment = MenuFragment.newInstance(this, gameControllerMenuPresenter);
-        //setSlideOutTransition(fragment);
-        fragmentTransaction.addToBackStack(null);
+        //fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragmentcontainer, fragment);
-
         commitTransaction(fragmentTransaction);
-
     }
 
     private void commitTransaction(FragmentTransaction fragmentTransaction) {

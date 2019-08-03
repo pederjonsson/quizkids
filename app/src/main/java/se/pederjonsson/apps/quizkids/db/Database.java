@@ -113,14 +113,12 @@ public class Database extends SQLiteOpenHelper {
     public synchronized List<QuestionAnswers> getQAListByCategoryAndDifficultyLevel(String category, String difficultyLevel) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery("SELECT " + QA_COLUMN_VALUE + " FROM " + QA_TABLE_NAME + " WHERE " +
-                QA_COLUMN_TYPE + "=? "
+                        QA_COLUMN_TYPE + "=? "
                 /*"AND " + QA_COLUMN_DIFFICULTY + "=?"*/
                 , new String[]{category});
 
         final List<QuestionAnswers> list = new ArrayList<QuestionAnswers>();
         if (res.getCount() > 0) {
-
-
             try {
                 while (res.moveToNext()) {
                     list.add((QuestionAnswers) byteToObj(res.getBlob(0)));
@@ -128,11 +126,9 @@ public class Database extends SQLiteOpenHelper {
             } finally {
                 res.close();
             }
-
             db.close();
             return list;
         }
-
 
         if (res != null) {
             res.close();
@@ -147,8 +143,6 @@ public class Database extends SQLiteOpenHelper {
 
         final List<QuestionAnswers> list = new ArrayList<QuestionAnswers>();
         if (res.getCount() > 0) {
-
-
             try {
                 while (res.moveToNext()) {
                     list.add((QuestionAnswers) byteToObj(res.getBlob(0)));
@@ -198,10 +192,8 @@ public class Database extends SQLiteOpenHelper {
         Cursor res = db.rawQuery("SELECT " + PROFILE_COLUMN_VALUE + " FROM " + PROFILE_TABLE_NAME + " WHERE " +
                 PROFILE_COLUMN_ID + "=?", new String[]{firstName});
 
-
         if (res.getCount() > 0) {
             res.moveToFirst();
-
             Object obj = byteToObj(res.getBlob(0));
             db.close();
             return obj;
@@ -219,8 +211,6 @@ public class Database extends SQLiteOpenHelper {
 
         final List<Profile> list = new ArrayList<Profile>();
         if (res.getCount() > 0) {
-
-
             try {
                 while (res.moveToNext()) {
                     list.add((Profile) byteToObj(res.getBlob(0)));
@@ -228,7 +218,6 @@ public class Database extends SQLiteOpenHelper {
             } finally {
                 res.close();
             }
-
             db.close();
             return list;
         }
@@ -242,19 +231,15 @@ public class Database extends SQLiteOpenHelper {
 
     public static byte[] objectTobytes(Object o) {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
-
         try {
             ObjectOutput out = new ObjectOutputStream(bos);
             out.writeObject(o);
             out.close();
-
             // Get the bytes of the serialized object
             byte[] buf = bos.toByteArray();
-
             return buf;
         } catch (IOException ioe) {
             // Log.e("serializeObject", "error", ioe);
-
             return null;
         }
     }
@@ -302,21 +287,11 @@ public class Database extends SQLiteOpenHelper {
     }*/
 
     public List<QuestionAnswers> getQuestionsByCategory(Question.Category category) {
-        l.info("**** getQuestionsByCategory-" + category.name().toString().toLowerCase() + "----");
-        return getQAListByCategoryAndDifficultyLevel(category.name().toString().toLowerCase(), "" );
-        /*
-        switch (category) {
-            case GEOGRAPHY:
-                return dbUtil.generateQAGeography();
-            case BUILDINGS:
-                return getQAListByCategoryAndDifficultyLevel(category.name(), "" );
-                //return dbUtil.generateQABuildings();
-            default:
-                return dbUtil.generateQAGeography();
-        }*/
+        l.info("**** getQuestionsByCategory-" + category.name().toLowerCase() + "----");
+        return getQAListByCategoryAndDifficultyLevel(category.name().toLowerCase(), "");
     }
 
-    public void populate(Context context){
+    public void populate(Context context) {
         dbUtil.populateDB(this, context);
     }
 
