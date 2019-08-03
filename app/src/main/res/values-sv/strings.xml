@@ -50,6 +50,11 @@
     <string name="q_buildings_chinesewall_answer2">Den japanska väggen</string>
     <string name="q_buildings_chinesewall_answer3">Taiwananesiska djungel muren</string>
 
+    <string name="q_buildings_bigben">Vad heter det stora klocktornet i London?</string>
+    <string name="q_buildings_bigben_correct_answer">Big Ben</string>
+    <string name="q_buildings_bigben_answer2">Höga Jack</string>
+    <string name="q_buildings_bigben_answer3">Långa bananen</string>
+
     <string name="q_buildings_burjikhalifa5">In what city lies the tallest building in the world, Burji khalifa5</string>
     <string name="q_buildings_burjikhalifa6">In what city lies the tallest building in the world, Burji khalifa6</string>
     <string name="q_buildings_burjikhalifa7">In what city lies the tallest building in the world, Burji khalifa7</string>

@@ -52,6 +52,11 @@
     <string name="q_buildings_chinesewall_answer2">The long wall of Japan</string>
     <string name="q_buildings_chinesewall_answer3">The strong wall of Taiwan</string>
 
+    <string name="q_buildings_bigben">What is the name of the clocktower in London?</string>
+    <string name="q_buildings_bigben_correct_answer">Big Ben</string>
+    <string name="q_buildings_bigben_answer2">Old Jack</string>
+    <string name="q_buildings_bigben_answer3">Long Thomas</string>
+
     <string name="q_buildings_burjikhalifa5">In what city lies the tallest building in the world, Burji khalifa5</string>
     <string name="q_buildings_burjikhalifa6">In what city lies the tallest building in the world, Burji khalifa6</string>
     <string name="q_buildings_burjikhalifa7">In what city lies the tallest building in the world, Burji khalifa7</string>

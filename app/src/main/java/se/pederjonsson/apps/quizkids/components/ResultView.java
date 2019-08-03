@@ -93,9 +93,9 @@ public class ResultView extends RelativeLayout implements LifecycleInterface {
             amountquestions = mContext.getString(R.string.one_question);
         }
         String of = mContext.getString(R.string.of);
-        String subString = mContext.getString(R.string.you_answered_correctly_on) + " " + amountquestions + " " + of + " " + QuestionGameController.MAX_QUESTIONS_IN_CATEGORY;
+        String subString = mContext.getString(R.string.you_answered_correctly_on) + " " + amountquestions + " " + of + " " + 10;
         subtitle.setText(subString);
-        String speechstring = title + ". " + mContext.getString(R.string.you_answered_correctly_on) + ". " + amountquestions + ". " + of + " " + QuestionGameController.MAX_QUESTIONS_IN_CATEGORY +
+        String speechstring = title + ". " + mContext.getString(R.string.you_answered_correctly_on) + ". " + amountquestions + ". " + of + " " + 10 +
                 ". " + mContext.getString(R.string.better_luck_next_time);
 
         btnContinue.setOnClickListener(v -> {
