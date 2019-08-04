@@ -52,7 +52,7 @@ public class QuestionActivity extends AppCompatActivity implements GameControlle
         setContentView(R.layout.activity_questions);
         unbinder = ButterKnife.bind(this);
         resultView.show(false);
-        db = new Database(this);
+        db = Database.getInstance(this);
         gameControllerPresenter = new QuestionGameController(this, db, navbarView);
         mFragmentManager = getSupportFragmentManager();
         slide.setDuration(SLIDE_TIME);

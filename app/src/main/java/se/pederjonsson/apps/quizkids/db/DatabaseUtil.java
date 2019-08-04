@@ -1,6 +1,5 @@
 package se.pederjonsson.apps.quizkids.db;
 
-import android.app.Application;
 import android.content.Context;
 
 import java.util.ArrayList;
@@ -76,6 +75,24 @@ public class DatabaseUtil {
         return qaList;
     }
 
+    public List<QuestionAnswers> generateQAOcean(Context context){
+        List<QuestionAnswers> qaList = new ArrayList<>();
+
+        qaList.add(generateQA(R.string.q_ocean_pacific, Question.Category.OCEAN, R.drawable.q_pacific, Question.DifficultyLevel.EASY,context.getString(R.string.q_ocean_pacific_correct_answer), context.getString(R.string.q_ocean_pacific_answer2), context.getString(R.string.q_ocean_pacific_answer3)));
+        qaList.add(generateQA(R.string.q_ocean_size, Question.Category.OCEAN, R.drawable.q_ocean_size, Question.DifficultyLevel.EASY,context.getString(R.string.q_ocean_size_correct_answer), context.getString(R.string.q_ocean_size_answer2), context.getString(R.string.q_ocean_size_answer3)));
+        qaList.add(generateQA(R.string.q_ocean_whale, Question.Category.OCEAN, R.drawable.q_ocean_whale, Question.DifficultyLevel.EASY,context.getString(R.string.q_ocean_whale_correct_answer), context.getString(R.string.q_ocean_whale_answer2), context.getString(R.string.q_ocean_whale_answer3)));
+        qaList.add(generateQA(R.string.q_ocean_ebb, Question.Category.OCEAN, R.drawable.q_ocean_ebbflow, Question.DifficultyLevel.EASY,context.getString(R.string.q_ocean_ebb_correct_answer), context.getString(R.string.q_ocean_ebb_answer2), context.getString(R.string.q_ocean_ebb_answer3)));
+        qaList.add(generateQA(R.string.q_ocean_tide, Question.Category.OCEAN, R.drawable.q_ocean_ebbflow, Question.DifficultyLevel.EASY,context.getString(R.string.q_ocean_tide_correct_answer), context.getString(R.string.q_ocean_tide_answer2), context.getString(R.string.q_ocean_tide_answer3)));
+
+        qaList.add(generateQA(R.string.q_ocean_pacific, Question.Category.OCEAN, R.drawable.q_pacific, Question.DifficultyLevel.EASY,context.getString(R.string.q_ocean_pacific_correct_answer), context.getString(R.string.q_ocean_pacific_answer2), context.getString(R.string.q_ocean_pacific_answer3)));
+        qaList.add(generateQA(R.string.q_ocean_pacific, Question.Category.OCEAN, R.drawable.q_pacific, Question.DifficultyLevel.EASY,context.getString(R.string.q_ocean_pacific_correct_answer), context.getString(R.string.q_ocean_pacific_answer2), context.getString(R.string.q_ocean_pacific_answer3)));
+        qaList.add(generateQA(R.string.q_ocean_pacific, Question.Category.OCEAN, R.drawable.q_pacific, Question.DifficultyLevel.EASY,context.getString(R.string.q_ocean_pacific_correct_answer), context.getString(R.string.q_ocean_pacific_answer2), context.getString(R.string.q_ocean_pacific_answer3)));
+        qaList.add(generateQA(R.string.q_ocean_pacific, Question.Category.OCEAN, R.drawable.q_pacific, Question.DifficultyLevel.EASY,context.getString(R.string.q_ocean_pacific_correct_answer), context.getString(R.string.q_ocean_pacific_answer2), context.getString(R.string.q_ocean_pacific_answer3)));
+        qaList.add(generateQA(R.string.q_ocean_pacific, Question.Category.OCEAN, R.drawable.q_pacific, Question.DifficultyLevel.EASY,context.getString(R.string.q_ocean_pacific_correct_answer), context.getString(R.string.q_ocean_pacific_answer2), context.getString(R.string.q_ocean_pacific_answer3)));
+
+        return qaList;
+    }
+
     public List<QuestionAnswers> generateQAScience(){
         List<QuestionAnswers> qaList = new ArrayList<>();
 
@@ -96,6 +113,7 @@ public class DatabaseUtil {
     public void populateDB(Database database, Context context){
         insertQaIntoDB(generateQAGeography(), database);
         insertQaIntoDB(generateQABuildings(context), database);
+        insertQaIntoDB(generateQAOcean(context), database);
     }
 
     private void insertQaIntoDB(List<QuestionAnswers> qaList, Database database){

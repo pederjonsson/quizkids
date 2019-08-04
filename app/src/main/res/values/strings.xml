@@ -72,12 +72,33 @@
     <string name="q_buildings_liberty_answer2">Statue of peace</string>
     <string name="q_buildings_liberty_answer3">Statue of equality</string>
 
-    <string name="q_buildings_burjikhalifa5">In what city lies the tallest building in the world, Burji khalifa5</string>
-    <string name="q_buildings_burjikhalifa6">In what city lies the tallest building in the world, Burji khalifa6</string>
-    <string name="q_buildings_burjikhalifa7">In what city lies the tallest building in the world, Burji khalifa7</string>
-    <string name="q_buildings_burjikhalifa8">In what city lies the tallest building in the world, Burji khalifa8</string>
-    <string name="q_buildings_burjikhalifa9">In what city lies the tallest building in the world, Burji khalifa9</string>
-    <string name="q_buildings_burjikhalifa10">In what city lies the tallest building in the world, Burji khalifa10</string>
+
+    <!-- ******************* OCEAN ************************* -->
+
+    <string name="q_ocean_pacific">What is the largest ocean on the planet?</string>
+    <string name="q_ocean_pacific_correct_answer">Pacific ocean</string>
+    <string name="q_ocean_pacific_answer2">Atlantic ocean</string>
+    <string name="q_ocean_pacific_answer3">Indian ocean</string>
+
+    <string name="q_ocean_size">How much of the earths surface is covered by the ocean?</string>
+    <string name="q_ocean_size_correct_answer">70%</string>
+    <string name="q_ocean_size_answer2">50%</string>
+    <string name="q_ocean_size_answer3">90%</string>
+
+    <string name="q_ocean_whale">How come whales can communicate over very long distances?</string>
+    <string name="q_ocean_whale_correct_answer">Sound travels faster and longer in water then in air</string>
+    <string name="q_ocean_whale_answer2">Whales are big so they can scream very loud</string>
+    <string name="q_ocean_whale_answer3">whales have very large ears</string>
+
+    <string name="q_ocean_ebb">What is the time period called when the sea level is sinking?</string>
+    <string name="q_ocean_ebb_correct_answer">Ebb</string>
+    <string name="q_ocean_ebb_answer2">Flood</string>
+    <string name="q_ocean_ebb_answer3">Desert</string>
+
+    <string name="q_ocean_tide">Why is the sea level rising and sinking?</string>
+    <string name="q_ocean_tide_correct_answer">Because of the sun and the moons gravitational forces</string>
+    <string name="q_ocean_tide_answer2">Because of the rain</string>
+    <string name="q_ocean_tide_answer3">Because the fishes are falling asleep during the night</string>
 
 
     <!-- ******************* GEOGRAPHY ************************* -->

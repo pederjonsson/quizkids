@@ -48,14 +48,14 @@ public class Question implements Serializable {
     public enum Category {
 
         BUILDINGS("buildings"),
-        GEOGRAPHY("geography"),
-        SCIENCE("science"),
-        MATH("math"),
-        ABC("abc"),
         OCEAN("ocean"),
+        MATH("math"),
+        SCIENCE("science"),
+        ABC("abc"),
         ANIMALS("animals"),
         SUPERHEROES("superheroes"),
-        SPORT("sport");
+        SPORT("sport"),
+        GEOGRAPHY("geography");
 
         public String getCategory(){return category;}
 

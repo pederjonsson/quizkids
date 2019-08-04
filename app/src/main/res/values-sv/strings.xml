@@ -70,10 +70,30 @@
     <string name="q_buildings_liberty_answer2">Fredsgudinnan</string>
     <string name="q_buildings_liberty_answer3">Eldgudinnan</string>
 
-    <string name="q_buildings_burjikhalifa5">In what city lies the tallest building in the world, Burji khalifa5</string>
-    <string name="q_buildings_burjikhalifa6">In what city lies the tallest building in the world, Burji khalifa6</string>
-    <string name="q_buildings_burjikhalifa7">In what city lies the tallest building in the world, Burji khalifa7</string>
-    <string name="q_buildings_burjikhalifa8">In what city lies the tallest building in the world, Burji khalifa8</string>
-    <string name="q_buildings_burjikhalifa9">In what city lies the tallest building in the world, Burji khalifa9</string>
-    <string name="q_buildings_burjikhalifa10">In what city lies the tallest building in the world, Burji khalifa10</string>
+    <!-- ******************* OCEAN ************************* -->
+
+    <string name="q_ocean_pacific">Vad heter det största havet på vår planet?</string>
+    <string name="q_ocean_pacific_correct_answer">Stilla havet</string>
+    <string name="q_ocean_pacific_answer2">Atlanten</string>
+    <string name="q_ocean_pacific_answer3">Indiska oceanen</string>
+
+    <string name="q_ocean_size">Hur mycket av jordens yta är täckt av hav?</string>
+    <string name="q_ocean_size_correct_answer">70%</string>
+    <string name="q_ocean_size_answer2">50%</string>
+    <string name="q_ocean_size_answer3">90%</string>
+
+    <string name="q_ocean_whale">Hur kommer det sig att valar kan prata med varann över väldigt långa avstånd?</string>
+    <string name="q_ocean_whale_correct_answer">Ljud färdas snabbare och längre i vatten än i luften</string>
+    <string name="q_ocean_whale_answer2">Valar är så stora så dom kan skrika väldigt högt</string>
+    <string name="q_ocean_whale_answer3">Valar har jättestora öron</string>
+
+    <string name="q_ocean_ebb">Vad kallas tidsperioden när havsnivån sjunker?</string>
+    <string name="q_ocean_ebb_correct_answer">Ebb</string>
+    <string name="q_ocean_ebb_answer2">Flod</string>
+    <string name="q_ocean_ebb_answer3">Öken</string>
+
+    <string name="q_ocean_tide">Varför sjunker och stiger havets vatten nivå?</string>
+    <string name="q_ocean_tide_correct_answer">Det är månens och solens dragningskraft</string>
+    <string name="q_ocean_tide_answer2">För att det regnar</string>
+    <string name="q_ocean_tide_answer3">För att fiskarna somnar på natten</string>
 </resources>

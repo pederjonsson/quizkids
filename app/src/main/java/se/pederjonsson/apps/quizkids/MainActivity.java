@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         unbinder = ButterKnife.bind(this);
-        db = new Database(this);
+        db = Database.getInstance(this);
         gameControllerMenuPresenter = new MenuGameController(this, db, navbarView);
         mFragmentManager = getSupportFragmentManager();
         slide.setDuration(SLIDE_TIME);

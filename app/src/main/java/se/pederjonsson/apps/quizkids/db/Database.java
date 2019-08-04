@@ -297,4 +297,12 @@ public class Database extends SQLiteOpenHelper {
         dbUtil.populateDB(this, context);
     }
 
+    static Database instance;
+    public static synchronized Database getInstance(Context mContext) {
+        if (instance == null) {
+            instance = new Database(mContext);
+        }
+        return instance;
+    }
+
 }
