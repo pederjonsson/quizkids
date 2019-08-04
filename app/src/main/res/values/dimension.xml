@@ -10,6 +10,7 @@
     <dimen name="small">12dp</dimen>
     <dimen name="tiny">9dp</dimen>
     <dimen name="micro">5dp</dimen>
+    <dimen name="pico">2dp</dimen>
 
     <dimen name="default_extra_large_margin">32dp</dimen>
     <dimen name="margin_large">36dp</dimen>

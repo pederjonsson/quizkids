@@ -42,21 +42,14 @@
         app:riv_oval="false"
         app:riv_tile_mode="clamp" />
 
-    <RelativeLayout
-        android:layout_width="@dimen/xxlarge"
-        android:layout_height="@dimen/xxlarge"
-        android:background="@drawable/circle_play_btn_background"
+    <se.pederjonsson.apps.quizkids.components.TextToSpeechBtnView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="@dimen/tiny"
-        >
-        <android.support.v7.widget.AppCompatImageView
-            android:layout_width="@dimen/xxlarge"
-            android:layout_height="@dimen/xxlarge"
-            android:background="@drawable/ic_play_circle_filled_black_24dp"
-            android:id="@+id/texttospeechbtn"
-            />
-    </RelativeLayout>
+        android:id="@+id/texttospeechbtn"
+        />
 
 
 </RelativeLayout>

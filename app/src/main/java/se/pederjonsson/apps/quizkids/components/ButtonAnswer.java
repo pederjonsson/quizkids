@@ -12,18 +12,23 @@ import butterknife.Unbinder;
 import se.pederjonsson.apps.quizkids.Objects.Answer;
 import se.pederjonsson.apps.quizkids.R;
 import se.pederjonsson.apps.quizkids.fragments.Question.QuestionAnswerContract;
+import se.pederjonsson.apps.quizkids.interfaces.LifecycleInterface;
 
 /**
  * Created by Gaming on 2018-04-01.
  */
 
-public class ButtonAnswer extends LinearLayout {
+public class ButtonAnswer extends LinearLayout implements LifecycleInterface {
 
     @BindView(R.id.btnanswer)
     public Button btnAnswer;
 
     @BindView(R.id.response)
     public TextView response;
+
+    @BindView(R.id.texttospeechbtn)
+    public TextToSpeechBtnViewSmall textToSpeechBtnView;
+
 
     private Context mContext;
     private Unbinder unbinder;
@@ -34,7 +39,7 @@ public class ButtonAnswer extends LinearLayout {
         super(context, attrs);
 
         //TypedArray typedArrayTitle = context.obtainStyledAttributes(attrs, R.styleable.telavox_view_property);
-       // getTitle(typedArrayTitle);
+        // getTitle(typedArrayTitle);
 
         init(context);
     }
@@ -66,19 +71,23 @@ public class ButtonAnswer extends LinearLayout {
         mAnswer = answer;
         btnAnswer.setText(mAnswer.getTextAnswer());
         mainView = _mainView;
+        textToSpeechBtnView.setUp(mAnswer.getTextAnswer(), mainView);
 
         setupListener();
     }
+
     public boolean chosenAnswer;
+
     private void setupListener() {
         btnAnswer.setOnClickListener(v -> {
             chosenAnswer = true;
             showResponse();
-            mainView.publishChosenAnswer(mAnswer); });
+            mainView.publishChosenAnswer(mAnswer);
+        });
     }
 
-    private void showResponse(){
-        if(mAnswer.isCorrect()){
+    private void showResponse() {
+        if (mAnswer.isCorrect()) {
             response.setText(getResources().getString(R.string.correct_answer));
             response.setTextColor(getResources().getColor(R.color.colorCorrect));
         } else {
@@ -88,11 +97,23 @@ public class ButtonAnswer extends LinearLayout {
         response.setVisibility(VISIBLE);
     }
 
-    public void inactivate(){
+    public void inactivate() {
         btnAnswer.setEnabled(false);
     }
 
-    public void hide(){
+    public void hide() {
+        textToSpeechBtnView.setVisibility(GONE);
         btnAnswer.setVisibility(GONE);
+
+    }
+
+    @Override
+    public void onResume() {
+        textToSpeechBtnView.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        textToSpeechBtnView.onPause();
     }
 }

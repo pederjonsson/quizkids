@@ -75,12 +75,14 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
             stopLoadingAnimationHandler.removeCallbacks(stopLoadingAnimationRunnable);
         }
         questionView.onPause();
+        tripleBtnAnswers.onPause();
     }
 
     @Override
     public void onResume() {
         super.onResume();
         questionView.onResume();
+        tripleBtnAnswers.onResume();
     }
 
     @Override
@@ -150,5 +152,7 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
             mMediaPlayer = null;
         }
     }
+
+
 
 }

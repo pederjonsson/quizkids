@@ -14,12 +14,13 @@ import butterknife.Unbinder;
 import se.pederjonsson.apps.quizkids.Objects.Answer;
 import se.pederjonsson.apps.quizkids.R;
 import se.pederjonsson.apps.quizkids.fragments.Question.QuestionAnswerContract;
+import se.pederjonsson.apps.quizkids.interfaces.LifecycleInterface;
 
 /**
  * Created by Gaming on 2018-04-01.
  */
 
-public class TripleButtonAnswers extends LinearLayout {
+public class TripleButtonAnswers extends LinearLayout implements LifecycleInterface {
 
     @BindView(R.id.btnanswer1)
     public ButtonAnswer btnAnswer1;
@@ -93,4 +94,17 @@ public class TripleButtonAnswers extends LinearLayout {
         btnAnswer3.inactivate();
     }
 
+    @Override
+    public void onPause() {
+        btnAnswer1.onPause();
+        btnAnswer2.onPause();
+        btnAnswer3.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        btnAnswer1.onResume();
+        btnAnswer2.onResume();
+        btnAnswer3.onResume();
+    }
 }

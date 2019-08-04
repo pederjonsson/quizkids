@@ -35,13 +35,12 @@ public class QuestionView extends LinearLayout implements LifecycleInterface {
     TextView textQuestion;
 
     @BindView(R.id.texttospeechbtn)
-    ImageView textToSpeechBtn;
+    TextToSpeechBtnView textToSpeechBtn;
 
     private Question question;
     private Context mContext;
     private Unbinder unbinder;
     private QuestionAnswerContract.MainView mainView;
-    private TextToSpeech textToSpeech;
 
     public QuestionView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -70,59 +69,16 @@ public class QuestionView extends LinearLayout implements LifecycleInterface {
         if (question.getDrawableResID() > 0) {
             imageView.setImageDrawable(getResources().getDrawable(question.getDrawableResID()));
         }
-        setupTextToSpeech();
-    }
-
-    private void setupTextToSpeech(){
-
-        textToSpeech = new TextToSpeech(mainView.getViewContext(), new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if (status == TextToSpeech.SUCCESS) {
-                    int ttsLang = textToSpeech.setLanguage(Locale.getDefault());
-
-                    if (ttsLang == TextToSpeech.LANG_MISSING_DATA
-                            || ttsLang == TextToSpeech.LANG_NOT_SUPPORTED) {
-                        System.out.println("The Language is not supported!");
-                    } else {
-                        System.out.println("Language Supported.");
-                    }
-                    System.out.println("Initialization success.");
-                } else {
-                    Toast.makeText(mainView.getViewContext(), "ERROR", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        textToSpeechBtn.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i("TTS", "clicked btn");
-                String data = mContext.getText(question.getQuestionResId()).toString();
-
-                int speechStatus = textToSpeech.speak(data, TextToSpeech.QUEUE_FLUSH, null, null);
-
-                if (speechStatus == TextToSpeech.ERROR) {
-                    System.out.println("Error in converting Text to Speech!");
-                }
-                Log.i("TTS", "should speak now");
-            }
-        });
+        textToSpeechBtn.setUp(mContext.getText(question.getQuestionResId()).toString(), mainView);
     }
 
     @Override
     public void onPause() {
-        if (textToSpeech != null) {
-            textToSpeech.stop();
-            textToSpeech.shutdown();
-            textToSpeech = null;
-        }
+        textToSpeechBtn.onPause();
     }
 
     @Override
     public void onResume() {
-        if(textToSpeech == null){
-            setupTextToSpeech();
-        }
+        textToSpeechBtn.onResume();
     }
 }
