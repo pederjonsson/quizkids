@@ -27,7 +27,7 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
 
     public static int GAMETYPE_JOURNEY = 1;
     public static int GAMETYPE_QUICK = 2;
-    public static int MAX_QUESTIONS_IN_CATEGORY = 9;
+    public static int MAX_QUESTIONS_IN_CATEGORY = 10;
     private NavbarView navbarView;
 
     public QuestionGameController(GameControllerContract.QuestionActivityView _questionActivityView, Database _database, NavbarView _navbar) {
@@ -44,7 +44,7 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
 
     @Override
     public void nextQuestion() {
-        if (currentQuestionInCategory == MAX_QUESTIONS_IN_CATEGORY) {
+        if (currentQuestionInCategory == MAX_QUESTIONS_IN_CATEGORY-1) {
             boolean allcorrect = true;
             int correctCounter = 0;
             for (Boolean answerCorrect : currentAnswers) {
@@ -59,6 +59,8 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
             hideMainNavbar();
             if (allcorrect) {
                 addClearedCategory(currentCategory);
+            } else {
+                addPointsOnCategory(currentCategory, correctCounter);
             }
             questionActivityView.showResultView(currentCategoryItem, playingProfile, correctCounter, allcorrect);
 
@@ -92,6 +94,12 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
     @Override
     public void addClearedCategory(Question.Category clearedCategory) {
         playingProfile.addClearedCategory(clearedCategory);
+        saveProfile(playingProfile);
+    }
+
+    @Override
+    public void addPointsOnCategory(Question.Category category, Integer points) {
+        playingProfile.setPointsOnCategory(category, points);
         saveProfile(playingProfile);
     }
 

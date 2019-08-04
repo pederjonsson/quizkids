@@ -13,6 +13,8 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import se.pederjonsson.apps.quizkids.QuestionActivity;
+import se.pederjonsson.apps.quizkids.fragments.Question.QuestionGameController;
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
 import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
 import se.pederjonsson.apps.quizkids.Objects.Profile;
@@ -88,9 +90,9 @@ public class ResultView extends RelativeLayout implements LifecycleInterface {
             amountquestions = mContext.getString(R.string.one_question);
         }
         String of = mContext.getString(R.string.of);
-        String subString = mContext.getString(R.string.you_answered_correctly_on) + " " + amountquestions + " " + of + " " + 10;
+        String subString = mContext.getString(R.string.you_answered_correctly_on) + " " + amountquestions + " " + of + " " + QuestionGameController.MAX_QUESTIONS_IN_CATEGORY;
         subtitle.setText(subString);
-        String speechstring = title + ". " + mContext.getString(R.string.you_answered_correctly_on) + ". " + amountquestions + ". " + of + " " + 10 +
+        String speechstring = title + ". " + mContext.getString(R.string.you_answered_correctly_on) + ". " + amountquestions + ". " + of + " " + QuestionGameController.MAX_QUESTIONS_IN_CATEGORY +
                 ". " + mContext.getString(R.string.better_luck_next_time);
 
         btnContinue.setOnClickListener(v -> {

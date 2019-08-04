@@ -62,6 +62,8 @@ public class CategoryItemView extends RelativeLayout {
         categoryItem = _categoryItem;
         playingProfile = profile;
         title.setText(categoryItem.getCategory().getCategoryTranslated(mContext));
+        Integer point = playingProfile.getPointsByCategory(categoryItem.getCategory());
+        Log.i("CIV", "points for category " + categoryItem.getCategory() + " = " + point);
         setIcon();
         setCheckMark();
     }

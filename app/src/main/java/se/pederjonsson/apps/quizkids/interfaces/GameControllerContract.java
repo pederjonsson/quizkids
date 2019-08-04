@@ -67,6 +67,8 @@ public interface GameControllerContract {
 
         void addClearedCategory(Question.Category clearedCategory);
 
+        void addPointsOnCategory(Question.Category clearedCategory, Integer points);
+
         void answered(Boolean val);
 
         Profile getPlayingProfile();
