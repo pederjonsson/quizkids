@@ -10,6 +10,9 @@ import java.util.List;
 
 public class Profile implements Serializable {
 
+    private List<Question.Category> clearedCategories;
+    private String name;
+
     public List<Question.Category> getClearedCategories() {
         return clearedCategories;
     }
@@ -19,9 +22,6 @@ public class Profile implements Serializable {
             clearedCategories = new ArrayList<>();
         clearedCategories.add(clearedCategory);
     }
-
-    private List<Question.Category> clearedCategories;
-    private String name;
 
     public String getName() {
         return name;

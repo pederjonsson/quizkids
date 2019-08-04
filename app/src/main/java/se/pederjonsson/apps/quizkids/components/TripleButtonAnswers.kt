@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 
-import java.util.ArrayList
 import java.util.Collections
 
 import se.pederjonsson.apps.quizkids.Objects.Answer
@@ -27,7 +26,6 @@ class TripleButtonAnswers(context: Context, attrs: AttributeSet) : LinearLayout(
     }
 
     fun setUp(answers: List<Answer>, _mainView: QuestionAnswerContract.MainView) {
-
         val answersCopy = answers.toMutableList()
         Collections.shuffle(answersCopy)
         mAnswers = answersCopy
@@ -42,25 +40,14 @@ class TripleButtonAnswers(context: Context, attrs: AttributeSet) : LinearLayout(
     }
 
     fun inactivateButtons() {
-       /* btnanswer1?.inactivate()
-        btnanswer2?.inactivate()
-        btnanswer3?.inactivate()*/
         mAnswerBtns.forEach { ans -> ans.inactivate() }
     }
 
     override fun onPause() {
-        /*btnanswer1?.onPause()
-        btnanswer2?.onPause()
-        btnanswer3?.onPause()*/
-        //mAnswerBtns.listIterator().next().onPause()
         mAnswerBtns.forEach { ans -> ans.onPause() }
     }
 
     override fun onResume() {
-        /*btnanswer1!!.onResume()
-        btnanswer2!!.onResume()
-        btnanswer3!!.onResume()*/
-
-        mAnswerBtns.forEach { ans -> ans?.onResume() }
+        mAnswerBtns.forEach { ans -> ans.onResume() }
     }
 }

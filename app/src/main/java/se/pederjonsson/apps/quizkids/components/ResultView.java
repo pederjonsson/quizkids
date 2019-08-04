@@ -40,10 +40,8 @@ public class ResultView extends RelativeLayout implements LifecycleInterface {
     @BindView(R.id.btnresultcontinue)
     Button btnContinue;
 
-    private CategoryItem categoryItem;
     private Context mContext;
     private Unbinder unbinder;
-    private Profile playingProfile;
     private GameControllerContract.QuestionActivityView questionActivityView;
     private TextToSpeech textToSpeech;
 
