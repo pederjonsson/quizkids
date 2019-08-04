@@ -3,6 +3,7 @@ package se.pederjonsson.apps.quizkids.fragments.Question;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
@@ -125,6 +126,7 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
         currentCategory = categoryItem.getCategory();
         currentQuestionInCategory = 0;
         currentCategoryQAList = database.getQuestionsByCategory(categoryItem.getCategory());
+        Collections.shuffle(currentCategoryQAList);
         if(currentCategoryQAList != null){
 
             QuestionAnswers questionAnswers = currentCategoryQAList.get(currentQuestionInCategory);
