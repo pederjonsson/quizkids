@@ -1,5 +1,7 @@
 package se.pederjonsson.apps.quizkids.fragments.Question;
 
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -123,14 +125,18 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
         currentCategory = categoryItem.getCategory();
         currentQuestionInCategory = 0;
         currentCategoryQAList = database.getQuestionsByCategory(categoryItem.getCategory());
-        QuestionAnswers questionAnswers = currentCategoryQAList.get(currentQuestionInCategory);
-        questionActivityView.showQuestionFragment(questionAnswers, false);
-        questionHasBeenShownTo(questionAnswers, playingProfile);
-        // navbarView.showTitle(currentCategory.getCategory());
-        navbarView.showTitle(currentCategory.getCategoryTranslated(questionActivityView.getViewContext()));
-        navbarView.show(true);
-        navbarView.clearScore();
-        navbarView.showScore();
+        if(currentCategoryQAList != null){
+
+            QuestionAnswers questionAnswers = currentCategoryQAList.get(currentQuestionInCategory);
+            questionActivityView.showQuestionFragment(questionAnswers, false);
+            questionHasBeenShownTo(questionAnswers, playingProfile);
+            navbarView.showTitle(currentCategory.getCategoryTranslated(questionActivityView.getViewContext()));
+            navbarView.show(true);
+            navbarView.clearScore();
+            navbarView.showScore();
+        } else {
+            Toast.makeText(questionActivityView.getViewContext(), "not ready yet", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void questionHasBeenShownTo(QuestionAnswers qa, Profile profile) {
