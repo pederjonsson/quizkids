@@ -12,12 +12,12 @@ import android.view.ViewGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import se.pederjonsson.apps.quizkids.components.TripleButtonAnswers;
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
 import se.pederjonsson.apps.quizkids.Objects.Answer;
 import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
 import se.pederjonsson.apps.quizkids.R;
 import se.pederjonsson.apps.quizkids.components.QuestionView;
-import se.pederjonsson.apps.quizkids.components.TripleButtonAnswers;
 
 /**
  * Created by Gaming on 2018-04-01.
@@ -27,9 +27,7 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
 
     public static String QUESTION_DATA = "QUESTION_DATA";
     private Unbinder unbinder;
-
-    @BindView(R.id.triplebtnanswers)
-    TripleButtonAnswers tripleBtnAnswers;
+    private TripleButtonAnswers tripleBtnAnswers;
 
     @BindView(R.id.questionview)
     QuestionView questionView;
@@ -47,6 +45,7 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
         QuestionAnswers questionAnswers = (QuestionAnswers) getArguments().getSerializable(QUESTION_DATA);
 
         questionView.setUp(questionAnswers.getQuestion(), this);
+        tripleBtnAnswers = view.findViewById(R.id.triplebtnanswers);
         tripleBtnAnswers.setUp(questionAnswers.getAnswers(), this);
 
         return view;
@@ -92,14 +91,14 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
 
     @Override
     public void publishChosenAnswer(Answer answer) {
-        if(!tripleBtnAnswers.btnAnswer1.chosenAnswer){
-            tripleBtnAnswers.btnAnswer1.hide();
+        if(!tripleBtnAnswers.getBtnAnswer1().chosenAnswer){
+            tripleBtnAnswers.getBtnAnswer1().hide();
         }
-        if(!tripleBtnAnswers.btnAnswer2.chosenAnswer){
-            tripleBtnAnswers.btnAnswer2.hide();
+        if(!tripleBtnAnswers.getBtnAnswer2().chosenAnswer){
+            tripleBtnAnswers.getBtnAnswer2().hide();
         }
-        if(!tripleBtnAnswers.btnAnswer3.chosenAnswer){
-            tripleBtnAnswers.btnAnswer3.hide();
+        if(!tripleBtnAnswers.getBtnAnswer3().chosenAnswer){
+            tripleBtnAnswers.getBtnAnswer3().hide();
         }
         if(answer.isCorrect()){
             System.out.print("** correct answer");
