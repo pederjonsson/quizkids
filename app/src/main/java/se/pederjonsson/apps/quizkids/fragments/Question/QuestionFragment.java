@@ -91,14 +91,14 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
 
     @Override
     public void publishChosenAnswer(Answer answer) {
-        if(!tripleBtnAnswers.getBtnAnswer1().chosenAnswer){
-            tripleBtnAnswers.getBtnAnswer1().hide();
+        if(!tripleBtnAnswers.getMAnswerBtns().get(0).chosenAnswer){
+            tripleBtnAnswers.getMAnswerBtns().get(0).hide();
         }
-        if(!tripleBtnAnswers.getBtnAnswer2().chosenAnswer){
-            tripleBtnAnswers.getBtnAnswer2().hide();
+        if(!tripleBtnAnswers.getMAnswerBtns().get(1).chosenAnswer){
+            tripleBtnAnswers.getMAnswerBtns().get(1).hide();
         }
-        if(!tripleBtnAnswers.getBtnAnswer3().chosenAnswer){
-            tripleBtnAnswers.getBtnAnswer3().hide();
+        if(!tripleBtnAnswers.getMAnswerBtns().get(2).chosenAnswer){
+            tripleBtnAnswers.getMAnswerBtns().get(2).hide();
         }
         if(answer.isCorrect()){
             System.out.print("** correct answer");

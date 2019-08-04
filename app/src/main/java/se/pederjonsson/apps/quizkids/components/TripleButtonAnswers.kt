@@ -8,45 +8,27 @@ import android.widget.LinearLayout
 import java.util.ArrayList
 import java.util.Collections
 
-import butterknife.ButterKnife
-import butterknife.Unbinder
 import se.pederjonsson.apps.quizkids.Objects.Answer
 import se.pederjonsson.apps.quizkids.R
 import se.pederjonsson.apps.quizkids.fragments.Question.QuestionAnswerContract
 import se.pederjonsson.apps.quizkids.interfaces.LifecycleInterface
-
-//import kotlinx.android.synthetic.main.triplebtnanswers.*
+import kotlinx.android.synthetic.main.triplebtnanswers.view.*
 
 class TripleButtonAnswers(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs), LifecycleInterface {
 
-
-    var btnAnswer1: ButtonAnswer? = null
-    var btnAnswer2: ButtonAnswer? = null
-    var btnAnswer3: ButtonAnswer? = null
-
-    private var mAnswers: List<Answer>? = null
-    private var unbinder: Unbinder? = null
+    private var mAnswers: List<Answer> = listOf()
+    var mAnswerBtns: List<ButtonAnswer> = listOf()
     private var mainView: QuestionAnswerContract.MainView? = null
 
     init {
-        val view = LayoutInflater.from(context)
+        LayoutInflater.from(context)
                 .inflate(R.layout.triplebtnanswers, this, true)
-        btnAnswer1 = view.findViewById(R.id.btnanswer1)
-        btnAnswer2 = view.findViewById(R.id.btnanswer2)
-        btnAnswer3 = view.findViewById(R.id.btnanswer3)
-    }
-
-    override fun onFinishInflate() {
-        super.onFinishInflate()
-        unbinder = ButterKnife.bind(this)
+        mAnswerBtns = listOf(btnanswer1, btnanswer2, btnanswer3)
     }
 
     fun setUp(answers: List<Answer>, _mainView: QuestionAnswerContract.MainView) {
 
-        val answersCopy = ArrayList<Answer>()
-        answersCopy.add(answers[0])
-        answersCopy.add(answers[1])
-        answersCopy.add(answers[2])
+        val answersCopy = answers.toMutableList()
         Collections.shuffle(answersCopy)
         mAnswers = answersCopy
         mainView = _mainView
@@ -54,26 +36,31 @@ class TripleButtonAnswers(context: Context, attrs: AttributeSet) : LinearLayout(
     }
 
     private fun setupBtns() {
-        btnAnswer1?.setUp(mAnswers!![0], mainView)
-        btnAnswer2?.setUp(mAnswers!![1], mainView)
-        btnAnswer3?.setUp(mAnswers!![2], mainView)
+        btnanswer1.setUp(mAnswers[0], mainView)
+        btnanswer2.setUp(mAnswers[1], mainView)
+        btnanswer3.setUp(mAnswers[2], mainView)
     }
 
     fun inactivateButtons() {
-        btnAnswer1?.inactivate()
-        btnAnswer2?.inactivate()
-        btnAnswer3?.inactivate()
+       /* btnanswer1?.inactivate()
+        btnanswer2?.inactivate()
+        btnanswer3?.inactivate()*/
+        mAnswerBtns.forEach { ans -> ans.inactivate() }
     }
 
     override fun onPause() {
-        btnAnswer1?.onPause()
-        btnAnswer2?.onPause()
-        btnAnswer3?.onPause()
+        /*btnanswer1?.onPause()
+        btnanswer2?.onPause()
+        btnanswer3?.onPause()*/
+        //mAnswerBtns.listIterator().next().onPause()
+        mAnswerBtns.forEach { ans -> ans.onPause() }
     }
 
     override fun onResume() {
-        btnAnswer1!!.onResume()
-        btnAnswer2!!.onResume()
-        btnAnswer3!!.onResume()
+        /*btnanswer1!!.onResume()
+        btnanswer2!!.onResume()
+        btnanswer3!!.onResume()*/
+
+        mAnswerBtns.forEach { ans -> ans?.onResume() }
     }
 }
