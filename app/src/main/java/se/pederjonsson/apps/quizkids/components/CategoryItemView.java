@@ -82,13 +82,25 @@ public class CategoryItemView extends RelativeLayout {
                 icon.setImageDrawable(mContext.getDrawable(R.drawable.icon_atom_64));
                 break;
             case "GEOGRAPHY"  :
-                icon.setImageDrawable(mContext.getDrawable(R.drawable.icon_pyramids_64));
+                icon.setImageDrawable(mContext.getDrawable(R.drawable.icon_geo_64));
                 break;
             case "MATH"  :
-                icon.setImageDrawable(mContext.getDrawable(R.drawable.icon_pyramids_64));
+                icon.setImageDrawable(mContext.getDrawable(R.drawable.icon_math_64));
                 break;
             case "ABC"  :
-                icon.setImageDrawable(mContext.getDrawable(R.drawable.icon_pyramids_64));
+                icon.setImageDrawable(mContext.getDrawable(R.drawable.icon_abc_64));
+                break;
+            case "OCEAN"  :
+                icon.setImageDrawable(mContext.getDrawable(R.drawable.icon_ocean_64));
+                break;
+            case "ANIMALS"  :
+                icon.setImageDrawable(mContext.getDrawable(R.drawable.icon_animals_64));
+                break;
+            case "SUPERHEROES"  :
+                icon.setImageDrawable(mContext.getDrawable(R.drawable.icon_super_64));
+                break;
+            case "SPORT"  :
+                icon.setImageDrawable(mContext.getDrawable(R.drawable.icon_sport_64));
                 break;
 
             default:

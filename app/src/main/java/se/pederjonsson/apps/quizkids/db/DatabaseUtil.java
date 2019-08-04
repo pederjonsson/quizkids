@@ -69,9 +69,9 @@ public class DatabaseUtil {
         qaList.add(generateQA(R.string.q_buildings_chinesewall, Question.Category.BUILDINGS, R.drawable.q_chinesewall, Question.DifficultyLevel.EASY,context.getString(R.string.q_buildings_chinesewall_correct_answer), context.getString(R.string.q_buildings_chinesewall_answer2), context.getString(R.string.q_buildings_chinesewall_answer3)));
 
         qaList.add(generateQA(R.string.q_buildings_bigben, Question.Category.BUILDINGS, R.drawable.q_big_ben, Question.DifficultyLevel.EASY,context.getString(R.string.q_buildings_bigben_correct_answer), context.getString(R.string.q_buildings_bigben_answer2), context.getString(R.string.q_buildings_bigben_answer3)));
-        qaList.add(generateQA(R.string.q_buildings_burjikhalifa8, Question.Category.BUILDINGS, R.drawable.question_mnteverest, Question.DifficultyLevel.EASY,"Mount Everest", "Kilimanjaro", "Big Mac"));
-        qaList.add(generateQA(R.string.q_buildings_burjikhalifa9, Question.Category.BUILDINGS, R.drawable.question_eiffel200, Question.DifficultyLevel.EASY,"Eiffel", "Big Ben", "Falafel"));
-        qaList.add(generateQA(R.string.q_buildings_burjikhalifa10, Question.Category.BUILDINGS, R.drawable.question_mnteverest, Question.DifficultyLevel.EASY,"Mount Everest", "Kilimanjaro", "Big Mac"));
+        qaList.add(generateQA(R.string.q_buildings_colosseum, Question.Category.BUILDINGS, R.drawable.q_colosseum, Question.DifficultyLevel.EASY,context.getString(R.string.q_buildings_colosseum_correct_answer), context.getString(R.string.q_buildings_colosseum_answer2), context.getString(R.string.q_buildings_colosseum_answer3)));
+        qaList.add(generateQA(R.string.q_buildings_angkorwat, Question.Category.BUILDINGS, R.drawable.q_angkor_wat, Question.DifficultyLevel.EASY,context.getString(R.string.q_buildings_angkorwat_correct_answer), context.getString(R.string.q_buildings_angkorwat_answer2), context.getString(R.string.q_buildings_angkorwat_answer3)));
+        qaList.add(generateQA(R.string.q_buildings_liberty, Question.Category.BUILDINGS, R.drawable.q_liberty, Question.DifficultyLevel.EASY,context.getString(R.string.q_buildings_liberty_correct_answer), context.getString(R.string.q_buildings_liberty_answer2), context.getString(R.string.q_buildings_liberty_answer3)));
 
         return qaList;
     }

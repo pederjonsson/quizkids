@@ -55,6 +55,21 @@
     <string name="q_buildings_bigben_answer2">Höga Jack</string>
     <string name="q_buildings_bigben_answer3">Långa bananen</string>
 
+    <string name="q_buildings_colosseum">Vad heter amfiteatern in Rom?</string>
+    <string name="q_buildings_colosseum_correct_answer">Colosseum</string>
+    <string name="q_buildings_colosseum_answer2">Kabanoss</string>
+    <string name="q_buildings_colosseum_answer3">Parthenon</string>
+
+    <string name="q_buildings_angkorwat">Vad heter detta tempel i Kambodja?</string>
+    <string name="q_buildings_angkorwat_correct_answer">Angkor wat</string>
+    <string name="q_buildings_angkorwat_answer2">Kor ank wat</string>
+    <string name="q_buildings_angkorwat_answer3">Khmer wat ank</string>
+
+    <string name="q_buildings_liberty">Vad kallas denna staty?</string>
+    <string name="q_buildings_liberty_correct_answer">Frihetsgudinnan</string>
+    <string name="q_buildings_liberty_answer2">Fredsgudinnan</string>
+    <string name="q_buildings_liberty_answer3">Eldgudinnan</string>
+
     <string name="q_buildings_burjikhalifa5">In what city lies the tallest building in the world, Burji khalifa5</string>
     <string name="q_buildings_burjikhalifa6">In what city lies the tallest building in the world, Burji khalifa6</string>
     <string name="q_buildings_burjikhalifa7">In what city lies the tallest building in the world, Burji khalifa7</string>

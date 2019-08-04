@@ -57,6 +57,21 @@
     <string name="q_buildings_bigben_answer2">Old Jack</string>
     <string name="q_buildings_bigben_answer3">Long Thomas</string>
 
+    <string name="q_buildings_colosseum">What is the name of the amphitheater in Rome?</string>
+    <string name="q_buildings_colosseum_correct_answer">Colosseum</string>
+    <string name="q_buildings_colosseum_answer2">Kabanoss</string>
+    <string name="q_buildings_colosseum_answer3">Parthenon</string>
+
+    <string name="q_buildings_angkorwat">What is the name of this temple in Cambodia?</string>
+    <string name="q_buildings_angkorwat_correct_answer">Angkor wat</string>
+    <string name="q_buildings_angkorwat_answer2">Anchor duck</string>
+    <string name="q_buildings_angkorwat_answer3">Waterloo</string>
+
+    <string name="q_buildings_liberty">What is the name of this statue?</string>
+    <string name="q_buildings_liberty_correct_answer">Statue of liberty</string>
+    <string name="q_buildings_liberty_answer2">Statue of peace</string>
+    <string name="q_buildings_liberty_answer3">Statue of equality</string>
+
     <string name="q_buildings_burjikhalifa5">In what city lies the tallest building in the world, Burji khalifa5</string>
     <string name="q_buildings_burjikhalifa6">In what city lies the tallest building in the world, Burji khalifa6</string>
     <string name="q_buildings_burjikhalifa7">In what city lies the tallest building in the world, Burji khalifa7</string>
