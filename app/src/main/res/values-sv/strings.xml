@@ -111,4 +111,14 @@
     <string name="q_ocean_boat_correct_answer">Båten har fallit omkull och håller på att sjunka</string>
     <string name="q_ocean_boat_answer2">Någon har bestämt att de ska vara kapten på båten</string>
     <string name="q_ocean_boat_answer3">Båten har blivit kapad av pirater</string>
+
+    <string name="q_ocean_pearl">Av vilket material börjar musslan skapa en pärla?</string>
+    <string name="q_ocean_pearl_correct_answer">Ett korn av sand</string>
+    <string name="q_ocean_pearl_answer2">Ett korn av guld</string>
+    <string name="q_ocean_pearl_answer3">Ett korn av salt</string>
+
+    <string name="q_ocean_oxygen">Varannat andetag vi kan ta är tack vare havet, vad är det som skapar syre i havet?</string>
+    <string name="q_ocean_oxygen_correct_answer">Alger</string>
+    <string name="q_ocean_oxygen_answer2">Fiskar</string>
+    <string name="q_ocean_oxygen_answer3">Sand</string>
 </resources>

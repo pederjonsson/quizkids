@@ -115,6 +115,16 @@
     <string name="q_ocean_boat_answer2">Someone has decided that they are captain on the boat</string>
     <string name="q_ocean_boat_answer3">The boat has been captured by pirates</string>
 
+    <string name="q_ocean_pearl">From what material does the clam start to create a pearl?</string>
+    <string name="q_ocean_pearl_correct_answer">A grain of sand</string>
+    <string name="q_ocean_pearl_answer2">A grain of gold</string>
+    <string name="q_ocean_pearl_answer3">A grain of salt</string>
+
+    <string name="q_ocean_oxygen">Every second breath we take is because of the sea, what creates the oxygen in the sea?</string>
+    <string name="q_ocean_oxygen_correct_answer">Algae</string>
+    <string name="q_ocean_oxygen_answer2">Fishes</string>
+    <string name="q_ocean_oxygen_answer3">Sand</string>
+
 
     <!-- ******************* GEOGRAPHY ************************* -->
 </resources>

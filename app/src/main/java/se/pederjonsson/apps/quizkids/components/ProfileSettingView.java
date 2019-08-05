@@ -72,8 +72,8 @@ public class ProfileSettingView extends LinearLayout {
 
     }
 
-    public void startJourneyBtnClicked(){
-        if(profiles != null && profiles.size() > 0){
+    public void startJourneyBtnClicked() {
+        if (profiles != null && profiles.size() > 0) {
             showChoosePlayerOrCreateNew();
         } else {
             showEnterName();
@@ -82,31 +82,38 @@ public class ProfileSettingView extends LinearLayout {
         setupListener();
     }
 
-    private void cleanChoosePlayerContainer(){
+    private void cleanChoosePlayerContainer() {
         choosePlayerContainer.removeAllViews();
         shownChoosePlayerContainer = false;
         choosePlayerContainer.setVisibility(GONE);
     }
 
     private boolean shownChoosePlayerContainer = false;
-    private void showChoosePlayerOrCreateNew(){
-        if(shownChoosePlayerContainer){
+
+    private void showChoosePlayerOrCreateNew() {
+        if (shownChoosePlayerContainer) {
             cleanChoosePlayerContainer();
         } else {
             LayoutInflater factory = LayoutInflater.from(mContext);
-            for (Profile profile:profiles) {
-                View view = factory.inflate(R.layout.playerlistitem, choosePlayerContainer, false);
-                Button mBtn = ((Button) view.findViewById(R.id.btnplayername));
-                mBtn.setText(mContext.getString(R.string.playas) + " " + profile.getName() + " >");
-                mBtn.setTag(profile);
-                mBtn.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Profile p = (Profile) v.getTag();
-                        gameControllerMenuPresenter.startGame(MenuGameController.GAMETYPE_JOURNEY, p);
-                    }
-                });
-                choosePlayerContainer.addView(view);
+            for (Profile profile : profiles) {
+                if (profile != null && profile.getName() != null) {
+                    View view = factory.inflate(R.layout.playerlistitem, choosePlayerContainer, false);
+                    Button mBtn = ((Button) view.findViewById(R.id.btnplayername));
+                    String name = "";
+
+                    name = profile.getName();
+
+                    mBtn.setText(mContext.getString(R.string.playas) + " " + name + " >");
+                    mBtn.setTag(profile);
+                    mBtn.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Profile p = (Profile) v.getTag();
+                            gameControllerMenuPresenter.startGame(MenuGameController.GAMETYPE_JOURNEY, p);
+                        }
+                    });
+                    choosePlayerContainer.addView(view);
+                }
             }
 
             View view = factory.inflate(R.layout.playerlistitem, choosePlayerContainer, false);
@@ -118,7 +125,7 @@ public class ProfileSettingView extends LinearLayout {
                 @Override
                 public void onClick(View v) {
                     Profile p = (Profile) v.getTag();
-                    if(p.getName().equals("newplayer")){
+                    if (p.getName().equals("newplayer")) {
                         //show enter name view
                         cleanChoosePlayerContainer();
                         showEnterName();
@@ -136,7 +143,7 @@ public class ProfileSettingView extends LinearLayout {
 
     }
 
-    private void showEnterName(){
+    private void showEnterName() {
         enterNewPlayerContainer.setVisibility(VISIBLE);
         choosePlayerContainer.setVisibility(GONE);
     }
@@ -145,7 +152,7 @@ public class ProfileSettingView extends LinearLayout {
         //edittextlistener here
         startGameButton.setOnClickListener(v -> {
 
-            if(editTextName.getText() == null || editTextName.getText().toString().isEmpty()){
+            if (editTextName.getText() == null || editTextName.getText().toString().isEmpty()) {
                 Toast.makeText(mContext, R.string.toast_pls_enter_name, Toast.LENGTH_SHORT).show();
             } else {
                 String nameEntered = editTextName.getText().toString();
@@ -158,8 +165,7 @@ public class ProfileSettingView extends LinearLayout {
     }
 
 
-
-    public void hideEditText(){
+    public void hideEditText() {
         editTextName.setVisibility(GONE);
     }
 }

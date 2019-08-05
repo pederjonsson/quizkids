@@ -177,4 +177,11 @@ public class QuestionActivity extends AppCompatActivity implements GameControlle
         super.onResume();
         resultView.onResume();
     }
+
+    @Override
+    public void speekText(String speechString) {
+
+    }
+
+    
 }

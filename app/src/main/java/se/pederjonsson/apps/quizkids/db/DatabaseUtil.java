@@ -87,8 +87,8 @@ public class DatabaseUtil {
         qaList.add(generateQA(R.string.q_ocean_deadsea, Question.Category.OCEAN, R.drawable.q_deadsea, Question.DifficultyLevel.EASY,context.getString(R.string.q_ocean_deadsea_correct_answer), context.getString(R.string.q_ocean_deadsea_answer2), context.getString(R.string.q_ocean_deadsea_answer3)));
         qaList.add(generateQA(R.string.q_ocean_boat, Question.Category.OCEAN, R.drawable.q_boat, Question.DifficultyLevel.EASY,context.getString(R.string.q_ocean_boat_correct_answer), context.getString(R.string.q_ocean_boat_answer2), context.getString(R.string.q_ocean_boat_answer3)));
 
-        qaList.add(generateQA(R.string.q_ocean_pacific, Question.Category.OCEAN, R.drawable.q_pacific, Question.DifficultyLevel.EASY,context.getString(R.string.q_ocean_pacific_correct_answer), context.getString(R.string.q_ocean_pacific_answer2), context.getString(R.string.q_ocean_pacific_answer3)));
-        qaList.add(generateQA(R.string.q_ocean_pacific, Question.Category.OCEAN, R.drawable.q_pacific, Question.DifficultyLevel.EASY,context.getString(R.string.q_ocean_pacific_correct_answer), context.getString(R.string.q_ocean_pacific_answer2), context.getString(R.string.q_ocean_pacific_answer3)));
+        qaList.add(generateQA(R.string.q_ocean_pearl, Question.Category.OCEAN, R.drawable.q_pearl, Question.DifficultyLevel.EASY,context.getString(R.string.q_ocean_pearl_correct_answer), context.getString(R.string.q_ocean_pearl_answer2), context.getString(R.string.q_ocean_pearl_answer3)));
+        qaList.add(generateQA(R.string.q_ocean_oxygen, Question.Category.OCEAN, R.drawable.q_oxygen, Question.DifficultyLevel.EASY,context.getString(R.string.q_ocean_oxygen_correct_answer), context.getString(R.string.q_ocean_oxygen_answer2), context.getString(R.string.q_ocean_oxygen_answer3)));
 
         return qaList;
     }
