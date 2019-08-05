@@ -70,8 +70,12 @@ public class ProfileSettingView extends LinearLayout {
 
     public void setUp(GameControllerContract.MenuPresenter _gameControllerMenuPresenter) {
         gameControllerMenuPresenter = _gameControllerMenuPresenter;
-        profiles = gameControllerMenuPresenter.getProfiles();
+        loadProfilesList();
 
+    }
+
+    private void loadProfilesList(){
+        profiles = gameControllerMenuPresenter.getProfiles();
     }
 
     public void startJourneyBtnClicked() {
@@ -199,6 +203,7 @@ public class ProfileSettingView extends LinearLayout {
                 //checkPlayerNameAvailable();
                 Profile newPlayer = new Profile(nameEntered);
                 gameControllerMenuPresenter.saveProfile(newPlayer);
+                loadProfilesList();
                 if(journeyChosen){
                     gameControllerMenuPresenter.startGame(MenuGameController.GAMETYPE_JOURNEY, newPlayer);
                 } else {
