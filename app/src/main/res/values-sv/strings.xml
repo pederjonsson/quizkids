@@ -96,4 +96,19 @@
     <string name="q_ocean_tide_correct_answer">Det är månens och solens dragningskraft</string>
     <string name="q_ocean_tide_answer2">För att det regnar</string>
     <string name="q_ocean_tide_answer3">För att fiskarna somnar på natten</string>
+
+    <string name="q_ocean_manet">Vad kallas denna varelse?</string>
+    <string name="q_ocean_manet_correct_answer">manet</string>
+    <string name="q_ocean_manet_answer2">Magnet</string>
+    <string name="q_ocean_manet_answer3">Slajm fisk</string>
+
+    <string name="q_ocean_deadsea">Varför är det så lätt att flyta i Döda havet?</string>
+    <string name="q_ocean_deadsea_correct_answer">För att det är så mycket salt i vattnet</string>
+    <string name="q_ocean_deadsea_answer2">för att det är dött och då blir man som en ängel när man badar där</string>
+    <string name="q_ocean_deadsea_answer3">för att det är så mycket luft i vattnet</string>
+
+    <string name="q_ocean_boat">Vad betyder det när en båt har kapsejsat?</string>
+    <string name="q_ocean_boat_correct_answer">Båten har fallit omkull och håller på att sjunka</string>
+    <string name="q_ocean_boat_answer2">Någon har bestämt att de ska vara kapten på båten</string>
+    <string name="q_ocean_boat_answer3">Båten har blivit kapad av pirater</string>
 </resources>

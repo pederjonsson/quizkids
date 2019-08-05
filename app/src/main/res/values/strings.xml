@@ -100,6 +100,21 @@
     <string name="q_ocean_tide_answer2">Because of the rain</string>
     <string name="q_ocean_tide_answer3">Because the fishes are falling asleep during the night</string>
 
+    <string name="q_ocean_manet">What is this creature called?</string>
+    <string name="q_ocean_manet_correct_answer">Jellyfish</string>
+    <string name="q_ocean_manet_answer2">Jollyfish</string>
+    <string name="q_ocean_manet_answer3">Blobfish</string>
+
+    <string name="q_ocean_deadsea">Why is floating so easy in the dead sea?</string>
+    <string name="q_ocean_deadsea_correct_answer">because it has so much salt in it</string>
+    <string name="q_ocean_deadsea_answer2">because it is dead and you become an angel when you swim there</string>
+    <string name="q_ocean_deadsea_answer3">because it has so much air in it</string>
+
+    <string name="q_ocean_boat">What does it mean when a boat is capsized?</string>
+    <string name="q_ocean_boat_correct_answer">The boat has fallen on its side and is about to sink</string>
+    <string name="q_ocean_boat_answer2">Someone has decided that they are captain on the boat</string>
+    <string name="q_ocean_boat_answer3">The boat has been captured by pirates</string>
+
 
     <!-- ******************* GEOGRAPHY ************************* -->
 </resources>
