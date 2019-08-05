@@ -31,6 +31,9 @@ public class MenuFragment extends android.support.v4.app.Fragment {
     @BindView(R.id.profilesettingsview)
     ProfileSettingView profileSettingView;
 
+    boolean journeyvisible = true;
+    boolean quickvisible = true;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -44,10 +47,38 @@ public class MenuFragment extends android.support.v4.app.Fragment {
             mainActivityView.showCategories();
         });*/
         profileSettingView.setUp(gameControllerMenuPresenter);
-        btnJourney.setOnClickListener(v -> { profileSettingView.startJourneyBtnClicked();});
-        btnStart.setOnClickListener(v -> { gameControllerMenuPresenter.startGame(MenuGameController.GAMETYPE_QUICK, new Profile("quickspelare"));});
+        btnJourney.setOnClickListener(v -> {
+            profileSettingView.startJourneyBtnClicked();
+            if(quickvisible){
+                btnStart.setVisibility(View.GONE);
+                quickvisible = false;
+            } else {
+                btnStart.setVisibility(View.VISIBLE);
+                quickvisible = true;
+            }
+        });
+        btnStart.setOnClickListener(v -> {
+            profileSettingView.startQuickPlayBtnClicked();
+            if(journeyvisible){
+                btnJourney.setVisibility(View.GONE);
+                journeyvisible = false;
+            } else {
+                btnJourney.setVisibility(View.VISIBLE);
+                journeyvisible = true;
+            }
+        });
 
         return view;
+    }
+
+    private void showQuickBtn(){
+        btnStart.setVisibility(View.VISIBLE);
+        quickvisible = true;
+    }
+
+    private void showJourneykBtn(){
+        btnJourney.setVisibility(View.VISIBLE);
+        journeyvisible = true;
     }
 
     public static MenuFragment newInstance(GameControllerContract.MainActivityView _mainActivityView, GameControllerContract.MenuPresenter _gameControllerP) {
@@ -57,10 +88,18 @@ public class MenuFragment extends android.support.v4.app.Fragment {
         return menuFragment;
     }
 
+    boolean hasresumedonce = false;
     @Override
     public void onResume() {
         super.onResume();
         gameControllerMenuPresenter.hideMainNavbar();
+        if(hasresumedonce){
+            showQuickBtn();
+            showJourneykBtn();
+            profileSettingView.cleanChoosePlayerContainer();
+        }
+        hasresumedonce = true;
+
     }
 
     @Override

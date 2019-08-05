@@ -55,7 +55,8 @@ public class Question implements Serializable {
         ANIMALS("animals"),
         SUPERHEROES("superheroes"),
         SPORT("sport"),
-        GEOGRAPHY("geography");
+        GEOGRAPHY("geography"),
+        QUICKPLAY("quickplay");
 
         public String getCategory(){return category;}
 

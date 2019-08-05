@@ -63,7 +63,7 @@ public class QuestionActivity extends AppCompatActivity implements GameControlle
             Profile playingProfile = (Profile) extras.get(PROFILE_ITEM);
             gameControllerPresenter.setPlayingProfile(playingProfile);
             gameControllerPresenter.loadQuestionsByCategory(categoryItem);
-            db.populate(this);
+
         } else {
             finish();
         }

@@ -27,6 +27,7 @@
     <string name="animals">animals</string>
     <string name="superheroes">superheroes</string>
     <string name="sport">sport</string>
+    <string name="quickplay">quickplay</string>
 
 
     <string name="what_is_your_name">Player name?</string>

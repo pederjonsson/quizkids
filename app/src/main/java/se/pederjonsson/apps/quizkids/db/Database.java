@@ -290,6 +290,9 @@ public class Database extends SQLiteOpenHelper {
 
     public List<QuestionAnswers> getQuestionsByCategory(Question.Category category) {
         l.info("**** getQuestionsByCategory-" + category.name().toLowerCase() + "----");
+        if(category == Question.Category.QUICKPLAY){
+            return getAllQA();
+        }
         return getQAListByCategoryAndDifficultyLevel(category.name().toLowerCase(), "");
     }
 

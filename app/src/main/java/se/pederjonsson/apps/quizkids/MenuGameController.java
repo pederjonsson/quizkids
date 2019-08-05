@@ -55,6 +55,7 @@ public class MenuGameController implements GameControllerContract.MenuPresenter 
         } else if(gametype == GAMETYPE_QUICK){
             //mixaafrågor sen
            // loadQuestionsByCategory(new CategoryItem(Question.Category.GEOGRAPHY));
+            mainActivityView.startQuickQuiz();
         }
     }
 

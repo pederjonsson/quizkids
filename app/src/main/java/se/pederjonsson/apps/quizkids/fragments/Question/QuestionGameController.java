@@ -1,5 +1,6 @@
 package se.pederjonsson.apps.quizkids.fragments.Question;
 
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
     public static int GAMETYPE_JOURNEY = 1;
     public static int GAMETYPE_QUICK = 2;
     public static int MAX_QUESTIONS_IN_CATEGORY = 10;
+    public static int MAX_QUESTIONS_TOTAL = 20;
     private NavbarView navbarView;
 
     public QuestionGameController(GameControllerContract.QuestionActivityView _questionActivityView, Database _database, NavbarView _navbar) {
@@ -44,31 +46,44 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
 
     @Override
     public void nextQuestion() {
-        if (currentQuestionInCategory == MAX_QUESTIONS_IN_CATEGORY-1) {
-            boolean allcorrect = true;
-            int correctCounter = 0;
-            for (Boolean answerCorrect : currentAnswers) {
-                if (!answerCorrect) {
-                    allcorrect = false;
-                } else {
-                    correctCounter++;
-                }
-            }
 
-            navbarView.clearScore();
-            hideMainNavbar();
-            if (allcorrect) {
-                addClearedCategory(currentCategory);
+        if (currentCategory == Question.Category.QUICKPLAY) {
+            Log.i("QGC", "yes it is quickplay");
+            if (currentQuestionInCategory == MAX_QUESTIONS_TOTAL - 1) {
+                countAndShowResult();
             } else {
-                addPointsOnCategory(currentCategory, correctCounter);
+                currentQuestionInCategory++;
+                questionActivityView.showQuestionFragment(currentCategoryQAList.get(currentQuestionInCategory), false);
             }
-            questionActivityView.showResultView(currentCategoryItem, playingProfile, correctCounter, allcorrect);
-
-            //startGame(GAMETYPE_JOURNEY, playingProfile);
         } else {
-            currentQuestionInCategory++;
-            questionActivityView.showQuestionFragment(currentCategoryQAList.get(currentQuestionInCategory), false);
+            if (currentQuestionInCategory == MAX_QUESTIONS_IN_CATEGORY - 1) {
+                countAndShowResult();
+            } else {
+                currentQuestionInCategory++;
+                questionActivityView.showQuestionFragment(currentCategoryQAList.get(currentQuestionInCategory), false);
+            }
         }
+    }
+
+    private void countAndShowResult(){
+        boolean allcorrect = true;
+        int correctCounter = 0;
+        for (Boolean answerCorrect : currentAnswers) {
+            if (!answerCorrect) {
+                allcorrect = false;
+            } else {
+                correctCounter++;
+            }
+        }
+
+        navbarView.clearScore();
+        hideMainNavbar();
+        if (allcorrect) {
+            addClearedCategory(currentCategory);
+        } else {
+            addPointsOnCategory(currentCategory, correctCounter);
+        }
+        questionActivityView.showResultView(currentCategoryItem, playingProfile, correctCounter, allcorrect);
     }
 
     @Override
@@ -135,7 +150,8 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
         currentQuestionInCategory = 0;
         currentCategoryQAList = database.getQuestionsByCategory(categoryItem.getCategory());
         Collections.shuffle(currentCategoryQAList);
-        if(currentCategoryQAList != null){
+        if (currentCategoryQAList != null) {
+            Log.i("QGC", "currentCategoryQAList size " + currentCategoryQAList.size());
 
             QuestionAnswers questionAnswers = currentCategoryQAList.get(currentQuestionInCategory);
             questionActivityView.showQuestionFragment(questionAnswers, false);
@@ -143,7 +159,11 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
             navbarView.showTitle(currentCategory.getCategoryTranslated(questionActivityView.getViewContext()));
             navbarView.show(true);
             navbarView.clearScore();
-            navbarView.showScore();
+            if (currentCategory != Question.Category.QUICKPLAY) {
+                navbarView.showScore(true);
+            } else {
+                navbarView.showScore(false);
+            }
         } else {
             Toast.makeText(questionActivityView.getViewContext(), "not ready yet", Toast.LENGTH_LONG).show();
         }

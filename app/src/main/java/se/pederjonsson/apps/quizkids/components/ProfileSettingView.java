@@ -2,6 +2,7 @@ package se.pederjonsson.apps.quizkids.components;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -45,6 +46,7 @@ public class ProfileSettingView extends LinearLayout {
     private Unbinder unbinder;
     private List<Profile> profiles;
     private GameControllerContract.MenuPresenter gameControllerMenuPresenter;
+    private boolean journeyChosen;
 
     public ProfileSettingView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -73,19 +75,46 @@ public class ProfileSettingView extends LinearLayout {
     }
 
     public void startJourneyBtnClicked() {
+        journeyChosen = true;
         if (profiles != null && profiles.size() > 0) {
             showChoosePlayerOrCreateNew();
         } else {
-            showEnterName();
+            if(shownChoosePlayerContainer){
+                cleanChoosePlayerContainer();
+            } else {
+                showEnterName();
+            }
+
         }
 
         setupListener();
+        Log.i("PSV", "HIDE QUICKBTN");
     }
 
-    private void cleanChoosePlayerContainer() {
+    public void startQuickPlayBtnClicked() {
+        journeyChosen = false;
+        if (profiles != null && profiles.size() > 0) {
+            showChoosePlayerOrCreateNew();
+        } else {
+            if(shownChoosePlayerContainer){
+                cleanChoosePlayerContainer();
+            } else {
+                showEnterName();
+            }
+        }
+
+        setupListener();
+        Log.i("PSV", "HIDE JOURNEYBTN");
+    }
+
+    public void cleanChoosePlayerContainer() {
         choosePlayerContainer.removeAllViews();
         shownChoosePlayerContainer = false;
         choosePlayerContainer.setVisibility(GONE);
+        enterNewPlayerContainer.setVisibility(GONE);
+
+        Log.i("PSV", "SHOW ALL BTNS");
+
     }
 
     private boolean shownChoosePlayerContainer = false;
@@ -109,7 +138,12 @@ public class ProfileSettingView extends LinearLayout {
                         @Override
                         public void onClick(View v) {
                             Profile p = (Profile) v.getTag();
-                            gameControllerMenuPresenter.startGame(MenuGameController.GAMETYPE_JOURNEY, p);
+                            if(journeyChosen){
+                                gameControllerMenuPresenter.startGame(MenuGameController.GAMETYPE_JOURNEY, p);
+                            } else {
+                                gameControllerMenuPresenter.startGame(MenuGameController.GAMETYPE_QUICK, p);
+                            }
+                            cleanChoosePlayerContainer();
                         }
                     });
                     choosePlayerContainer.addView(view);
@@ -118,7 +152,7 @@ public class ProfileSettingView extends LinearLayout {
 
             View view = factory.inflate(R.layout.playerlistitem, choosePlayerContainer, false);
 
-            Button mBtn = ((Button) view.findViewById(R.id.btnplayername));
+            Button mBtn = view.findViewById(R.id.btnplayername);
             mBtn.setText(mContext.getString(R.string.create_new_player) + " >");
             mBtn.setTag(new Profile("newplayer"));
             mBtn.setOnClickListener(new OnClickListener() {
@@ -130,7 +164,12 @@ public class ProfileSettingView extends LinearLayout {
                         cleanChoosePlayerContainer();
                         showEnterName();
                     } else {
-                        gameControllerMenuPresenter.startGame(MenuGameController.GAMETYPE_JOURNEY, p);
+                        if(journeyChosen){
+                            gameControllerMenuPresenter.startGame(MenuGameController.GAMETYPE_JOURNEY, p);
+                        } else {
+                            gameControllerMenuPresenter.startGame(MenuGameController.GAMETYPE_QUICK, p);
+                        }
+                        cleanChoosePlayerContainer();
                     }
                 }
             });
@@ -146,6 +185,7 @@ public class ProfileSettingView extends LinearLayout {
     private void showEnterName() {
         enterNewPlayerContainer.setVisibility(VISIBLE);
         choosePlayerContainer.setVisibility(GONE);
+        shownChoosePlayerContainer = true;
     }
 
     private void setupListener() {
@@ -159,7 +199,11 @@ public class ProfileSettingView extends LinearLayout {
                 //checkPlayerNameAvailable();
                 Profile newPlayer = new Profile(nameEntered);
                 gameControllerMenuPresenter.saveProfile(newPlayer);
-                gameControllerMenuPresenter.startGame(MenuGameController.GAMETYPE_JOURNEY, newPlayer);
+                if(journeyChosen){
+                    gameControllerMenuPresenter.startGame(MenuGameController.GAMETYPE_JOURNEY, newPlayer);
+                } else {
+                    gameControllerMenuPresenter.startGame(MenuGameController.GAMETYPE_QUICK, newPlayer);
+                }
             }
         });
     }

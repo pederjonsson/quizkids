@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
 import se.pederjonsson.apps.quizkids.Objects.Profile;
+import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.R;
 
 /**
@@ -42,13 +43,13 @@ public class NavbarView extends RelativeLayout {
     private Context mContext;
     private Unbinder unbinder;
     private Profile playingProfile;
+    private boolean scoreVisible;
+
 
     public NavbarView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
-
-
 
     protected void init(Context context) {
         mContext = context;
@@ -68,32 +69,39 @@ public class NavbarView extends RelativeLayout {
     public void setUp() {
     }
 
-    public void showTitle(String titlestring){
+    public void showTitle(String titlestring) {
         title.setText(titlestring);
     }
 
-    public void show(boolean visible){
-        if(visible){
+    public void show(boolean visible) {
+        if (visible) {
             rootView.setVisibility(VISIBLE);
         } else {
             rootView.setVisibility(GONE);
         }
     }
 
-    public void showScore(){
-        dotsContainer.setVisibility(VISIBLE);
-    }
-
-    public void setScore(boolean correct, int question){
-        if(correct){
-            dots.get(question).setImageDrawable(mContext.getDrawable(R.drawable.greenrectangle));
+    public void showScore(boolean val) {
+        scoreVisible = val;
+        if (val) {
+            dotsContainer.setVisibility(VISIBLE);
         } else {
-            dots.get(question).setImageDrawable(mContext.getDrawable(R.drawable.redrectangle));
+            dotsContainer.setVisibility(INVISIBLE);
         }
     }
 
-    public void clearScore(){
-        for (RoundedImageView dot: dots){
+    public void setScore(boolean correct, int question) {
+        if (scoreVisible) {
+            if (correct) {
+                dots.get(question).setImageDrawable(mContext.getDrawable(R.drawable.greenrectangle));
+            } else {
+                dots.get(question).setImageDrawable(mContext.getDrawable(R.drawable.redrectangle));
+            }
+        }
+    }
+
+    public void clearScore() {
+        for (RoundedImageView dot : dots) {
             dot.setImageDrawable(mContext.getDrawable(R.drawable.whiterectangle));
         }
     }
