@@ -2,6 +2,7 @@
     <string name="app_name">Quizkids</string>
     <string name="start_quiz">Mixed questions</string>
     <string name="start_quiz_journey">Quiz journey</string>
+    <string name="highscore_list">Highscore list</string>
     <string name="correct_answer">Correct answer!</string>
     <string name="wrong_answer">Wrong answer!</string>
     <string name="categories">Categories</string>

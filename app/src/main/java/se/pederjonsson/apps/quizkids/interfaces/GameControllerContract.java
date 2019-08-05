@@ -25,6 +25,8 @@ public interface GameControllerContract {
         void startQuickQuiz();
 
         void showMenu();
+
+        void showHighscoreList();
     }
 
     interface QuestionActivityView extends MainActivityView {

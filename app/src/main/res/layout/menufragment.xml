@@ -60,5 +60,14 @@
             android:paddingRight="@dimen/margin_medium"
             android:paddingTop="@dimen/margin_medium" />
 
+        <Button
+            android:id="@+id/highscore"
+            style="@style/quizbtnstylemenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profilesettingsview"
+            android:layout_marginTop="@dimen/medium"
+            android:text="@string/highscore_list" />
+
     </RelativeLayout>
 </ScrollView>

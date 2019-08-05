@@ -8,7 +8,6 @@ import java.io.Serializable;
 
 public class CategoryItem implements Serializable {
 
-
     private Question.Category category;
 
     public CategoryItem(Question.Category category){

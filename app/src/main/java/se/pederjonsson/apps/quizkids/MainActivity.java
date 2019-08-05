@@ -120,6 +120,14 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
         commitTransaction(fragmentTransaction);
     }
 
+    @Override
+    public void showHighscoreList() {
+        Intent intent = new Intent(this, HighscoreActivity.class);
+        //intent.putExtra(QuestionActivity.CATEGORY_ITEM, new CategoryItem(Question.Category.QUICKPLAY));
+        //intent.putExtra(QuestionActivity.PROFILE_ITEM, gameControllerMenuPresenter.getPlayingProfile());
+        startActivity(intent);
+    }
+
     private void setSlideInOutTransition(Fragment fragment) {
         fragment.setEnterTransition(slide);
         setSlideOutTransition(fragment);

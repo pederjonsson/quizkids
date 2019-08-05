@@ -13,6 +13,7 @@ class Profile(val name: String) : Serializable {
     private var clearedCategories: MutableList<Question.Category>? = null
     var categorypoints = mutableMapOf<Question.Category,Int>()
     var age: Int? = null
+    var totalPoints = 0
 
     fun getClearedCategories(): List<Question.Category>? {
         return clearedCategories
@@ -32,6 +33,16 @@ class Profile(val name: String) : Serializable {
             }
         }?:run{
             categorypoints.put(category, points)
+        }
+        setTotalPoints()
+    }
+
+    fun setTotalPoints(){
+        totalPoints = 0
+        for (value:Int in categorypoints.values){
+            value?.let {
+                totalPoints += it
+            }
         }
     }
 

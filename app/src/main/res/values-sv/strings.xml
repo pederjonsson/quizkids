@@ -3,6 +3,7 @@
 
     <string name="start_quiz">Blandade frågor</string>
     <string name="start_quiz_journey">Quiz resan</string>
+    <string name="highscore_list">Poäng lista</string>
     <string name="correct_answer">Rätt svar!</string>
     <string name="wrong_answer">Fel svar!</string>
     <string name="categories">Kategorier</string>

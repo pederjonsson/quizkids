@@ -10,9 +10,8 @@ import android.widget.Button;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import se.pederjonsson.apps.quizkids.MenuGameController;
+
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
-import se.pederjonsson.apps.quizkids.Objects.Profile;
 import se.pederjonsson.apps.quizkids.R;
 import se.pederjonsson.apps.quizkids.components.ProfileSettingView;
 
@@ -30,6 +29,10 @@ public class MenuFragment extends android.support.v4.app.Fragment {
 
     @BindView(R.id.profilesettingsview)
     ProfileSettingView profileSettingView;
+
+    @BindView(R.id.highscore)
+    Button btnHighscore;
+
 
     boolean journeyvisible = true;
     boolean quickvisible = true;
@@ -65,6 +68,13 @@ public class MenuFragment extends android.support.v4.app.Fragment {
             } else {
                 btnJourney.setVisibility(View.VISIBLE);
                 journeyvisible = true;
+            }
+        });
+
+        btnHighscore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivityView.showHighscoreList();
             }
         });
 
