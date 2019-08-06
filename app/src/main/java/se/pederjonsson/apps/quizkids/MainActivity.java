@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
 
     public static final String TABLE_NAME_QUESTION = "QUESTIONS";
     public static final String TABLE_NAME_PROFILE = "PROFILES";
+    public static final String TABLE_NAME_CATEGORY = "CATEGORIES";
     public static final String DB_NAME = "QUIZ_DB";
     private static int SLIDE_TIME = 300;
     private Unbinder unbinder;
