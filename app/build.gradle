@@ -44,6 +44,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Room dependencies
-    compile 'android.arch.persistence.room:runtime:1.0.0'
+    implementation 'android.arch.persistence.room:runtime:1.0.0'
     annotationProcessor 'android.arch.persistence.room:compiler:1.0.0'
+
 }

@@ -10,7 +10,7 @@ class RoomQueryAsyncTasks {
 
     internal constructor(private val dataholder: DataHolderForQuerys?, private val quizDatabase: QuizDatabase, private val queryInterface: QueryInterface.View) : AsyncTask<Void, Void, Boolean>() {
 
-        var allQuestionsFetched = mutableListOf<QuestionEntity>()
+
 
         init {
             queryInterface.onStartTask(this)
@@ -18,37 +18,43 @@ class RoomQueryAsyncTasks {
 
         // doInBackground methods runs on a worker thread
         override fun doInBackground(vararg objs: Void): Boolean? {
-            if (dataholder != null) {
-                if (dataholder.requestType == DataHolderForQuerys.RequestType.INSERTQUESTIONS && dataholder.questionEntityList != null) {
-                    try {
-                        quizDatabase.questionDao.insert(dataholder.questionEntityList)
-                    } catch (e: Exception) {
-                        return false
-                    }
-                    return true
-                } else if(dataholder.requestType == DataHolderForQuerys.RequestType.GETALLQUESTIONS){
-                    try {
-                        allQuestionsFetched = quizDatabase.questionDao.all
 
-                    } catch (e: Exception) {
+            dataholder?.let { dh ->
+                when (dh.requestType) {
+                    DataHolderForQuerys.RequestType.INSERTQUESTIONS -> {
+                        dh.questionEntityList?.let {
+                            quizDatabase.questionDao.insert(it)
+                            return true
+                        } ?: run {
+                            return false
+                        }
+                    }
+                    DataHolderForQuerys.RequestType.GETALLQUESTIONS -> {
+                        dh.questionEntityList = quizDatabase.questionDao.all
+                        dh.questionEntityList?.let {
+                            return true
+                        } ?: run {
+                            return false
+                        }
+                    }
+                    DataHolderForQuerys.RequestType.SAVEPROFILE -> {
+                        dh.profile?.let {
+                            quizDatabase.profileDao.insert(dh.profile)
+                            return true
+                        }
                         return false
                     }
-                    return true
+                    else -> {
+                        return false
+                    }
                 }
-            } else {
-                return false
-            }
-            return false
+            } ?: run { return false }
         }
 
         // onPostExecute runs on main thread
         override fun onPostExecute(bool: Boolean?) {
             if (bool!!) {
-                if(dataholder?.requestType == DataHolderForQuerys.RequestType.GETALLQUESTIONS){
-                    queryInterface.onSuccess(allQuestionsFetched)
-                } else{
-                    queryInterface.onSuccess()
-                }
+                queryInterface.onSuccess(dataholder)
             } else {
                 queryInterface.onFail()
             }

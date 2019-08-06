@@ -7,6 +7,7 @@ import se.pederjonsson.apps.quizkids.components.room.DataHolderForQuerys
 import se.pederjonsson.apps.quizkids.components.room.QuestionEntity
 import se.pederjonsson.apps.quizkids.components.room.QuizDatabase
 import se.pederjonsson.apps.quizkids.components.room.RoomQueryAsyncTasks
+import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity
 import se.pederjonsson.apps.quizkids.interfaces.QueryInterface
 
 class RoomDBUtil {
@@ -23,6 +24,16 @@ class RoomDBUtil {
 
         var dataHolder = DataHolderForQuerys(DataHolderForQuerys.RequestType.INSERTQUESTIONS)
         dataHolder.questionEntityList = qList
+        RoomQueryAsyncTasks.RoomQuery(dataHolder, quizDatabase, queryInterface).execute()
+    }
+
+    fun saveProfile(context: Context, queryInterface: QueryInterface.View, profile:ProfileEntity) {
+        val quizDatabase = QuizDatabase.getInstance(context)
+
+        // fetch data and create note object
+
+        var dataHolder = DataHolderForQuerys(DataHolderForQuerys.RequestType.SAVEPROFILE)
+        dataHolder.profile = profile
         RoomQueryAsyncTasks.RoomQuery(dataHolder, quizDatabase, queryInterface).execute()
     }
 

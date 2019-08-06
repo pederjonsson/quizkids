@@ -25,8 +25,10 @@ import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
 import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.components.NavbarView;
 
+import se.pederjonsson.apps.quizkids.components.room.DataHolderForQuerys;
 import se.pederjonsson.apps.quizkids.components.room.QuestionEntity;
 import se.pederjonsson.apps.quizkids.components.room.RoomQueryAsyncTasks;
+import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity;
 import se.pederjonsson.apps.quizkids.db.Database;
 import se.pederjonsson.apps.quizkids.db.RoomDBUtil;
 import se.pederjonsson.apps.quizkids.fragments.MenuFragment;
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
 
 
     public static final String TABLE_NAME_QUESTION = "QUESTIONS";
+    public static final String TABLE_NAME_PROFILE = "PROFILES";
     public static final String DB_NAME = "QUIZ_DB";
     private static int SLIDE_TIME = 300;
     private Unbinder unbinder;
@@ -190,17 +193,19 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
     }
 
     @Override
-    public void onSuccess() {
-        Log.i("ROOM", "ONSUCESS FETCHING QUESTIONS");
-        dbUtil.getAllQuestions(this, this);
-    }
-
-    @Override
-    public void onSuccess(@NotNull Object any) {
-        Log.i("ROOM", "ONSUCESS ANY " + any);
-        if(any instanceof List){
-            List list = (List)any;
-            Log.i("ROOM", "YES ANY IS LIST");
+    public void onSuccess(DataHolderForQuerys dataHolderForQuerys) {
+        if(dataHolderForQuerys != null){
+        Log.i("ROOM", "ONSUCCESS FOR REQUEST " + dataHolderForQuerys.getRequestType().getRequestType());
+            if(dataHolderForQuerys.getRequestType() == DataHolderForQuerys.RequestType.INSERTQUESTIONS){
+                dbUtil.getAllQuestions(this, this);
+                dbUtil.saveProfile(this, this, new ProfileEntity("testcreateuser"));
+            } else if(dataHolderForQuerys.getRequestType() == DataHolderForQuerys.RequestType.GETALLQUESTIONS){
+                Log.i("ROOM","questions fetched: " + dataHolderForQuerys.getQuestionEntityList().size());
+            } else if(dataHolderForQuerys.getRequestType() == DataHolderForQuerys.RequestType.SAVEPROFILE){
+                Log.i("ROOM","profilesaved for: " + dataHolderForQuerys.getProfile().getProfilename());
+            }
+        } else {
+            Log.i("ERROR", "No data returned frmo request");
         }
     }
 
