@@ -4,6 +4,7 @@ package se.pederjonsson.apps.quizkids.components.room;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
@@ -15,7 +16,7 @@ import se.pederjonsson.apps.quizkids.MainActivity;
 public interface QuestionDao {
 
 
-    @Query("SELECT * FROM user "+ MainActivity.TABLE_NAME_QUESTION)
+    @Query("SELECT * FROM "+ MainActivity.TABLE_NAME_QUESTION)
     List<QuestionEntity> getAll();
 
 
@@ -25,6 +26,13 @@ public interface QuestionDao {
      */
     @Insert
     void insert(QuestionEntity question);
+
+    /*
+     * Insert the array of objects into database
+     * @param note, array of objects to be inserted
+     */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(List<QuestionEntity> question);
 
     /*
      * update the object in database

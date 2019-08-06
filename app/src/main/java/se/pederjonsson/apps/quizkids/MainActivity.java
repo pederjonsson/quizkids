@@ -9,7 +9,14 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.transition.Slide;
+import android.util.Log;
 import android.view.Gravity;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,19 +25,21 @@ import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
 import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.components.NavbarView;
 
+import se.pederjonsson.apps.quizkids.components.room.QuestionEntity;
+import se.pederjonsson.apps.quizkids.components.room.RoomQueryAsyncTasks;
 import se.pederjonsson.apps.quizkids.db.Database;
+import se.pederjonsson.apps.quizkids.db.RoomDBUtil;
 import se.pederjonsson.apps.quizkids.fragments.MenuFragment;
 import se.pederjonsson.apps.quizkids.fragments.category.CategoryFragment;
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
+import se.pederjonsson.apps.quizkids.interfaces.QueryInterface;
 
-public class MainActivity extends AppCompatActivity implements GameControllerContract.MainActivityView {
+public class MainActivity extends AppCompatActivity implements GameControllerContract.MainActivityView, QueryInterface.View {
 
 
     public static final String TABLE_NAME_QUESTION = "QUESTIONS";
-
+    public static final String DB_NAME = "QUIZ_DB";
     private static int SLIDE_TIME = 300;
-
-
     private Unbinder unbinder;
     private GameControllerContract.MenuPresenter gameControllerMenuPresenter;
     Database db;
@@ -40,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
     NavbarView navbarView;
 
     private FragmentManager mFragmentManager;
+    RoomDBUtil dbUtil;
 
     Slide slide = new Slide(Gravity.RIGHT);
     Slide slideout = new Slide(Gravity.LEFT);
@@ -55,9 +65,9 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
         slide.setDuration(SLIDE_TIME);
         slideout.setDuration(SLIDE_TIME);
         showMenu();
-
-        db.populate(this);
-
+       // db.populate(this);
+        dbUtil = new RoomDBUtil();
+        dbUtil.generateQABuildingsRoom(this, this);
     }
 
     private void playSound(int resId) {
@@ -152,6 +162,10 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
     protected void onPause() {
         super.onPause();
         releaseMediaPlayer();
+        if(task != null && !task.isCancelled()){
+            task.cancel(true);
+            task = null;
+        }
     }
 
     @Override
@@ -160,5 +174,38 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
         if (requestCode == QuestionActivity.SHOW_CATEGORIES) {
             showCategories();
         }
+    }
+
+    @Override
+    public void onProgress(@Nullable Void... values) {
+        Log.i("ROOM", "ONPROGRESS");
+    }
+
+    RoomQueryAsyncTasks.RoomQuery task = null;
+
+    @Override
+    public void onStartTask(@NotNull RoomQueryAsyncTasks.RoomQuery task) {
+        Log.i("ROOM", "onStartTask");
+        this.task = task;
+    }
+
+    @Override
+    public void onSuccess() {
+        Log.i("ROOM", "ONSUCESS FETCHING QUESTIONS");
+        dbUtil.getAllQuestions(this, this);
+    }
+
+    @Override
+    public void onSuccess(@NotNull Object any) {
+        Log.i("ROOM", "ONSUCESS ANY " + any);
+        if(any instanceof List){
+            List list = (List)any;
+            Log.i("ROOM", "YES ANY IS LIST");
+        }
+    }
+
+    @Override
+    public void onFail() {
+        Log.i("ROOM", "ONFAIL");
     }
 }

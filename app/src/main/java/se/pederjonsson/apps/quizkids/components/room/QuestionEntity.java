@@ -5,29 +5,41 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-import se.pederjonsson.apps.quizkids.Objects.Question;
+import java.io.Serializable;
 
-@Entity
-public class QuestionEntity {
+import se.pederjonsson.apps.quizkids.MainActivity;
+
+@Entity(tableName = MainActivity.TABLE_NAME_QUESTION)
+public class QuestionEntity implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int qid;
 
     @ColumnInfo(name = "drawableid")
-    private int drawable_resid;
+    private int drawableid;
 
+    @ColumnInfo(name = "questiontext")
     private String questiontext;
 
-    //private Question.DifficultyLevel difficultyLevel;
-
     @ColumnInfo(name = "category")
-    private Question.Category category;
+    private String category;
 
-    public QuestionEntity(int _qid, String _questionstring, int _drawable_resid, Question.Category _category) {
-        this.qid = _qid;
-        category = _category;
-        this.questiontext = _questionstring;
-        this.drawable_resid = _drawable_resid;
+    @ColumnInfo(name = "trueanswer")
+    private String trueanswer;
+
+    @ColumnInfo(name = "anwer2")
+    private String answer2;
+
+    @ColumnInfo(name = "anwer3")
+    private String answer3;
+
+    public QuestionEntity(String questiontext, int drawableid, String category, String trueanswer, String answer2, String answer3) {
+        this.category = category;
+        this.questiontext = questiontext;
+        this.drawableid = drawableid;
+        this.trueanswer = trueanswer;
+        this.answer2 = answer2;
+        this.answer3 = answer3;
     }
 
     public int getQid() {
@@ -71,24 +83,48 @@ public class QuestionEntity {
         return "QuestionEntity{" +
                 "qid=" + qid +
                 ", questiontext='" + questiontext + '\'' +
-                ", drawable_resid='" + drawable_resid + '\'' +
+                ", drawable_resid='" + drawableid + '\'' +
                 '}';
     }
 
-    public int getDrawable_resid() {
-        return drawable_resid;
+    public int getDrawableid() {
+        return drawableid;
     }
 
-    public void setDrawable_resid(int drawable_resid) {
-        this.drawable_resid = drawable_resid;
+    public void setDrawableid(int drawableid) {
+        this.drawableid = drawableid;
     }
 
-    public Question.Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Question.Category category) {
+    public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getTrueanswer() {
+        return trueanswer;
+    }
+
+    public void setTrueanswer(String trueanswer) {
+        this.trueanswer = trueanswer;
+    }
+
+    public String getAnswer2() {
+        return answer2;
+    }
+
+    public void setAnswer2(String answer2) {
+        this.answer2 = answer2;
+    }
+
+    public String getAnswer3() {
+        return answer3;
+    }
+
+    public void setAnswer3(String answer3) {
+        this.answer3 = answer3;
     }
 
 }
