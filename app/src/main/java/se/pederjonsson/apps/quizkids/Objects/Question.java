@@ -45,7 +45,7 @@ public class Question implements Serializable {
     }
     static Logger l = Logger.getGlobal();
 
-    public enum Category {
+    public enum  Category {
 
         BUILDINGS("buildings"),
         OCEAN("ocean"),
