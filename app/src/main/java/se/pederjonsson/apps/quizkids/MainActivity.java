@@ -25,7 +25,12 @@ import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
 
 public class MainActivity extends AppCompatActivity implements GameControllerContract.MainActivityView {
 
+
+    public static final String TABLE_NAME_QUESTION = "QUESTIONS";
+
     private static int SLIDE_TIME = 300;
+
+
     private Unbinder unbinder;
     private GameControllerContract.MenuPresenter gameControllerMenuPresenter;
     Database db;
