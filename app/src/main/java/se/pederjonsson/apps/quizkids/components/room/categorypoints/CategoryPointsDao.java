@@ -20,6 +20,9 @@ public interface CategoryPointsDao {
     @Query("SELECT * FROM "+ MainActivity.TABLE_NAME_CATEGORYPOINTS)
     List<CategoryPointsEntity> getAll();
 
+    @Query("SELECT * FROM "+ MainActivity.TABLE_NAME_CATEGORYPOINTS + " WHERE profileid = :profileid")
+    List<CategoryPointsEntity> getAllByProfile(String profileid);
+
     /*
      * Insert the object in database
      * @param note, object to be inserted

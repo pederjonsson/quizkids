@@ -83,4 +83,11 @@ class RoomDBUtil {
         dataHolder.categoryPointsEntity = categoryPointsEntity
         RoomQueryAsyncTasks.RoomQuery(dataHolder, quizDatabase, queryInterface).execute()
     }
+
+    fun getAllCategoryPointsForUser(context: Context, queryInterface: QueryInterface.View, profileId: String) {
+        val quizDatabase = QuizDatabase.getInstance(context)
+        var dataHolder = DataHolderForQuerys(DataHolderForQuerys.RequestType.GETCATEGORYPOINTSFORUSER)
+        dataHolder.profileid = profileId
+        RoomQueryAsyncTasks.RoomQuery(dataHolder, quizDatabase, queryInterface).execute()
+    }
 }

@@ -97,6 +97,17 @@ class RoomQueryAsyncTasks {
                         }
                         return false
                     }
+
+                    DataHolderForQuerys.RequestType.GETCATEGORYPOINTSFORUSER -> {
+
+                        try {
+                            dh.categoryPointsEntityList = quizDatabase.categoryPointsDao.getAllByProfile(dh.profileid)
+                            return true
+                        } catch (e: Exception) {
+                            e.message?.let { dh.errorMsg = it }
+                            return false
+                        }
+                    }
                     else -> {
                         return false
                     }

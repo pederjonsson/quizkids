@@ -26,6 +26,7 @@ import se.pederjonsson.apps.quizkids.components.NavbarView;
 
 import se.pederjonsson.apps.quizkids.components.room.DataHolderForQuerys;
 import se.pederjonsson.apps.quizkids.components.room.RoomQueryAsyncTasks;
+import se.pederjonsson.apps.quizkids.components.room.categorypoints.CategoryPointsEntity;
 import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity;
 import se.pederjonsson.apps.quizkids.db.Database;
 import se.pederjonsson.apps.quizkids.components.room.RoomDBUtil;
@@ -204,11 +205,17 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
                 dbUtil.getQuestionsByCategory(this, this, Question.Category.BUILDINGS.getCategory());
             } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.SAVEPROFILE){
                 Log.i("ROOM","profilesaved for: " + dh.getProfile().getProfilename());
+                dbUtil.insertCategoryPoints(this, this, new CategoryPointsEntity(Question.Category.BUILDINGS.getCategory(), "testcreateuser", 5));
                 dbUtil.getAllProfiles(this, this);
             } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.GETALLPROFILES){
                 Log.i("ROOM","all profiles = " + dh.getProfileEntityList());
             } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.GETQUESTIONSBYCATEGORY){
                 Log.i("ROOM","questions by category " + dh.getCategory() + " fetched: " + dh.getQuestionEntityList().size());
+            } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.INSERTCATEGORYPOINTS){
+                Log.i("ROOM","inserted categorypoints " + dh.getCategoryPointsEntity().getPoints() + " for " + dh.getCategoryPointsEntity().getCategoryid() + " name: " + dh.getCategoryPointsEntity().getProfileid());
+                dbUtil.getAllCategoryPointsForUser(this, this, "testcreateuser");
+            } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.GETCATEGORYPOINTSFORUSER){
+                Log.i("ROOM","categorypoints for user " + dh.getCategoryPointsEntityList()+ " for " + dh.getProfileid());
             }
         } else {
             Log.i("ERROR", "No data returned frmo request");

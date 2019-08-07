@@ -12,11 +12,11 @@ import se.pederjonsson.apps.quizkids.MainActivity;
 @Entity(tableName = MainActivity.TABLE_NAME_CATEGORYPOINTS)
 public class CategoryPointsEntity implements Serializable {
 
-    public int getcpid() {
+    public int getCpid() {
         return cpid;
     }
 
-    public void setcpid(int cpid) {
+    public void setCpid(int cpid) {
         this.cpid = cpid;
     }
 
@@ -24,14 +24,26 @@ public class CategoryPointsEntity implements Serializable {
     private int cpid;
 
     @ColumnInfo(name = "categoryid")
-    private int categoryid;
+    private String categoryid;
 
     @ColumnInfo(name = "profileid")
     private String profileid;
 
-    public CategoryPointsEntity(int categoryid, String profileid) {
+    @ColumnInfo(name = "points")
+    private int points;
+
+    public CategoryPointsEntity(String categoryid, String profileid, int points) {
         this.categoryid = categoryid;
         this.profileid = profileid;
+        this.points = points;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 
     public String getProfileid() {
@@ -42,11 +54,11 @@ public class CategoryPointsEntity implements Serializable {
         this.profileid = profileid;
     }
 
-    public int getCategoryid() {
+    public String getCategoryid() {
         return categoryid;
     }
 
-    public void setCategoryid(int categoryid) {
+    public void setCategoryid(String categoryid) {
         this.categoryid = categoryid;
     }
 
@@ -58,13 +70,13 @@ public class CategoryPointsEntity implements Serializable {
         CategoryPointsEntity p = (CategoryPointsEntity) o;
 
         if (cpid != p.cpid) return false;
-        return categoryid != -1 ? categoryid == (p.categoryid) : p.categoryid == -1;
+        return categoryid != null ? categoryid.equals(p.categoryid) : p.categoryid == null;
     }
 
     @Override
     public int hashCode() {
         int result = cpid;
-        result = 31 * result + (categoryid != -1 ? categoryid : 0);
+        result = 31 * result + (categoryid != null ? categoryid.hashCode() : 0);
         return result;
     }
 
@@ -74,6 +86,7 @@ public class CategoryPointsEntity implements Serializable {
                 "cpid=" + cpid +
                 ", categoryid='" + categoryid + '\'' +
                 ", profileid='" + profileid + '\'' +
+                ", points='" + points + '\'' +
                 '}';
     }
 

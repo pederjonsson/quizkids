@@ -16,7 +16,7 @@ class DataHolderForQuerys {
     var categoryid = 0
     var points = 0
     var categoryPointsEntity:CategoryPointsEntity? = null
-
+    var categoryPointsEntityList: MutableList<CategoryPointsEntity>? = null
     var questionEntityList: MutableList<QuestionEntity>? = null
 
     enum class RequestType private constructor(val requestType: String) {
@@ -28,6 +28,8 @@ class DataHolderForQuerys {
         GETALLPROFILES("GETALLPROFILES"),
 
         INSERTCATEGORYPOINTS("insertcategorypoints"),
+        GETCATEGORYPOINTSFORUSER("GETCATEGORYPOINTSFORUSER")
+
 
     }
 
