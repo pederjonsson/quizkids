@@ -10,8 +10,6 @@ class RoomQueryAsyncTasks {
 
     internal constructor(private val dataholder: DataHolderForQuerys?, private val quizDatabase: QuizDatabase, private val queryInterface: QueryInterface.View) : AsyncTask<Void, Void, Boolean>() {
 
-
-
         init {
             queryInterface.onStartTask(this)
         }
@@ -50,6 +48,20 @@ class RoomQueryAsyncTasks {
                         }
                     }
 
+                    DataHolderForQuerys.RequestType.GETQUESTIONSBYCATEGORY -> {
+                        try {
+                            dh.questionEntityList = quizDatabase.questionDao.getQuestionsByCategory(dh.category)
+                            dh.questionEntityList?.let {
+                                return true
+                            } ?: run {
+                                return false
+                            }
+                        } catch (e: Exception) {
+                            e.message?.let { dh.errorMsg = it }
+                            return false
+                        }
+                    }
+
                     DataHolderForQuerys.RequestType.SAVEPROFILE -> {
                         dh.profile?.let {
                             try {
@@ -62,6 +74,7 @@ class RoomQueryAsyncTasks {
                         }
                         return false
                     }
+
                     DataHolderForQuerys.RequestType.GETALLPROFILES -> {
                         try {
                             dh.profileEntityList = quizDatabase.profileDao.all
@@ -70,6 +83,19 @@ class RoomQueryAsyncTasks {
                             e.message?.let { dh.errorMsg = it }
                             return false
                         }
+                    }
+
+                    DataHolderForQuerys.RequestType.INSERTCATEGORYPOINTS -> {
+                        dh.categoryPointsEntity?.let {
+                            try {
+                                quizDatabase.categoryPointsDao.insert(dh.categoryPointsEntity)
+                                return true
+                            } catch (e: Exception) {
+                                e.message?.let { dh.errorMsg = it }
+                                return false
+                            }
+                        }
+                        return false
                     }
                     else -> {
                         return false

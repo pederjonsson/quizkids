@@ -19,6 +19,8 @@ public interface QuestionDao {
     @Query("SELECT * FROM "+ MainActivity.TABLE_NAME_QUESTION)
     List<QuestionEntity> getAll();
 
+    @Query("SELECT * FROM " + MainActivity.TABLE_NAME_QUESTION + " WHERE category = :category")
+    List<QuestionEntity> getQuestionsByCategory(String category);
 
     /*
      * Insert the object in database

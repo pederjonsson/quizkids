@@ -27,17 +27,18 @@ public class CategoryPointsEntity implements Serializable {
     private int categoryid;
 
     @ColumnInfo(name = "profileid")
-    private int profileid = 0;
+    private String profileid;
 
-    public CategoryPointsEntity(int categoryid) {
+    public CategoryPointsEntity(int categoryid, String profileid) {
         this.categoryid = categoryid;
+        this.profileid = profileid;
     }
 
-    public int getProfileid() {
+    public String getProfileid() {
         return profileid;
     }
 
-    public void setProfileid(int profileid) {
+    public void setProfileid(String profileid) {
         this.profileid = profileid;
     }
 

@@ -7,6 +7,8 @@ import se.pederjonsson.apps.quizkids.components.room.DataHolderForQuerys
 import se.pederjonsson.apps.quizkids.components.room.question.QuestionEntity
 import se.pederjonsson.apps.quizkids.components.room.QuizDatabase
 import se.pederjonsson.apps.quizkids.components.room.RoomQueryAsyncTasks
+import se.pederjonsson.apps.quizkids.components.room.category.CategoryEntity
+import se.pederjonsson.apps.quizkids.components.room.categorypoints.CategoryPointsEntity
 import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity
 import se.pederjonsson.apps.quizkids.interfaces.QueryInterface
 
@@ -32,6 +34,13 @@ class RoomDBUtil {
     fun getAllQuestions(context: Context, queryInterface: QueryInterface.View) {
         val quizDatabase = QuizDatabase.getInstance(context)
         var dataHolder = DataHolderForQuerys(DataHolderForQuerys.RequestType.GETALLQUESTIONS)
+        RoomQueryAsyncTasks.RoomQuery(dataHolder, quizDatabase, queryInterface).execute()
+    }
+
+    fun getQuestionsByCategory(context: Context, queryInterface: QueryInterface.View, category: String) {
+        val quizDatabase = QuizDatabase.getInstance(context)
+        var dataHolder = DataHolderForQuerys(DataHolderForQuerys.RequestType.GETQUESTIONSBYCATEGORY)
+        dataHolder.category = category
         RoomQueryAsyncTasks.RoomQuery(dataHolder, quizDatabase, queryInterface).execute()
     }
 
@@ -67,4 +76,11 @@ class RoomDBUtil {
 
 
     /********************************* CATEGORYPOINTS *********************************/
+
+    fun insertCategoryPoints(context: Context, queryInterface: QueryInterface.View, categoryPointsEntity: CategoryPointsEntity){
+        val quizDatabase = QuizDatabase.getInstance(context)
+        var dataHolder = DataHolderForQuerys(DataHolderForQuerys.RequestType.INSERTCATEGORYPOINTS)
+        dataHolder.categoryPointsEntity = categoryPointsEntity
+        RoomQueryAsyncTasks.RoomQuery(dataHolder, quizDatabase, queryInterface).execute()
+    }
 }

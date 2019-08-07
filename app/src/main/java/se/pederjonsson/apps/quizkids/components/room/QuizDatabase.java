@@ -6,16 +6,19 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 import se.pederjonsson.apps.quizkids.MainActivity;
+import se.pederjonsson.apps.quizkids.components.room.categorypoints.CategoryPointsDao;
+import se.pederjonsson.apps.quizkids.components.room.categorypoints.CategoryPointsEntity;
 import se.pederjonsson.apps.quizkids.components.room.profile.ProfileDao;
 import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity;
 import se.pederjonsson.apps.quizkids.components.room.question.QuestionDao;
 import se.pederjonsson.apps.quizkids.components.room.question.QuestionEntity;
 
-@Database(entities = { QuestionEntity.class, ProfileEntity.class}, version = 1)
+@Database(entities = { QuestionEntity.class, ProfileEntity.class, CategoryPointsEntity.class}, version = 1)
 public abstract class QuizDatabase extends RoomDatabase {
 
     public abstract QuestionDao getQuestionDao();
     public abstract ProfileDao getProfileDao();
+    public abstract CategoryPointsDao getCategoryPointsDao();
 
     private static QuizDatabase quizDB;
 

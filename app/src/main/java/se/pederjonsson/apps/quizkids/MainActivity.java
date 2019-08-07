@@ -201,15 +201,14 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
                 dbUtil.saveProfile(this, this, new ProfileEntity("testcreateuser"));
             } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.GETALLQUESTIONS){
                 Log.i("ROOM","questions fetched: " + dh.getQuestionEntityList().size());
+                dbUtil.getQuestionsByCategory(this, this, Question.Category.BUILDINGS.getCategory());
             } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.SAVEPROFILE){
                 Log.i("ROOM","profilesaved for: " + dh.getProfile().getProfilename());
                 dbUtil.getAllProfiles(this, this);
             } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.GETALLPROFILES){
                 Log.i("ROOM","all profiles = " + dh.getProfileEntityList());
-                if(dh.getProfileEntityList() != null && dh.getProfileEntityList().size() > 0){
-                    Log.i("ROOM","trying to save profile with same name as existing name = " + dh.getProfileEntityList().get(0).getProfilename());
-                    dbUtil.saveProfile(this, this, new ProfileEntity(dh.getProfileEntityList().get(0).getProfilename()));
-                }
+            } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.GETQUESTIONSBYCATEGORY){
+                Log.i("ROOM","questions by category " + dh.getCategory() + " fetched: " + dh.getQuestionEntityList().size());
             }
         } else {
             Log.i("ERROR", "No data returned frmo request");
