@@ -1,6 +1,7 @@
 package se.pederjonsson.apps.quizkids.components.room
 
 import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity
+import se.pederjonsson.apps.quizkids.components.room.question.QuestionEntity
 
 class DataHolderForQuerys {
 

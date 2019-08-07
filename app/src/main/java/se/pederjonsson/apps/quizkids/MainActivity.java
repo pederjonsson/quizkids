@@ -26,7 +26,6 @@ import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.components.NavbarView;
 
 import se.pederjonsson.apps.quizkids.components.room.DataHolderForQuerys;
-import se.pederjonsson.apps.quizkids.components.room.QuestionEntity;
 import se.pederjonsson.apps.quizkids.components.room.RoomQueryAsyncTasks;
 import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity;
 import se.pederjonsson.apps.quizkids.db.Database;
@@ -42,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
     public static final String TABLE_NAME_QUESTION = "QUESTIONS";
     public static final String TABLE_NAME_PROFILE = "PROFILES";
     public static final String TABLE_NAME_CATEGORY = "CATEGORIES";
+    public static final String TABLE_NAME_CATEGORYPOINTS = "CATEGORYPOINTS";
     public static final String DB_NAME = "QUIZ_DB";
     private static int SLIDE_TIME = 300;
     private Unbinder unbinder;

@@ -23,7 +23,8 @@ public interface ProfileDao {
      * Insert the object in database
      * @param note, object to be inserted
      */
-    @Insert
+
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     void insert(ProfileEntity profile);
 
     /*

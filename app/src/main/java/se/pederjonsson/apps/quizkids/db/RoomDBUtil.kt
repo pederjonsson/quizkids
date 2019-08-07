@@ -4,7 +4,7 @@ import android.content.Context
 import se.pederjonsson.apps.quizkids.Objects.Question
 import se.pederjonsson.apps.quizkids.R
 import se.pederjonsson.apps.quizkids.components.room.DataHolderForQuerys
-import se.pederjonsson.apps.quizkids.components.room.QuestionEntity
+import se.pederjonsson.apps.quizkids.components.room.question.QuestionEntity
 import se.pederjonsson.apps.quizkids.components.room.QuizDatabase
 import se.pederjonsson.apps.quizkids.components.room.RoomQueryAsyncTasks
 import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity

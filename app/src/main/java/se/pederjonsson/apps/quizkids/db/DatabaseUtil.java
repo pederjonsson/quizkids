@@ -6,14 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import se.pederjonsson.apps.quizkids.MainActivity;
 import se.pederjonsson.apps.quizkids.Objects.Answer;
 import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
 import se.pederjonsson.apps.quizkids.R;
-import se.pederjonsson.apps.quizkids.components.room.QuestionEntity;
-import se.pederjonsson.apps.quizkids.components.room.QuizDatabase;
-import se.pederjonsson.apps.quizkids.components.room.RoomQueryAsyncTasks;
 import se.pederjonsson.apps.quizkids.interfaces.QueryInterface;
 
 /**
@@ -67,7 +63,7 @@ public class DatabaseUtil {
         // fetch data and create note object
 
        QuestionEntity questionEntity = new QuestionEntity(context.getString(R.string.q_buildings_paris),
-                R.drawable.question_eiffel200, Question.Category.BUILDINGS.getCategory(), "Eiffel", "Big Ben", "Falafel");
+                R.drawable.question_eiffel200, Question.Category.BUILDINGS.getCategoryid(), "Eiffel", "Big Ben", "Falafel");
 
         // create worker thread to insert data into database
         new RoomQueryAsyncTasks.RoomQueryAsyncTasks(context,quizDatabase,questionEntity).execute();*/

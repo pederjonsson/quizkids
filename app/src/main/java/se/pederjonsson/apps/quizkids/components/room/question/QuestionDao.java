@@ -1,4 +1,4 @@
-package se.pederjonsson.apps.quizkids.components.room;
+package se.pederjonsson.apps.quizkids.components.room.question;
 
 
 import android.arch.persistence.room.Dao;

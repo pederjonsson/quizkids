@@ -16,7 +16,7 @@
     <string name="continuegame">Continue</string>
     <string name="playas">play as</string>
     <string name="create_new_player">create new player</string>
-    <string name="youclearedcategory">you have successfully completed category</string>
+    <string name="youclearedcategory">you have successfully completed categoryid</string>
 
     <!-- categories -->
     <string name="buildings">buildings</string>
