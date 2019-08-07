@@ -80,6 +80,7 @@ public class ProfileSettingView extends LinearLayout {
     }
 
     public void startJourneyBtnClicked() {
+        profiles = gameControllerMenuPresenter.getProfiles();
         journeyChosen = true;
         if (profiles != null && profiles.size() > 0) {
             showChoosePlayerOrCreateNew();
@@ -97,6 +98,7 @@ public class ProfileSettingView extends LinearLayout {
     }
 
     public void startQuickPlayBtnClicked() {
+        profiles = gameControllerMenuPresenter.getProfiles();
         journeyChosen = false;
         if (profiles != null && profiles.size() > 0) {
             showChoosePlayerOrCreateNew();
@@ -196,7 +198,7 @@ public class ProfileSettingView extends LinearLayout {
     private void setupListener() {
         //edittextlistener here
         startGameButton.setOnClickListener(v -> {
-
+            profiles = gameControllerMenuPresenter.getProfiles();
             if (editTextName.getText() == null || editTextName.getText().toString().isEmpty()) {
                 Toast.makeText(mContext, R.string.toast_pls_enter_name, Toast.LENGTH_SHORT).show();
             } else {

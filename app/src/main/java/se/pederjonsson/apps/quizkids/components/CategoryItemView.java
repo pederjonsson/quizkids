@@ -62,16 +62,17 @@ public class CategoryItemView extends RelativeLayout {
         categoryItem = _categoryItem;
         playingProfile = profile;
         title.setText(categoryItem.getCategory().getCategoryTranslated(mContext));
-        Integer point = 4;//playingProfile.getPointsByCategory(categoryItem.getCategory());
+        Integer point = playingProfile.getPointsForCategory(categoryItem.getCategory().getCategory());
         Log.i("CIV", "points for category " + categoryItem.getCategory() + " = " + point);
         setIcon();
-        setCheckMark();
+        setCheckMark(point);
     }
 
-    private void setCheckMark(){
-       // if(playingProfile.getClearedCategories() != null && playingProfile.getClearedCategories().contains(categoryItem.getCategory())){
+    private void setCheckMark(int points){
+        //if(playingProfile.getClearedCategories() != null && playingProfile.getClearedCategories().contains(categoryItem.getCategory())){
+        if(points == 10){
             checkMark.setVisibility(VISIBLE);
-        //}
+        }
     }
 
     private void setIcon(){

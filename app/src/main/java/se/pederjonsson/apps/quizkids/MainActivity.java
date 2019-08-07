@@ -198,15 +198,15 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
         if(dh != null){
         Log.i("ROOM", "ONSUCCESS FOR REQUEST " + dh.getRequestType().getRequestType());
             if(dh.getRequestType() == DataHolderForQuerys.RequestType.INSERTQUESTIONS){
-                dbUtil.getAllQuestions(this, this);
-                dbUtil.saveProfile(this, this, new ProfileEntity("testcreateuser"));
+                //dbUtil.getAllQuestions(this, this);
+                //dbUtil.saveProfile(this, this, new ProfileEntity("testcreateuser"));
             } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.GETALLQUESTIONS){
                 Log.i("ROOM","questions fetched: " + dh.getQuestionEntityList().size());
-                dbUtil.getQuestionsByCategory(this, this, Question.Category.BUILDINGS.getCategory());
+                //dbUtil.getQuestionsByCategory(this, this, Question.Category.BUILDINGS.getCategory());
             } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.SAVEPROFILE){
                 Log.i("ROOM","profilesaved for: " + dh.getProfile().getProfilename());
-                dbUtil.insertCategoryPoints(this, this, new CategoryPointsEntity(Question.Category.BUILDINGS.getCategory(), "testcreateuser", 5));
-                dbUtil.getAllProfiles(this, this);
+               // dbUtil.insertCategoryPoints(this, this, new CategoryPointsEntity(Question.Category.BUILDINGS.getCategory(), "testcreateuser", 5));
+                //dbUtil.getAllProfiles(this, this);
             } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.GETALLPROFILES){
                 Log.i("ROOM","all profiles = " + dh.getProfileEntityList());
                 gameControllerMenuPresenter.setProfiles(dh.getProfileEntityList());
@@ -214,7 +214,7 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
                 Log.i("ROOM","questions by category " + dh.getCategory() + " fetched: " + dh.getQuestionEntityList().size());
             } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.INSERTCATEGORYPOINTS){
                 Log.i("ROOM","inserted categorypoints " + dh.getCategoryPointsEntity().getPoints() + " for " + dh.getCategoryPointsEntity().getCategoryid() + " name: " + dh.getCategoryPointsEntity().getProfileid());
-                dbUtil.getAllCategoryPointsForUser(this, this, "testcreateuser");
+                //dbUtil.getAllCategoryPointsForUser(this, this, "testcreateuser");
             } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.GETCATEGORYPOINTSFORUSER){
                 Log.i("ROOM","categorypoints for user " + dh.getCategoryPointsEntityList()+ " for " + dh.getProfileid());
                 if(gameControllerMenuPresenter.getPlayingProfile() != null){

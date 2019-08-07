@@ -38,6 +38,8 @@ public class MenuGameController implements GameControllerContract.MenuPresenter 
     @Override
     public void setPlayingProfile(ProfileEntity profileEntity) {
         playingProfile = profileEntity;
+        Log.i("categorypoints", "do i have points in setPlayingProfile? " + profileEntity.getCategoryPointsList());
+
     }
 
     @Override

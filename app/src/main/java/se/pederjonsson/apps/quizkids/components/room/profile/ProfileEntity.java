@@ -2,8 +2,10 @@ package se.pederjonsson.apps.quizkids.components.room.profile;
 
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import java.io.Serializable;
 import java.util.List;
@@ -26,6 +28,7 @@ public class ProfileEntity implements Serializable {
         return profilename;
     }
 
+    @Ignore
     List<CategoryPointsEntity> categoryPointsList = null;
 
     public void setProfilename(String profilename) {
@@ -62,6 +65,18 @@ public class ProfileEntity implements Serializable {
 
     public void setCategoryPointsList(List<CategoryPointsEntity> categoryPointsList) {
         this.categoryPointsList = categoryPointsList;
+        Log.i("categorypoints", "now im settings categorypoints");
+    }
+
+    public int getPointsForCategory(String category){
+        if(categoryPointsList != null){
+            for (CategoryPointsEntity c: categoryPointsList) {
+                if(c.getCategoryid() == category){
+                    return c.getPoints();
+                }
+            }
+        }
+        return 0;
     }
 
 }

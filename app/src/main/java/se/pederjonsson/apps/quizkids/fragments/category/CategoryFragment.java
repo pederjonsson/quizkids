@@ -68,8 +68,7 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
     @Override
     public void onResume() {
         super.onResume();
-        dbUtil.getProfileByName(getViewContext(), this, mGameControllerMenuPresenter.getPlayingProfile().getProfilename());
-
+        dbUtil.getAllCategoryPointsForUser(getViewContext(), this, mGameControllerMenuPresenter.getPlayingProfile().getProfilename());
     }
 
     private void setupAdapter(){
@@ -170,10 +169,12 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
     @Override
     public void onSuccess(@org.jetbrains.annotations.Nullable DataHolderForQuerys dh) {
         if(dh != null) {
-            if (dh.getRequestType() == DataHolderForQuerys.RequestType.GETPROFILEBYNAME) {
-                Log.i("ROOM", "got profile by name = " + dh.getProfile());
-                mGameControllerMenuPresenter.setPlayingProfile(dh.getProfile());
-                setupAdapter();
+            if(dh.getRequestType() == DataHolderForQuerys.RequestType.GETCATEGORYPOINTSFORUSER){
+                Log.i("ROOM","categorypoints for user " + dh.getCategoryPointsEntityList()+ " for " + dh.getProfileid());
+                if(mGameControllerMenuPresenter.getPlayingProfile() != null){
+                    mGameControllerMenuPresenter.getPlayingProfile().setCategoryPointsList(dh.getCategoryPointsEntityList());
+                    setupAdapter();
+                }
             }
         }
     }
