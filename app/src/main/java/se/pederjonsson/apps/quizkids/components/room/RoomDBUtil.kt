@@ -1,4 +1,4 @@
-package se.pederjonsson.apps.quizkids.db
+package se.pederjonsson.apps.quizkids.components.room
 
 import android.content.Context
 import se.pederjonsson.apps.quizkids.Objects.Question
@@ -11,6 +11,8 @@ import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity
 import se.pederjonsson.apps.quizkids.interfaces.QueryInterface
 
 class RoomDBUtil {
+
+    /********************************* QUESTIONS *********************************/
 
     fun generateQABuildingsRoom(context: Context, queryInterface: QueryInterface.View) {
         val quizDatabase = QuizDatabase.getInstance(context)
@@ -27,6 +29,15 @@ class RoomDBUtil {
         RoomQueryAsyncTasks.RoomQuery(dataHolder, quizDatabase, queryInterface).execute()
     }
 
+    fun getAllQuestions(context: Context, queryInterface: QueryInterface.View) {
+        val quizDatabase = QuizDatabase.getInstance(context)
+        var dataHolder = DataHolderForQuerys(DataHolderForQuerys.RequestType.GETALLQUESTIONS)
+        RoomQueryAsyncTasks.RoomQuery(dataHolder, quizDatabase, queryInterface).execute()
+    }
+
+
+    /********************************* PROFILE *********************************/
+
     fun saveProfile(context: Context, queryInterface: QueryInterface.View, profile:ProfileEntity) {
         val quizDatabase = QuizDatabase.getInstance(context)
 
@@ -37,9 +48,23 @@ class RoomDBUtil {
         RoomQueryAsyncTasks.RoomQuery(dataHolder, quizDatabase, queryInterface).execute()
     }
 
-    fun getAllQuestions(context: Context, queryInterface: QueryInterface.View) {
+    fun getAllProfiles(context: Context, queryInterface: QueryInterface.View) {
         val quizDatabase = QuizDatabase.getInstance(context)
-        var dataHolder = DataHolderForQuerys(DataHolderForQuerys.RequestType.GETALLQUESTIONS)
+
+        // fetch data and create note object
+
+        var dataHolder = DataHolderForQuerys(DataHolderForQuerys.RequestType.GETALLPROFILES)
+
         RoomQueryAsyncTasks.RoomQuery(dataHolder, quizDatabase, queryInterface).execute()
     }
+
+
+
+    /********************************* CATEGORIES *********************************/
+
+
+
+
+
+    /********************************* CATEGORYPOINTS *********************************/
 }

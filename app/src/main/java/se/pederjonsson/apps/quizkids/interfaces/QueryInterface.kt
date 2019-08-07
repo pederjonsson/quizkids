@@ -8,7 +8,7 @@ class QueryInterface {
     interface View {
         fun onStartTask(task: RoomQueryAsyncTasks.RoomQuery)
         fun onSuccess(dataHolder:DataHolderForQuerys?)
-        fun onFail()
+        fun onFail(dataHolder:DataHolderForQuerys?)
         fun onProgress(vararg values: Void?)
     }
 }

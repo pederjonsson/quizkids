@@ -11,7 +11,7 @@ import java.util.ArrayList
 class Profile(val name: String) : Serializable {
 
     private var clearedCategories: MutableList<Question.Category>? = null
-    var categorypoints = mutableMapOf<Question.Category,Int>()
+    var categorypoints = mutableMapOf<Question.Category, Int>()
     var age: Int? = null
     var totalPoints = 0
 
@@ -26,27 +26,25 @@ class Profile(val name: String) : Serializable {
         setPointsOnCategory(clearedCategory, QuestionGameController.MAX_QUESTIONS_IN_CATEGORY)
     }
 
-    fun setPointsOnCategory(category: Question.Category, points: Int){
-        categorypoints.get(category)?.let{
-            if(it < points){
+    fun setPointsOnCategory(category: Question.Category, points: Int) {
+        categorypoints.get(category)?.let {
+            if (it < points) {
                 categorypoints.put(category, points)
             }
-        }?:run{
+        } ?: run {
             categorypoints.put(category, points)
         }
         setTotalPoints()
     }
 
-    fun setTotalPoints(){
+    fun setTotalPoints() {
         totalPoints = 0
-        for (value:Int in categorypoints.values){
-            value?.let {
-                totalPoints += it
-            }
+        for (value: Int in categorypoints.values) {
+            totalPoints += value
         }
     }
 
-    fun getPointsByCategory(category: Question.Category) : Int? {
+    fun getPointsByCategory(category: Question.Category): Int? {
         return categorypoints.get(category)
     }
 

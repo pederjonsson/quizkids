@@ -15,7 +15,6 @@ import android.view.Gravity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -29,7 +28,7 @@ import se.pederjonsson.apps.quizkids.components.room.DataHolderForQuerys;
 import se.pederjonsson.apps.quizkids.components.room.RoomQueryAsyncTasks;
 import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity;
 import se.pederjonsson.apps.quizkids.db.Database;
-import se.pederjonsson.apps.quizkids.db.RoomDBUtil;
+import se.pederjonsson.apps.quizkids.components.room.RoomDBUtil;
 import se.pederjonsson.apps.quizkids.fragments.MenuFragment;
 import se.pederjonsson.apps.quizkids.fragments.category.CategoryFragment;
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
@@ -194,16 +193,23 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
     }
 
     @Override
-    public void onSuccess(DataHolderForQuerys dataHolderForQuerys) {
-        if(dataHolderForQuerys != null){
-        Log.i("ROOM", "ONSUCCESS FOR REQUEST " + dataHolderForQuerys.getRequestType().getRequestType());
-            if(dataHolderForQuerys.getRequestType() == DataHolderForQuerys.RequestType.INSERTQUESTIONS){
+    public void onSuccess(DataHolderForQuerys dh) {
+        if(dh != null){
+        Log.i("ROOM", "ONSUCCESS FOR REQUEST " + dh.getRequestType().getRequestType());
+            if(dh.getRequestType() == DataHolderForQuerys.RequestType.INSERTQUESTIONS){
                 dbUtil.getAllQuestions(this, this);
                 dbUtil.saveProfile(this, this, new ProfileEntity("testcreateuser"));
-            } else if(dataHolderForQuerys.getRequestType() == DataHolderForQuerys.RequestType.GETALLQUESTIONS){
-                Log.i("ROOM","questions fetched: " + dataHolderForQuerys.getQuestionEntityList().size());
-            } else if(dataHolderForQuerys.getRequestType() == DataHolderForQuerys.RequestType.SAVEPROFILE){
-                Log.i("ROOM","profilesaved for: " + dataHolderForQuerys.getProfile().getProfilename());
+            } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.GETALLQUESTIONS){
+                Log.i("ROOM","questions fetched: " + dh.getQuestionEntityList().size());
+            } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.SAVEPROFILE){
+                Log.i("ROOM","profilesaved for: " + dh.getProfile().getProfilename());
+                dbUtil.getAllProfiles(this, this);
+            } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.GETALLPROFILES){
+                Log.i("ROOM","all profiles = " + dh.getProfileEntityList());
+                if(dh.getProfileEntityList() != null && dh.getProfileEntityList().size() > 0){
+                    Log.i("ROOM","trying to save profile with same name as existing name = " + dh.getProfileEntityList().get(0).getProfilename());
+                    dbUtil.saveProfile(this, this, new ProfileEntity(dh.getProfileEntityList().get(0).getProfilename()));
+                }
             }
         } else {
             Log.i("ERROR", "No data returned frmo request");
@@ -211,7 +217,11 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
     }
 
     @Override
-    public void onFail() {
-        Log.i("ROOM", "ONFAIL");
+    public void onFail(DataHolderForQuerys dh) {
+        if(dh != null){
+            Log.i("ROOM", "ONFAIL FOR REQUEST " + dh.getRequestType() + " error " + dh.getErrorMsg());
+        } else {
+            Log.i("ROOM", "ONFAIL");
+        }
     }
 }

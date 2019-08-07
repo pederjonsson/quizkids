@@ -7,17 +7,20 @@ class DataHolderForQuerys {
 
     var requestType:RequestType ? = null
 
+    var errorMsg = ""
+    var profile : ProfileEntity? = null
+    var profileEntityList: MutableList<ProfileEntity>? = null
+
+    var questionEntityList: MutableList<QuestionEntity>? = null
+
     enum class RequestType private constructor(val requestType: String) {
-        INSERTQUESTIONS("insertquestions"), GETALLQUESTIONS("getallquestions"), SAVEPROFILE("SAVEPROFILE")
+        INSERTQUESTIONS("insertquestions"), GETALLQUESTIONS("getallquestions"),
+        SAVEPROFILE("SAVEPROFILE"), GETALLPROFILES("GETALLPROFILES")
     }
 
     constructor (requestType: RequestType){
         this.requestType = requestType
     }
-
-    var profile : ProfileEntity? = null
-    var profileEntityList: MutableList<ProfileEntity>? = null
-    var questionEntityList: MutableList<QuestionEntity>? = null
 
 }
 

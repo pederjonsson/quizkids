@@ -21,28 +21,55 @@ class RoomQueryAsyncTasks {
 
             dataholder?.let { dh ->
                 when (dh.requestType) {
+
                     DataHolderForQuerys.RequestType.INSERTQUESTIONS -> {
                         dh.questionEntityList?.let {
-                            quizDatabase.questionDao.insert(it)
-                            return true
+                            try {
+                                quizDatabase.questionDao.insert(it)
+                                return true
+                            } catch (e: Throwable) {
+                                e.message?.let { dh.errorMsg = it }
+                                return false
+                            }
                         } ?: run {
                             return false
                         }
                     }
+
                     DataHolderForQuerys.RequestType.GETALLQUESTIONS -> {
-                        dh.questionEntityList = quizDatabase.questionDao.all
-                        dh.questionEntityList?.let {
-                            return true
-                        } ?: run {
+                        try {
+                            dh.questionEntityList = quizDatabase.questionDao.all
+                            dh.questionEntityList?.let {
+                                return true
+                            } ?: run {
+                                return false
+                            }
+                        } catch (e: Exception) {
+                            e.message?.let { dh.errorMsg = it }
                             return false
                         }
                     }
+
                     DataHolderForQuerys.RequestType.SAVEPROFILE -> {
                         dh.profile?.let {
-                            quizDatabase.profileDao.insert(dh.profile)
-                            return true
+                            try {
+                                quizDatabase.profileDao.insert(dh.profile)
+                                return true
+                            } catch (e: Exception) {
+                                e.message?.let { dh.errorMsg = it }
+                                return false
+                            }
                         }
                         return false
+                    }
+                    DataHolderForQuerys.RequestType.GETALLPROFILES -> {
+                        try {
+                            dh.profileEntityList = quizDatabase.profileDao.all
+                            return true
+                        } catch (e: Exception) {
+                            e.message?.let { dh.errorMsg = it }
+                            return false
+                        }
                     }
                     else -> {
                         return false
@@ -56,7 +83,7 @@ class RoomQueryAsyncTasks {
             if (bool!!) {
                 queryInterface.onSuccess(dataholder)
             } else {
-                queryInterface.onFail()
+                queryInterface.onFail(dataholder)
             }
         }
 
