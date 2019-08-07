@@ -3,11 +3,7 @@ package se.pederjonsson.apps.quizkids.components.room
 import android.content.Context
 import se.pederjonsson.apps.quizkids.Objects.Question
 import se.pederjonsson.apps.quizkids.R
-import se.pederjonsson.apps.quizkids.components.room.DataHolderForQuerys
 import se.pederjonsson.apps.quizkids.components.room.question.QuestionEntity
-import se.pederjonsson.apps.quizkids.components.room.QuizDatabase
-import se.pederjonsson.apps.quizkids.components.room.RoomQueryAsyncTasks
-import se.pederjonsson.apps.quizkids.components.room.category.CategoryEntity
 import se.pederjonsson.apps.quizkids.components.room.categorypoints.CategoryPointsEntity
 import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity
 import se.pederjonsson.apps.quizkids.interfaces.QueryInterface
@@ -64,6 +60,13 @@ class RoomDBUtil {
 
         var dataHolder = DataHolderForQuerys(DataHolderForQuerys.RequestType.GETALLPROFILES)
 
+        RoomQueryAsyncTasks.RoomQuery(dataHolder, quizDatabase, queryInterface).execute()
+    }
+
+    fun getProfileByName(context: Context, queryInterface: QueryInterface.View, profileId:String) {
+        val quizDatabase = QuizDatabase.getInstance(context)
+        var dataHolder = DataHolderForQuerys(DataHolderForQuerys.RequestType.GETPROFILEBYNAME)
+        dataHolder.profileid = profileId
         RoomQueryAsyncTasks.RoomQuery(dataHolder, quizDatabase, queryInterface).execute()
     }
 

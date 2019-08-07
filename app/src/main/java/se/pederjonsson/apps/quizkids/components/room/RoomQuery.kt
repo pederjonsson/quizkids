@@ -85,6 +85,16 @@ class RoomQueryAsyncTasks {
                         }
                     }
 
+                    DataHolderForQuerys.RequestType.GETPROFILEBYNAME -> {
+                        try {
+                            dh.profile = quizDatabase.profileDao.getProfileByName(dh.profileid)
+                            return true
+                        } catch (e: Exception) {
+                            e.message?.let { dh.errorMsg = it }
+                            return false
+                        }
+                    }
+
                     DataHolderForQuerys.RequestType.INSERTCATEGORYPOINTS -> {
                         dh.categoryPointsEntity?.let {
                             try {

@@ -6,8 +6,10 @@ import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 import java.io.Serializable;
+import java.util.List;
 
 import se.pederjonsson.apps.quizkids.MainActivity;
+import se.pederjonsson.apps.quizkids.components.room.categorypoints.CategoryPointsEntity;
 
 @Entity(tableName = MainActivity.TABLE_NAME_PROFILE)
 public class ProfileEntity implements Serializable {
@@ -23,6 +25,8 @@ public class ProfileEntity implements Serializable {
     public String getProfilename() {
         return profilename;
     }
+
+    List<CategoryPointsEntity> categoryPointsList = null;
 
     public void setProfilename(String profilename) {
        // this.profilename = profilename;
@@ -50,6 +54,14 @@ public class ProfileEntity implements Serializable {
         return "ProfileEntity{" +
                 ", profilename='" + profilename + '\'' +
                 '}';
+    }
+
+    public List<CategoryPointsEntity> getCategoryPointsList() {
+        return categoryPointsList;
+    }
+
+    public void setCategoryPointsList(List<CategoryPointsEntity> categoryPointsList) {
+        this.categoryPointsList = categoryPointsList;
     }
 
 }

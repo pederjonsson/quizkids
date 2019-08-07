@@ -17,8 +17,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import se.pederjonsson.apps.quizkids.MenuGameController;
+import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity;
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
-import se.pederjonsson.apps.quizkids.Objects.Profile;
 import se.pederjonsson.apps.quizkids.R;
 
 /**
@@ -44,7 +44,7 @@ public class ProfileSettingView extends LinearLayout {
 
     private Context mContext;
     private Unbinder unbinder;
-    private List<Profile> profiles;
+    private List<ProfileEntity> profiles;
     private GameControllerContract.MenuPresenter gameControllerMenuPresenter;
     private boolean journeyChosen;
 
@@ -76,6 +76,7 @@ public class ProfileSettingView extends LinearLayout {
 
     private void loadProfilesList(){
         profiles = gameControllerMenuPresenter.getProfiles();
+
     }
 
     public void startJourneyBtnClicked() {
@@ -128,20 +129,20 @@ public class ProfileSettingView extends LinearLayout {
             cleanChoosePlayerContainer();
         } else {
             LayoutInflater factory = LayoutInflater.from(mContext);
-            for (Profile profile : profiles) {
-                if (profile != null && profile.getName() != null) {
+            for (ProfileEntity profile : profiles) {
+                if (profile != null && profile.getProfilename() != null) {
                     View view = factory.inflate(R.layout.playerlistitem, choosePlayerContainer, false);
                     Button mBtn = ((Button) view.findViewById(R.id.btnplayername));
                     String name = "";
 
-                    name = profile.getName();
+                    name = profile.getProfilename();
 
                     mBtn.setText(mContext.getString(R.string.playas) + " " + name + " >");
                     mBtn.setTag(profile);
                     mBtn.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Profile p = (Profile) v.getTag();
+                            ProfileEntity p = (ProfileEntity) v.getTag();
                             if(journeyChosen){
                                 gameControllerMenuPresenter.startGame(MenuGameController.GAMETYPE_JOURNEY, p);
                             } else {
@@ -158,12 +159,12 @@ public class ProfileSettingView extends LinearLayout {
 
             Button mBtn = view.findViewById(R.id.btnplayername);
             mBtn.setText(mContext.getString(R.string.create_new_player) + " >");
-            mBtn.setTag(new Profile("newplayer"));
+            mBtn.setTag(new ProfileEntity("newplayer"));
             mBtn.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Profile p = (Profile) v.getTag();
-                    if (p.getName().equals("newplayer")) {
+                    ProfileEntity p = (ProfileEntity) v.getTag();
+                    if (p.getProfilename().equals("newplayer")) {
                         //show enter name view
                         cleanChoosePlayerContainer();
                         showEnterName();
@@ -201,7 +202,7 @@ public class ProfileSettingView extends LinearLayout {
             } else {
                 String nameEntered = editTextName.getText().toString();
                 //checkPlayerNameAvailable();
-                Profile newPlayer = new Profile(nameEntered);
+                ProfileEntity newPlayer = new ProfileEntity(nameEntered);
                 gameControllerMenuPresenter.saveProfile(newPlayer);
                 loadProfilesList();
                 if(journeyChosen){

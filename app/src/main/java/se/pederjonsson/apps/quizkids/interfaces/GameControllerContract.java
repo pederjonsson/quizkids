@@ -9,6 +9,7 @@ import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
 import se.pederjonsson.apps.quizkids.Objects.Profile;
 import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
+import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity;
 
 /**
  * Created by Gaming on 2018-04-01.
@@ -17,7 +18,7 @@ import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
 public interface GameControllerContract {
 
 
-    interface MainActivityView {
+    interface MainActivityView extends QueryInterface.View {
         Context getViewContext();
 
         void showCategories();
@@ -40,19 +41,19 @@ public interface GameControllerContract {
 
     interface MenuPresenter {
 
-        void saveProfile(Profile profile);
+        void saveProfile(ProfileEntity profileEntity);
 
-        void startGame(int gametype, Profile profile);
+        void startGame(int gametype, ProfileEntity profileEntity);
 
-        List<Profile> getProfiles();
+        List<ProfileEntity> getProfiles();
+
+        void setProfiles(List<ProfileEntity> profiles);
 
         boolean playerNameIsAvailable();
 
-        Profile getPlayingProfile();
+        ProfileEntity getPlayingProfile();
 
-        void setPlayingProfile(Profile profile);
-
-        void loadPlayingProfile(String name);
+        void setPlayingProfile(ProfileEntity profileEntity);
 
         void hideMainNavbar();
     }

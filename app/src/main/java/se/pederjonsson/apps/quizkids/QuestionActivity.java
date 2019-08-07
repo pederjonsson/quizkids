@@ -10,6 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.transition.Slide;
 import android.view.Gravity;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -18,6 +21,8 @@ import se.pederjonsson.apps.quizkids.Objects.Profile;
 import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
 import se.pederjonsson.apps.quizkids.components.NavbarView;
 import se.pederjonsson.apps.quizkids.components.ResultView;
+import se.pederjonsson.apps.quizkids.components.room.DataHolderForQuerys;
+import se.pederjonsson.apps.quizkids.components.room.RoomQueryAsyncTasks;
 import se.pederjonsson.apps.quizkids.db.Database;
 import se.pederjonsson.apps.quizkids.fragments.Question.QuestionFragment;
 import se.pederjonsson.apps.quizkids.fragments.Question.QuestionGameController;
@@ -186,5 +191,25 @@ public class QuestionActivity extends AppCompatActivity implements GameControlle
     @Override
     public void showHighscoreList() {
 
+    }
+
+    @Override
+    public void onStartTask(@NotNull RoomQueryAsyncTasks.RoomQuery task) {
+
+    }
+
+    @Override
+    public void onProgress(@Nullable Void... values) {
+
+    }
+
+    @Override
+    public void onSuccess(@Nullable DataHolderForQuerys dataHolder) {
+
+    }
+
+    @Override
+    public void onFail(@Nullable DataHolderForQuerys dataHolder) {
+        
     }
 }

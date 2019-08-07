@@ -69,7 +69,7 @@ public class ResultView extends RelativeLayout implements LifecycleInterface {
 
     public void setUp(CategoryItem categoryItem, Profile profile, GameControllerContract.QuestionActivityView _questionActivityView) {
         questionActivityView = _questionActivityView;
-        categoryItemView.setUp(categoryItem, profile);
+       // categoryItemView.setUp(categoryItem, profile);
         categoryItemView.showTitle();
         showTitle(mContext.getString(R.string.congratulations) + " " + profile.getName() + "!");
         subtitle.setText(mContext.getString(R.string.youclearedcategory));
@@ -81,7 +81,7 @@ public class ResultView extends RelativeLayout implements LifecycleInterface {
 
     public void setUpNotAllCorrect(CategoryItem categoryItem, Profile profile, GameControllerContract.QuestionActivityView _questionActivityView, int amountCorrect) {
         questionActivityView = _questionActivityView;
-        categoryItemView.setUp(categoryItem, profile);
+      //  categoryItemView.setUp(categoryItem, profile);
         categoryItemView.showTitle();
         String title = mContext.getString(R.string.nice_work) + " " + profile.getName();
         showTitle(title + "!");

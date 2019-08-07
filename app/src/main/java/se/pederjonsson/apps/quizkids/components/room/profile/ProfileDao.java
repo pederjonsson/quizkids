@@ -19,6 +19,9 @@ public interface ProfileDao {
     @Query("SELECT * FROM "+ MainActivity.TABLE_NAME_PROFILE)
     List<ProfileEntity> getAll();
 
+    @Query("SELECT * FROM "+ MainActivity.TABLE_NAME_PROFILE + " WHERE profilename = :profileid")
+    ProfileEntity getProfileByName(String profileid);
+
     /*
      * Insert the object in database
      * @param note, object to be inserted

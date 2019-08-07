@@ -33,9 +33,8 @@ import se.pederjonsson.apps.quizkids.components.room.RoomDBUtil;
 import se.pederjonsson.apps.quizkids.fragments.MenuFragment;
 import se.pederjonsson.apps.quizkids.fragments.category.CategoryFragment;
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
-import se.pederjonsson.apps.quizkids.interfaces.QueryInterface;
 
-public class MainActivity extends AppCompatActivity implements GameControllerContract.MainActivityView, QueryInterface.View {
+public class MainActivity extends AppCompatActivity implements GameControllerContract.MainActivityView {
 
 
     public static final String TABLE_NAME_QUESTION = "QUESTIONS";
@@ -43,10 +42,11 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
     public static final String TABLE_NAME_CATEGORY = "CATEGORIES";
     public static final String TABLE_NAME_CATEGORYPOINTS = "CATEGORYPOINTS";
     public static final String DB_NAME = "QUIZ_DB";
+
     private static int SLIDE_TIME = 300;
     private Unbinder unbinder;
     private GameControllerContract.MenuPresenter gameControllerMenuPresenter;
-    Database db;
+  //  Database db;
     MediaPlayer mMediaPlayer;
 
     @BindView(R.id.navbar)
@@ -63,13 +63,13 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         unbinder = ButterKnife.bind(this);
-        db = Database.getInstance(this);
-        gameControllerMenuPresenter = new MenuGameController(this, db, navbarView);
+
+        gameControllerMenuPresenter = new MenuGameController(this, navbarView);
         mFragmentManager = getSupportFragmentManager();
         slide.setDuration(SLIDE_TIME);
         slideout.setDuration(SLIDE_TIME);
         showMenu();
-       // db.populate(this);
+
         dbUtil = new RoomDBUtil();
         dbUtil.generateQABuildingsRoom(this, this);
     }
@@ -209,6 +209,7 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
                 dbUtil.getAllProfiles(this, this);
             } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.GETALLPROFILES){
                 Log.i("ROOM","all profiles = " + dh.getProfileEntityList());
+                gameControllerMenuPresenter.setProfiles(dh.getProfileEntityList());
             } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.GETQUESTIONSBYCATEGORY){
                 Log.i("ROOM","questions by category " + dh.getCategory() + " fetched: " + dh.getQuestionEntityList().size());
             } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.INSERTCATEGORYPOINTS){
@@ -216,6 +217,9 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
                 dbUtil.getAllCategoryPointsForUser(this, this, "testcreateuser");
             } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.GETCATEGORYPOINTSFORUSER){
                 Log.i("ROOM","categorypoints for user " + dh.getCategoryPointsEntityList()+ " for " + dh.getProfileid());
+                if(gameControllerMenuPresenter.getPlayingProfile() != null){
+                    gameControllerMenuPresenter.getPlayingProfile().setCategoryPointsList(dh.getCategoryPointsEntityList());
+                }
             }
         } else {
             Log.i("ERROR", "No data returned frmo request");

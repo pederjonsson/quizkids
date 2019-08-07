@@ -11,15 +11,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import se.pederjonsson.apps.quizkids.components.room.DataHolderForQuerys;
+import se.pederjonsson.apps.quizkids.components.room.RoomDBUtil;
+import se.pederjonsson.apps.quizkids.components.room.RoomQueryAsyncTasks;
+import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity;
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
 import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
-import se.pederjonsson.apps.quizkids.Objects.Profile;
 import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.QuestionActivity;
 import se.pederjonsson.apps.quizkids.R;
@@ -47,6 +52,8 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
     private CategoryAdapter mAdapter;
     List<CategoryItem> categories;
 
+    RoomDBUtil dbUtil;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -54,20 +61,25 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
         unbinder = ButterKnife.bind(this, view);
         navbarView.showTitle(getString(R.string.categories));
         navbarView.show(true);
+        dbUtil = new RoomDBUtil();
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mGameControllerMenuPresenter.loadPlayingProfile(mGameControllerMenuPresenter.getPlayingProfile().getName());
+        dbUtil.getProfileByName(getViewContext(), this, mGameControllerMenuPresenter.getPlayingProfile().getProfilename());
+
+    }
+
+    private void setupAdapter(){
         mAdapter = new CategoryAdapter(null, this);
         gridView.setAdapter(mAdapter);
         getCategoryData();
     }
 
     @Override
-    public Profile getCurrentProfile() {
+    public ProfileEntity getCurrentProfile() {
         return mGameControllerMenuPresenter.getPlayingProfile();
     }
 
@@ -99,6 +111,10 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
     public void onPause() {
         super.onPause();
         releaseMediaPlayer();
+        if(task != null && !task.isCancelled()){
+            task.cancel(true);
+            task = null;
+        }
     }
 
     @Override
@@ -131,4 +147,34 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
         }
     }
 
+    RoomQueryAsyncTasks.RoomQuery task;
+    @Override
+    public void onStartTask(@NotNull RoomQueryAsyncTasks.RoomQuery _task) {
+        task = _task;
+    }
+
+    @Override
+    public void onProgress(@org.jetbrains.annotations.Nullable Void... values) {
+
+    }
+
+    @Override
+    public void onFail(@org.jetbrains.annotations.Nullable DataHolderForQuerys dh) {
+        if(dh != null){
+            Log.i("ROOM", "ONFAIL FOR REQUEST " + dh.getRequestType() + " error " + dh.getErrorMsg());
+        } else {
+            Log.i("ROOM", "ONFAIL");
+        }
+    }
+
+    @Override
+    public void onSuccess(@org.jetbrains.annotations.Nullable DataHolderForQuerys dh) {
+        if(dh != null) {
+            if (dh.getRequestType() == DataHolderForQuerys.RequestType.GETPROFILEBYNAME) {
+                Log.i("ROOM", "got profile by name = " + dh.getProfile());
+                mGameControllerMenuPresenter.setPlayingProfile(dh.getProfile());
+                setupAdapter();
+            }
+        }
+    }
 }
