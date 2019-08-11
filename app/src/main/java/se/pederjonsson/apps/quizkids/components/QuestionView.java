@@ -9,17 +9,15 @@ import com.makeramen.roundedimageview.RoundedImageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import se.pederjonsson.apps.quizkids.R;
 import se.pederjonsson.apps.quizkids.components.room.question.QuestionEntity;
 import se.pederjonsson.apps.quizkids.fragments.Question.QuestionAnswerContract;
-import se.pederjonsson.apps.quizkids.interfaces.LifecycleInterface;
 
 /**
  * Created by Gaming on 2018-04-01.
  */
 
-public class QuestionView extends LinearLayout implements LifecycleInterface {
+public class QuestionView extends LinearLayout {
 
     @BindView(R.id.imageView1)
     RoundedImageView imageView;
@@ -32,7 +30,6 @@ public class QuestionView extends LinearLayout implements LifecycleInterface {
 
     private QuestionEntity question;
     private Context mContext;
-    private Unbinder unbinder;
     private QuestionAnswerContract.MainView mainView;
 
     public QuestionView(Context context, AttributeSet attrs) {
@@ -52,7 +49,7 @@ public class QuestionView extends LinearLayout implements LifecycleInterface {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        unbinder = ButterKnife.bind(this);
+        ButterKnife.bind(this);
     }
 
     public void setUp(QuestionEntity _question, QuestionAnswerContract.MainView _mainView) {
@@ -63,15 +60,5 @@ public class QuestionView extends LinearLayout implements LifecycleInterface {
             imageView.setImageDrawable(getResources().getDrawable(question.getDrawableid()));
         }
         textToSpeechBtn.setUp(question.getQuestiontext(), mainView);
-    }
-
-    @Override
-    public void onPause() {
-        textToSpeechBtn.onPause();
-    }
-
-    @Override
-    public void onResume() {
-        textToSpeechBtn.onResume();
     }
 }

@@ -105,8 +105,12 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
 
     @Override
     public void addPointsOnCategory(Question.Category category, Integer points) {
-        //playingProfile.setPointsOnCategory(category, points);
-        dbUtil.insertCategoryPoints(questionActivityView.getViewContext(),questionActivityView, new CategoryPointsEntity(category.getCategory(), playingProfile.getProfilename(), points));
+        if(playingProfile.getPointsForCategory(category.getCategory()) < points ){
+            Log.i("ROOM", "addPointsOnCategory from qcontroller " + points + " for " + category);
+            dbUtil.insertCategoryPoints(questionActivityView.getViewContext(),questionActivityView, new CategoryPointsEntity(category.getCategory(), playingProfile.getProfilename(), points));
+        } else {
+            Log.i("ROOM", "no new record with " + points + " for " + category);
+        }
     }
 
     @Override

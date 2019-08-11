@@ -10,11 +10,10 @@ import java.util.Collections
 import se.pederjonsson.apps.quizkids.Objects.Answer
 import se.pederjonsson.apps.quizkids.R
 import se.pederjonsson.apps.quizkids.fragments.Question.QuestionAnswerContract
-import se.pederjonsson.apps.quizkids.interfaces.LifecycleInterface
 import kotlinx.android.synthetic.main.triplebtnanswers.view.*
 import se.pederjonsson.apps.quizkids.components.room.question.QuestionEntity
 
-class TripleButtonAnswers(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs), LifecycleInterface {
+class TripleButtonAnswers(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
 
     private var mAnswers: List<Answer> = listOf()
     var mAnswerBtns: List<ButtonAnswer> = listOf()
@@ -44,13 +43,5 @@ class TripleButtonAnswers(context: Context, attrs: AttributeSet) : LinearLayout(
 
     fun inactivateButtons() {
         mAnswerBtns.forEach { ans -> ans.inactivate() }
-    }
-
-    override fun onPause() {
-        mAnswerBtns.forEach { ans -> ans.onPause() }
-    }
-
-    override fun onResume() {
-        mAnswerBtns.forEach { ans -> ans.onResume() }
     }
 }

@@ -3,6 +3,7 @@ package se.pederjonsson.apps.quizkids;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -13,6 +14,8 @@ import android.view.Gravity;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,6 +54,7 @@ public class QuestionActivity extends AppCompatActivity implements GameControlle
     Slide slide = new Slide(Gravity.RIGHT);
     Slide slideout = new Slide(Gravity.LEFT);
     RoomDBUtil roomDBUtil;
+    TextToSpeech textToSpeech;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,11 +178,6 @@ public class QuestionActivity extends AppCompatActivity implements GameControlle
     }
 
     @Override
-    public void speekText(String speechString) {
-
-    }
-
-    @Override
     public void showHighscoreList() {
 
     }
@@ -198,11 +197,71 @@ public class QuestionActivity extends AppCompatActivity implements GameControlle
         if(dh.getRequestType() == DataHolderForQuerys.RequestType.GETQUESTIONSBYCATEGORY){
             Log.i("ROOM","questions by category " + dh.getCategory() + " fetched: " + dh.getQuestionEntityList().size());
             gameControllerPresenter.questionsLoadedByCategory(categoryItem, dh.getQuestionEntityList());
+        } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.INSERTCATEGORYPOINTS){
+            Log.i("ROOM","inserted categorypoints " + dh.getCategoryPointsEntity().getPoints() + " for " + dh.getCategoryPointsEntity().getCategoryid() + " name: " + dh.getCategoryPointsEntity().getProfileid());
+            //dbUtil.getAllCategoryPointsForUser(this, this, "testcreateuser");
+           // gameControllerPresenter.getPlayingProfile().
+            roomDBUtil.getAllCategoryPointsForUser(this, this, gameControllerPresenter.getPlayingProfile().getProfilename());
+        } else  if(dh.getRequestType() == DataHolderForQuerys.RequestType.GETCATEGORYPOINTSFORUSER){
+            Log.i("ROOM","categorypoints for user " + dh.getCategoryPointsEntityList()+ " for " + dh.getProfileid());
+            if(gameControllerPresenter.getPlayingProfile() != null){
+                gameControllerPresenter.getPlayingProfile().setCategoryPointsList(dh.getCategoryPointsEntityList());
+            }
         }
     }
 
     @Override
     public void onFail(@Nullable DataHolderForQuerys dataHolder) {
         
+    }
+
+    @Override
+    public void speekText(String speechString) {
+
+        if(textToSpeech != null){
+            int speechStatus = textToSpeech.speak(speechString, TextToSpeech.QUEUE_FLUSH, null, null);
+            if (speechStatus == TextToSpeech.ERROR) {
+                Log.i("TTS", "Error in converting Text to Speech!");
+            } else {
+                Log.i("TTS", "should speak now");
+            }
+        }
+    }
+
+    private void setupTextToSpeech(){
+
+        textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+                if (i == TextToSpeech.SUCCESS) {
+                    int result = textToSpeech.setLanguage(Locale.getDefault());
+                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Log.i("TTS", "The Language is not supported!");
+                    } else {
+                        Log.i("TTS", "Language Supported");
+                    }
+                    Log.i("TTS", "Initialization success.");
+                }
+            }
+        });
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (textToSpeech != null) {
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+            textToSpeech = null;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (textToSpeech == null) {
+            setupTextToSpeech();
+        }
     }
 }

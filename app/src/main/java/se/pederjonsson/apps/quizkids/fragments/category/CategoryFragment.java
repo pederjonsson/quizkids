@@ -174,6 +174,8 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
                 if(mGameControllerMenuPresenter.getPlayingProfile() != null){
                     mGameControllerMenuPresenter.getPlayingProfile().setCategoryPointsList(dh.getCategoryPointsEntityList());
                     setupAdapter();
+                } else {
+                    Log.i("ROOM","profile was null");
                 }
             }
         }

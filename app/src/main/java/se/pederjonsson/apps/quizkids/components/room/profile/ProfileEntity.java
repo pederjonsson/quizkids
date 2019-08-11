@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import se.pederjonsson.apps.quizkids.MainActivity;
@@ -32,7 +33,7 @@ public class ProfileEntity implements Serializable {
     List<CategoryPointsEntity> categoryPointsList = null;
 
     public void setProfilename(String profilename) {
-       // this.profilename = profilename;
+        // this.profilename = profilename;
     }
 
     @Override
@@ -65,16 +66,20 @@ public class ProfileEntity implements Serializable {
 
     public void setCategoryPointsList(List<CategoryPointsEntity> categoryPointsList) {
         this.categoryPointsList = categoryPointsList;
-        Log.i("categorypoints", "now im settings categorypoints");
+        Log.i("ROOM", "now im settings categorypoints on profileentity " + categoryPointsList);
     }
 
-    public int getPointsForCategory(String category){
-        if(categoryPointsList != null){
-            for (CategoryPointsEntity c: categoryPointsList) {
-                if(c.getCategoryid() == category){
+    public int getPointsForCategory(String category) {
+        if (categoryPointsList != null) {
+            for (CategoryPointsEntity c : categoryPointsList) {
+                if (c.getCategoryid().equals(category)) {
                     return c.getPoints();
+                } else {
+                    Log.i("tempcheck", c.getCategoryid() + " was not same as " + category);
                 }
             }
+        } else {
+            Log.i("ROOM", "categorypointslist null in profileentity");
         }
         return 0;
     }
