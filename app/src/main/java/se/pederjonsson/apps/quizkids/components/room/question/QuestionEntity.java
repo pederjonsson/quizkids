@@ -82,8 +82,12 @@ public class QuestionEntity implements Serializable {
     public String toString() {
         return "QuestionEntity{" +
                 "qid=" + qid +
-                ", questiontext='" + questiontext + '\'' +
-                ", drawable_resid='" + drawableid + '\'' +
+                ", questiontext ='" + questiontext + '\'' +
+                ", trueanswer ='" + trueanswer + '\'' +
+                ", answer2 ='" + answer2 + '\'' +
+                ", answer3 ='" + answer3 + '\'' +
+                ", category ='" + category + '\'' +
+                ", drawable_resid ='" + drawableid + '\'' +
                 '}';
     }
 

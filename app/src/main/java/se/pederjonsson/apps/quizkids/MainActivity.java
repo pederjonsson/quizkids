@@ -71,7 +71,8 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
         showMenu();
 
         dbUtil = new RoomDBUtil();
-        dbUtil.generateQABuildingsRoom(this, this);
+        //dbUtil.generateQABuildingsRoom(this, this);
+        dbUtil.populateDbWithQuestions(this, this, dbUtil.generateQABuildings(this));
     }
 
     private void playSound(int resId) {
@@ -200,6 +201,7 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
             if(dh.getRequestType() == DataHolderForQuerys.RequestType.INSERTQUESTIONS){
                 //dbUtil.getAllQuestions(this, this);
                 //dbUtil.saveProfile(this, this, new ProfileEntity("testcreateuser"));
+                Log.i("ROOM","questions inserted: " + dh.getQuestionEntityList().get(0));
             } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.GETALLQUESTIONS){
                 Log.i("ROOM","questions fetched: " + dh.getQuestionEntityList().size());
                 //dbUtil.getQuestionsByCategory(this, this, Question.Category.BUILDINGS.getCategory());

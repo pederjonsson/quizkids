@@ -35,6 +35,14 @@
     <string name="quickplay">blandade frågor</string>
 
 
+    <string-array
+        name="q_buildings_paris_strings">
+        <item>Vad heter tornet i paris?</item>
+        <item>Eiffel tornet</item>
+        <item>Big Ben</item>
+        <item>lutande tornet</item>
+    </string-array>
+
     <string name="q_buildings_paris">Vad heter tornet i paris?</string>
     <string name="q_buildings_mounteverest">Vad heter världens högsta berg?</string>
     <string name="q_buildings_burjikhalifa">I vilken stad ligger världens högsta byggnad, Burji khalifa</string>
