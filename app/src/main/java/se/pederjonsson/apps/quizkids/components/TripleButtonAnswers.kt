@@ -12,6 +12,7 @@ import se.pederjonsson.apps.quizkids.R
 import se.pederjonsson.apps.quizkids.fragments.Question.QuestionAnswerContract
 import se.pederjonsson.apps.quizkids.interfaces.LifecycleInterface
 import kotlinx.android.synthetic.main.triplebtnanswers.view.*
+import se.pederjonsson.apps.quizkids.components.room.question.QuestionEntity
 
 class TripleButtonAnswers(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs), LifecycleInterface {
 
@@ -25,8 +26,10 @@ class TripleButtonAnswers(context: Context, attrs: AttributeSet) : LinearLayout(
         mAnswerBtns = listOf(btnanswer1, btnanswer2, btnanswer3)
     }
 
-    fun setUp(answers: List<Answer>, _mainView: QuestionAnswerContract.MainView) {
-        val answersCopy = answers.toMutableList()
+    fun setUp(questionEntity: QuestionEntity, _mainView: QuestionAnswerContract.MainView) {
+        val answersCopy = listOf<Answer>(Answer(questionEntity.trueanswer, true),
+                Answer(questionEntity.answer2, false),
+                Answer(questionEntity.answer3, false))
         Collections.shuffle(answersCopy)
         mAnswers = answersCopy
         mainView = _mainView

@@ -26,9 +26,6 @@ import se.pederjonsson.apps.quizkids.components.NavbarView;
 
 import se.pederjonsson.apps.quizkids.components.room.DataHolderForQuerys;
 import se.pederjonsson.apps.quizkids.components.room.RoomQueryAsyncTasks;
-import se.pederjonsson.apps.quizkids.components.room.categorypoints.CategoryPointsEntity;
-import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity;
-import se.pederjonsson.apps.quizkids.db.Database;
 import se.pederjonsson.apps.quizkids.components.room.RoomDBUtil;
 import se.pederjonsson.apps.quizkids.fragments.MenuFragment;
 import se.pederjonsson.apps.quizkids.fragments.category.CategoryFragment;

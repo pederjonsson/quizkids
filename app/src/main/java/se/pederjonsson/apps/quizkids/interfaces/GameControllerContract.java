@@ -4,12 +4,10 @@ import android.content.Context;
 
 import java.util.List;
 
-import se.pederjonsson.apps.quizkids.Objects.Answer;
 import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
-import se.pederjonsson.apps.quizkids.Objects.Profile;
 import se.pederjonsson.apps.quizkids.Objects.Question;
-import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
 import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity;
+import se.pederjonsson.apps.quizkids.components.room.question.QuestionEntity;
 
 /**
  * Created by Gaming on 2018-04-01.
@@ -32,9 +30,9 @@ public interface GameControllerContract {
 
     interface QuestionActivityView extends MainActivityView {
 
-        void showQuestionFragment(QuestionAnswers questionAnswers, boolean addToBackstack);
+        void showQuestionFragment(QuestionEntity questionEntity, boolean addToBackstack);
 
-        void showResultView(CategoryItem categoryItem, Profile profile, int amountCorrect, Boolean allCorrect);
+        void showResultView(CategoryItem categoryItem, ProfileEntity profileEntity, int amountCorrect, Boolean allCorrect);
 
         void speekText(String speechString);
     }
@@ -62,27 +60,19 @@ public interface GameControllerContract {
 
         void nextQuestion();
 
-        void saveProfile(Profile profile);
-
-        List<Profile> getProfiles();
-
-        void loadQuestionsByCategory(CategoryItem category);
-
-        boolean playerNameIsAvailable();
-
-        void addClearedCategory(Question.Category clearedCategory);
+        void questionsLoadedByCategory(CategoryItem category, List<QuestionEntity> questions);
 
         void addPointsOnCategory(Question.Category clearedCategory, Integer points);
 
         void answered(Boolean val);
 
-        Profile getPlayingProfile();
+        ProfileEntity getPlayingProfile();
 
-        void setPlayingProfile(Profile profile);
+        void setPlayingProfile(ProfileEntity profileEntity);
 
         void hideMainNavbar();
 
-        void startGame(int gametype, Profile profile);
+        void startGame(int gametype, ProfileEntity profileEntity);
 
     }
 

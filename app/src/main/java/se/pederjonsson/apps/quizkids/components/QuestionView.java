@@ -1,24 +1,17 @@
 package se.pederjonsson.apps.quizkids.components;
 
 import android.content.Context;
-import android.speech.tts.TextToSpeech;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.makeramen.roundedimageview.RoundedImageView;
-
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.R;
+import se.pederjonsson.apps.quizkids.components.room.question.QuestionEntity;
 import se.pederjonsson.apps.quizkids.fragments.Question.QuestionAnswerContract;
 import se.pederjonsson.apps.quizkids.interfaces.LifecycleInterface;
 
@@ -37,7 +30,7 @@ public class QuestionView extends LinearLayout implements LifecycleInterface {
     @BindView(R.id.texttospeechbtn)
     TextToSpeechBtnView textToSpeechBtn;
 
-    private Question question;
+    private QuestionEntity question;
     private Context mContext;
     private Unbinder unbinder;
     private QuestionAnswerContract.MainView mainView;
@@ -62,14 +55,14 @@ public class QuestionView extends LinearLayout implements LifecycleInterface {
         unbinder = ButterKnife.bind(this);
     }
 
-    public void setUp(Question _question, QuestionAnswerContract.MainView _mainView) {
+    public void setUp(QuestionEntity _question, QuestionAnswerContract.MainView _mainView) {
         question = _question;
         mainView = _mainView;
-        textQuestion.setText(mContext.getText(question.getQuestionResId()));
-        if (question.getDrawableResID() > 0) {
-            imageView.setImageDrawable(getResources().getDrawable(question.getDrawableResID()));
+        textQuestion.setText(question.getQuestiontext());
+        if (question.getDrawableid() > 0) {
+            imageView.setImageDrawable(getResources().getDrawable(question.getDrawableid()));
         }
-        textToSpeechBtn.setUp(mContext.getText(question.getQuestionResId()).toString(), mainView);
+        textToSpeechBtn.setUp(question.getQuestiontext(), mainView);
     }
 
     @Override

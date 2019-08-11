@@ -10,21 +10,8 @@ import java.util.ArrayList
 
 class Profile(val name: String) : Serializable {
 
-    private var clearedCategories: MutableList<Question.Category>? = null
     var categorypoints = mutableMapOf<Question.Category, Int>()
-    var age: Int? = null
     var totalPoints = 0
-
-    fun getClearedCategories(): List<Question.Category>? {
-        return clearedCategories
-    }
-
-    fun addClearedCategory(clearedCategory: Question.Category) {
-        if (clearedCategories == null)
-            clearedCategories = ArrayList<Question.Category>()
-        clearedCategories?.add(clearedCategory)
-        setPointsOnCategory(clearedCategory, QuestionGameController.MAX_QUESTIONS_IN_CATEGORY)
-    }
 
     fun setPointsOnCategory(category: Question.Category, points: Int) {
         categorypoints.get(category)?.let {
