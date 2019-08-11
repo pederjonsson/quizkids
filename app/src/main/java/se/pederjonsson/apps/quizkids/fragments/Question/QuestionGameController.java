@@ -1,6 +1,5 @@
 package se.pederjonsson.apps.quizkids.fragments.Question;
 
-import android.arch.persistence.room.RoomDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -14,11 +13,8 @@ import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity;
 import se.pederjonsson.apps.quizkids.components.room.question.QuestionEntity;
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
 import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
-import se.pederjonsson.apps.quizkids.Objects.Profile;
 import se.pederjonsson.apps.quizkids.Objects.Question;
-import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
 import se.pederjonsson.apps.quizkids.components.NavbarView;
-import se.pederjonsson.apps.quizkids.db.Database;
 
 public class QuestionGameController implements GameControllerContract.QuestionPresenter {
 

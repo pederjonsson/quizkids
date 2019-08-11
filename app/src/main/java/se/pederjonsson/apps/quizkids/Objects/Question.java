@@ -1,12 +1,9 @@
 package se.pederjonsson.apps.quizkids.Objects;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 
 import java.io.Serializable;
 import java.util.logging.Logger;
-
-import se.pederjonsson.apps.quizkids.R;
 
 /**
  * Created by Gaming on 2018-04-01.
@@ -14,9 +11,6 @@ import se.pederjonsson.apps.quizkids.R;
 
 public class Question implements Serializable {
 
-    public int getQuestionResId() {
-        return questionResId;
-    }
     private int drawableResID = -1;
     private int questionResId;
     private DifficultyLevel difficultyLevel;
