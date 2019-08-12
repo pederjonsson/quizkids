@@ -31,7 +31,7 @@
 
         </RelativeLayout>
 
-        <se.pederjonsson.apps.quizkids.components.TextToSpeechBtnViewSmall
+        <se.pederjonsson.apps.quizkids.viewcomponents.TextToSpeechBtnViewSmall
             android:id="@+id/texttospeechbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

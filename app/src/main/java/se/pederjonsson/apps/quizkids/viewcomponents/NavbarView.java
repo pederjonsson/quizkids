@@ -1,9 +1,7 @@
-package se.pederjonsson.apps.quizkids.components;
+package se.pederjonsson.apps.quizkids.viewcomponents;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,10 +13,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
-import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
-import se.pederjonsson.apps.quizkids.Objects.Profile;
-import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.R;
 
 /**
@@ -39,10 +33,7 @@ public class NavbarView extends RelativeLayout {
     @BindViews({R.id.dot1, R.id.dot2, R.id.dot3, R.id.dot4, R.id.dot5, R.id.dot6, R.id.dot7, R.id.dot8, R.id.dot9, R.id.dot10})
     List<RoundedImageView> dots;
 
-    private CategoryItem categoryItem;
     private Context mContext;
-    private Unbinder unbinder;
-    private Profile playingProfile;
     private boolean scoreVisible;
 
 
@@ -63,7 +54,7 @@ public class NavbarView extends RelativeLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        unbinder = ButterKnife.bind(this);
+        ButterKnife.bind(this);
     }
 
     public void setUp() {

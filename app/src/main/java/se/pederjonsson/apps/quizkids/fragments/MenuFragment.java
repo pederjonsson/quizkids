@@ -13,7 +13,7 @@ import butterknife.Unbinder;
 
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
 import se.pederjonsson.apps.quizkids.R;
-import se.pederjonsson.apps.quizkids.components.ProfileSettingView;
+import se.pederjonsson.apps.quizkids.viewcomponents.ProfileSettingView;
 
 public class MenuFragment extends android.support.v4.app.Fragment {
 
@@ -44,11 +44,6 @@ public class MenuFragment extends android.support.v4.app.Fragment {
         View view = inflater.inflate(R.layout.menufragment, container, false);
         unbinder = ButterKnife.bind(this, view);
 
-        /* btnStart.setOnClickListener(v -> { mainActivityView.startQuickQuiz();});
-        btnJourney.setOnClickListener(v -> {
-            //mainActivityView.startQuizJourney(Question.Category.GEOGRAPHY);
-            mainActivityView.showCategories();
-        });*/
         profileSettingView.setUp(gameControllerMenuPresenter);
         btnJourney.setOnClickListener(v -> {
             profileSettingView.startJourneyBtnClicked();

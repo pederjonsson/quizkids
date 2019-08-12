@@ -9,32 +9,45 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.transition.Slide;
+import android.util.Log;
 import android.view.Gravity;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
-import se.pederjonsson.apps.quizkids.Objects.Question;
-import se.pederjonsson.apps.quizkids.components.NavbarView;
+import se.pederjonsson.apps.quizkids.data.CategoryItem;
+import se.pederjonsson.apps.quizkids.viewcomponents.NavbarView;
 
-import se.pederjonsson.apps.quizkids.db.Database;
+import se.pederjonsson.apps.quizkids.model.DataHolderForQuerys;
+import se.pederjonsson.apps.quizkids.model.RoomQueryAsyncTasks;
+import se.pederjonsson.apps.quizkids.model.RoomDBUtil;
 import se.pederjonsson.apps.quizkids.fragments.MenuFragment;
 import se.pederjonsson.apps.quizkids.fragments.category.CategoryFragment;
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
 
 public class MainActivity extends AppCompatActivity implements GameControllerContract.MainActivityView {
 
+
+    public static final String TABLE_NAME_QUESTION = "QUESTIONS";
+    public static final String TABLE_NAME_PROFILE = "PROFILES";
+    public static final String TABLE_NAME_CATEGORY = "CATEGORIES";
+    public static final String TABLE_NAME_CATEGORYPOINTS = "CATEGORYPOINTS";
+    public static final String DB_NAME = "QUIZ_DB";
+
     private static int SLIDE_TIME = 300;
     private Unbinder unbinder;
     private GameControllerContract.MenuPresenter gameControllerMenuPresenter;
-    Database db;
+  //  Database db;
     MediaPlayer mMediaPlayer;
 
     @BindView(R.id.navbar)
     NavbarView navbarView;
 
     private FragmentManager mFragmentManager;
+    RoomDBUtil dbUtil;
 
     Slide slide = new Slide(Gravity.RIGHT);
     Slide slideout = new Slide(Gravity.LEFT);
@@ -44,15 +57,16 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         unbinder = ButterKnife.bind(this);
-        db = Database.getInstance(this);
-        gameControllerMenuPresenter = new MenuGameController(this, db, navbarView);
+
+        gameControllerMenuPresenter = new MenuGameController(this, navbarView);
         mFragmentManager = getSupportFragmentManager();
         slide.setDuration(SLIDE_TIME);
         slideout.setDuration(SLIDE_TIME);
         showMenu();
 
-        db.populate(this);
-
+        dbUtil = new RoomDBUtil();
+        //dbUtil.generateQABuildingsRoom(this, this);
+        dbUtil.populateDbWithQuestions(this, this, dbUtil.generateQABuildings(this));
     }
 
     private void playSound(int resId) {
@@ -81,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
     @Override
     public void startQuickQuiz() {
         Intent intent = new Intent(this, QuestionActivity.class);
-        intent.putExtra(QuestionActivity.CATEGORY_ITEM, new CategoryItem(Question.Category.QUICKPLAY));
+        intent.putExtra(QuestionActivity.CATEGORY_ITEM, new CategoryItem(CategoryItem.Category.QUICKPLAY));
         intent.putExtra(QuestionActivity.PROFILE_ITEM, gameControllerMenuPresenter.getPlayingProfile());
         startActivityForResult(intent, 1);
     }
@@ -147,6 +161,10 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
     protected void onPause() {
         super.onPause();
         releaseMediaPlayer();
+        if(task != null && !task.isCancelled()){
+            task.cancel(true);
+            task = null;
+        }
     }
 
     @Override
@@ -154,6 +172,62 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == QuestionActivity.SHOW_CATEGORIES) {
             showCategories();
+        }
+    }
+
+    @Override
+    public void onProgress(@Nullable Void... values) {
+        Log.i("ROOM", "ONPROGRESS");
+    }
+
+    RoomQueryAsyncTasks.RoomQuery task = null;
+
+    @Override
+    public void onStartTask(@NotNull RoomQueryAsyncTasks.RoomQuery task) {
+        Log.i("ROOM", "onStartTask");
+        this.task = task;
+    }
+
+    @Override
+    public void onSuccess(DataHolderForQuerys dh) {
+        if(dh != null){
+        Log.i("ROOM", "ONSUCCESS FOR REQUEST " + dh.getRequestType().getRequestType());
+            if(dh.getRequestType() == DataHolderForQuerys.RequestType.INSERTQUESTIONS){
+                //dbUtil.getAllQuestions(this, this);
+                //dbUtil.saveProfile(this, this, new ProfileEntity("testcreateuser"));
+                Log.i("ROOM","questions inserted: " + dh.getQuestionEntityList().get(0));
+            } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.GETALLQUESTIONS){
+                Log.i("ROOM","questions fetched: " + dh.getQuestionEntityList().size());
+                //dbUtil.getQuestionsByCategory(this, this, Question.Category.BUILDINGS.getCategory());
+            } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.SAVEPROFILE){
+                Log.i("ROOM","profilesaved for: " + dh.getProfile().getProfilename());
+               // dbUtil.insertCategoryPoints(this, this, new CategoryPointsEntity(Question.Category.BUILDINGS.getCategory(), "testcreateuser", 5));
+                //dbUtil.getAllProfiles(this, this);
+            } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.GETALLPROFILES){
+                Log.i("ROOM","all profiles = " + dh.getProfileEntityList());
+                gameControllerMenuPresenter.setProfiles(dh.getProfileEntityList());
+            } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.GETQUESTIONSBYCATEGORY){
+                Log.i("ROOM","questions by category " + dh.getCategory() + " fetched: " + dh.getQuestionEntityList().size());
+            } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.INSERTCATEGORYPOINTS){
+                Log.i("ROOM","inserted categorypoints " + dh.getCategoryPointsEntity().getPoints() + " for " + dh.getCategoryPointsEntity().getCategoryid() + " name: " + dh.getCategoryPointsEntity().getProfileid());
+                //dbUtil.getAllCategoryPointsForUser(this, this, "testcreateuser");
+            } else if(dh.getRequestType() == DataHolderForQuerys.RequestType.GETCATEGORYPOINTSFORUSER){
+                Log.i("ROOM","categorypoints for user " + dh.getCategoryPointsEntityList()+ " for " + dh.getProfileid());
+                if(gameControllerMenuPresenter.getPlayingProfile() != null){
+                    gameControllerMenuPresenter.getPlayingProfile().setCategoryPointsList(dh.getCategoryPointsEntityList());
+                }
+            }
+        } else {
+            Log.i("ERROR", "No data returned frmo request");
+        }
+    }
+
+    @Override
+    public void onFail(DataHolderForQuerys dh) {
+        if(dh != null){
+            Log.i("ROOM", "ONFAIL FOR REQUEST " + dh.getRequestType() + " error " + dh.getErrorMsg());
+        } else {
+            Log.i("ROOM", "ONFAIL");
         }
     }
 }

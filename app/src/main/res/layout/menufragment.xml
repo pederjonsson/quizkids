@@ -51,7 +51,7 @@
             android:layout_marginTop="@dimen/large"
             android:text="@string/start_quiz" />
 
-        <se.pederjonsson.apps.quizkids.components.ProfileSettingView
+        <se.pederjonsson.apps.quizkids.viewcomponents.ProfileSettingView
             android:id="@+id/profilesettingsview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

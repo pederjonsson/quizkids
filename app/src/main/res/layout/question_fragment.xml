@@ -13,7 +13,7 @@
 
         android:orientation="vertical">
 
-        <se.pederjonsson.apps.quizkids.components.QuestionView
+        <se.pederjonsson.apps.quizkids.viewcomponents.QuestionView
             android:id="@+id/questionview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <se.pederjonsson.apps.quizkids.components.TripleButtonAnswers
+            <se.pederjonsson.apps.quizkids.viewcomponents.TripleButtonAnswers
                 android:id="@+id/triplebtnanswers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

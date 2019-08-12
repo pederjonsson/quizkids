@@ -7,21 +7,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import se.pederjonsson.apps.quizkids.model.RoomDBUtil;
+import se.pederjonsson.apps.quizkids.model.categorypoints.CategoryPointsEntity;
+import se.pederjonsson.apps.quizkids.model.profile.ProfileEntity;
+import se.pederjonsson.apps.quizkids.model.question.QuestionEntity;
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
-import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
-import se.pederjonsson.apps.quizkids.Objects.Profile;
-import se.pederjonsson.apps.quizkids.Objects.Question;
-import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
-import se.pederjonsson.apps.quizkids.components.NavbarView;
-import se.pederjonsson.apps.quizkids.db.Database;
+import se.pederjonsson.apps.quizkids.data.CategoryItem;
+import se.pederjonsson.apps.quizkids.viewcomponents.NavbarView;
 
 public class QuestionGameController implements GameControllerContract.QuestionPresenter {
 
     private GameControllerContract.QuestionActivityView questionActivityView;
-    private Database database;
-    private List<QuestionAnswers> currentCategoryQAList;
-    private Profile playingProfile;
-    private Question.Category currentCategory;
+
+    private List<QuestionEntity> currentCategoryQAList;
+    private ProfileEntity playingProfile;
+    private CategoryItem.Category currentCategory;
     private CategoryItem currentCategoryItem;
     int currentQuestionInCategory = 0;
     private List<Boolean> currentAnswers;
@@ -31,11 +31,12 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
     public static int MAX_QUESTIONS_IN_CATEGORY = 10;
     public static int MAX_QUESTIONS_TOTAL = 20;
     private NavbarView navbarView;
+    RoomDBUtil dbUtil;
 
-    public QuestionGameController(GameControllerContract.QuestionActivityView _questionActivityView, Database _database, NavbarView _navbar) {
+    public QuestionGameController(GameControllerContract.QuestionActivityView _questionActivityView, NavbarView _navbar) {
         questionActivityView = _questionActivityView;
         navbarView = _navbar;
-        database = _database;
+        dbUtil = new RoomDBUtil();
     }
 
     @Override
@@ -47,7 +48,7 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
     @Override
     public void nextQuestion() {
 
-        if (currentCategory == Question.Category.QUICKPLAY) {
+        if (currentCategory == CategoryItem.Category.QUICKPLAY) {
             Log.i("QGC", "yes it is quickplay");
             if (currentQuestionInCategory == MAX_QUESTIONS_TOTAL - 1) {
                 countAndShowResult();
@@ -65,7 +66,7 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
         }
     }
 
-    private void countAndShowResult(){
+    private void countAndShowResult() {
         boolean allcorrect = true;
         int correctCounter = 0;
         for (Boolean answerCorrect : currentAnswers) {
@@ -78,11 +79,7 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
 
         navbarView.clearScore();
         hideMainNavbar();
-        if (allcorrect) {
-            addClearedCategory(currentCategory);
-        } else {
-            addPointsOnCategory(currentCategory, correctCounter);
-        }
+        addPointsOnCategory(currentCategory, correctCounter);
         questionActivityView.showResultView(currentCategoryItem, playingProfile, correctCounter, allcorrect);
     }
 
@@ -92,34 +89,27 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
     }
 
     @Override
-    public Profile getPlayingProfile() {
+    public ProfileEntity getPlayingProfile() {
         return playingProfile;
     }
 
     @Override
-    public void setPlayingProfile(Profile profile) {
+    public void setPlayingProfile(ProfileEntity profile) {
         playingProfile = profile;
     }
 
     @Override
-    public void saveProfile(Profile profile) {
-        database.insertProfile(profile.getName(), profile);
+    public void addPointsOnCategory(CategoryItem.Category category, Integer points) {
+        if(playingProfile.getPointsForCategory(category.getCategory()) < points ){
+            Log.i("ROOM", "addPointsOnCategory from qcontroller " + points + " for " + category);
+            dbUtil.insertCategoryPoints(questionActivityView.getViewContext(),questionActivityView, new CategoryPointsEntity(category.getCategory(), playingProfile.getProfilename(), points));
+        } else {
+            Log.i("ROOM", "no new record with " + points + " for " + category);
+        }
     }
 
     @Override
-    public void addClearedCategory(Question.Category clearedCategory) {
-        playingProfile.addClearedCategory(clearedCategory);
-        saveProfile(playingProfile);
-    }
-
-    @Override
-    public void addPointsOnCategory(Question.Category category, Integer points) {
-        playingProfile.setPointsOnCategory(category, points);
-        saveProfile(playingProfile);
-    }
-
-    @Override
-    public void startGame(int gametype, Profile profile) {
+    public void startGame(int gametype, ProfileEntity profile) {
         playingProfile = profile;
         if (gametype == GAMETYPE_JOURNEY) {
             //first show view for choose category;
@@ -128,38 +118,28 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
             // questionActivityView.showCategories();
         } else if (gametype == GAMETYPE_QUICK) {
             //mixaafrågor sen
-            loadQuestionsByCategory(new CategoryItem(Question.Category.GEOGRAPHY));
+            //loadQuestionsByCategory(new CategoryItem(Question.Category.GEOGRAPHY));
         }
     }
 
     @Override
-    public List<Profile> getProfiles() {
-        return database.getAllProfiles();
-    }
-
-    @Override
-    public boolean playerNameIsAvailable() {
-        return false;
-    }
-
-    @Override
-    public void loadQuestionsByCategory(CategoryItem categoryItem) {
+    public void questionsLoadedByCategory(CategoryItem categoryItem, List<QuestionEntity> questions) {
         currentCategoryItem = categoryItem;
         currentAnswers = new ArrayList<>();
         currentCategory = categoryItem.getCategory();
         currentQuestionInCategory = 0;
-        currentCategoryQAList = database.getQuestionsByCategory(categoryItem.getCategory());
+        currentCategoryQAList = questions;
         Collections.shuffle(currentCategoryQAList);
         if (currentCategoryQAList != null) {
             Log.i("QGC", "currentCategoryQAList size " + currentCategoryQAList.size());
 
-            QuestionAnswers questionAnswers = currentCategoryQAList.get(currentQuestionInCategory);
-            questionActivityView.showQuestionFragment(questionAnswers, false);
-            questionHasBeenShownTo(questionAnswers, playingProfile);
+            QuestionEntity questionEntity = currentCategoryQAList.get(currentQuestionInCategory);
+            questionActivityView.showQuestionFragment(questionEntity, false);
+            //questionHasBeenShownTo(questionAnswers, playingProfile);
             navbarView.showTitle(currentCategory.getCategoryTranslated(questionActivityView.getViewContext()));
             navbarView.show(true);
             navbarView.clearScore();
-            if (currentCategory != Question.Category.QUICKPLAY) {
+            if (currentCategory != CategoryItem.Category.QUICKPLAY) {
                 navbarView.showScore(true);
             } else {
                 navbarView.showScore(false);
@@ -167,14 +147,5 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
         } else {
             Toast.makeText(questionActivityView.getViewContext(), "not ready yet", Toast.LENGTH_LONG).show();
         }
-    }
-
-    private void questionHasBeenShownTo(QuestionAnswers qa, Profile profile) {
-        qa.setHasBeenShownTo(profile.getName());
-        updateOrSaveQA(qa);
-    }
-
-    private void updateOrSaveQA(QuestionAnswers qa) {
-        database.insertQa(qa.getQuestion().getCategoryString(), qa.getQuestion().getDifficultyLevel(), qa.getQuestion().getQuestionResId(), qa);
     }
 }

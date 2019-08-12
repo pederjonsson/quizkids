@@ -1,4 +1,4 @@
-package se.pederjonsson.apps.quizkids.components
+package se.pederjonsson.apps.quizkids.viewcomponents
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,13 +7,13 @@ import android.widget.LinearLayout
 
 import java.util.Collections
 
-import se.pederjonsson.apps.quizkids.Objects.Answer
+import se.pederjonsson.apps.quizkids.data.Answer
 import se.pederjonsson.apps.quizkids.R
 import se.pederjonsson.apps.quizkids.fragments.Question.QuestionAnswerContract
-import se.pederjonsson.apps.quizkids.interfaces.LifecycleInterface
 import kotlinx.android.synthetic.main.triplebtnanswers.view.*
+import se.pederjonsson.apps.quizkids.model.question.QuestionEntity
 
-class TripleButtonAnswers(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs), LifecycleInterface {
+class TripleButtonAnswers(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
 
     private var mAnswers: List<Answer> = listOf()
     var mAnswerBtns: List<ButtonAnswer> = listOf()
@@ -25,8 +25,10 @@ class TripleButtonAnswers(context: Context, attrs: AttributeSet) : LinearLayout(
         mAnswerBtns = listOf(btnanswer1, btnanswer2, btnanswer3)
     }
 
-    fun setUp(answers: List<Answer>, _mainView: QuestionAnswerContract.MainView) {
-        val answersCopy = answers.toMutableList()
+    fun setUp(questionEntity: QuestionEntity, _mainView: QuestionAnswerContract.MainView) {
+        val answersCopy = listOf<Answer>(Answer(questionEntity.trueanswer, true),
+                Answer(questionEntity.answer2, false),
+                Answer(questionEntity.answer3, false))
         Collections.shuffle(answersCopy)
         mAnswers = answersCopy
         mainView = _mainView
@@ -41,13 +43,5 @@ class TripleButtonAnswers(context: Context, attrs: AttributeSet) : LinearLayout(
 
     fun inactivateButtons() {
         mAnswerBtns.forEach { ans -> ans.inactivate() }
-    }
-
-    override fun onPause() {
-        mAnswerBtns.forEach { ans -> ans.onPause() }
-    }
-
-    override fun onResume() {
-        mAnswerBtns.forEach { ans -> ans.onResume() }
     }
 }

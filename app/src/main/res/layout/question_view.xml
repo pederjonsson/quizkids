@@ -42,7 +42,7 @@
         app:riv_oval="false"
         app:riv_tile_mode="clamp" />
 
-    <se.pederjonsson.apps.quizkids.components.TextToSpeechBtnView
+    <se.pederjonsson.apps.quizkids.viewcomponents.TextToSpeechBtnView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

@@ -36,6 +36,48 @@
     <string name="start">Start</string>
 
     <!-- ******************** BUILDINGS ************************** -->
+    <string-array
+        name="q_buildings_paris_strings">
+        <item>What is the name of the tower in Paris?</item><item>Eiffel tower</item><item>Big Ben</item><item>Baguette tower</item>
+    </string-array>
+    <string-array
+        name="q_buildings_mounteverest_strings">
+        <item>What is the name of the highest mountain in the world?</item><item>Mount Everest</item><item>Kilimanjaro</item><item>Big mac</item>
+    </string-array>
+    <string-array
+        name="q_buildings_burjikhalifa_strings">
+        <item>In what city lies the tallest building in the world, Burji khalifa?</item><item>Dubai</item><item>London</item><item>New York</item>
+    </string-array>
+    <string-array
+        name="q_buildings_stbasil_strings">
+        <item>In what city lies the st basils cathedral?</item><item>Moscow</item><item>Helsinki</item><item>Amsterdam</item>
+    </string-array>
+    <string-array
+        name="q_buildings_sphinx_strings">
+        <item>What is this mysterious building in egypt called?</item><item>The Sphinx</item><item>Cleopatra</item><item>The desert lion</item>
+    </string-array>
+    <string-array
+        name="q_buildings_chinesewall_strings">
+        <item>What is the name of this building?</item><item>The great wall of China</item><item>The long wall of Japan</item><item>The strong wall of Taiwan</item>
+    </string-array>
+    <string-array
+        name="q_buildings_bigben_strings">
+        <item>What is the name of the clocktower in London?</item><item>Big Ben</item><item>Old Jack</item><item>Long Thomas</item>
+    </string-array>
+    <string-array
+        name="q_buildings_colosseum_strings">
+        <item>What is the name of the amphitheater in Rome?</item><item>Colosseum</item><item>Kabanoss</item><item>Parthenon</item>
+    </string-array>
+    <string-array
+        name="q_buildings_angkorwat_strings">
+        <item>What is the name of this temple in Cambodia?</item><item>Angkor wat</item><item>Anchor duck</item><item>Waterloo</item>
+    </string-array>
+    <string-array
+        name="q_buildings_liberty_strings">
+        <item>What is the name of this statue?</item><item>Statue of liberty</item><item>Statue of peace</item><item>Statue of equality</item>
+    </string-array>
+
+
     <string name="q_buildings_paris">What is the name of the tower in Paris?</string>
     <string name="q_buildings_mounteverest">What is the name of the highest mountain in the world?</string>
     <string name="q_buildings_burjikhalifa">In what city lies the tallest building in the world, Burji khalifa</string>

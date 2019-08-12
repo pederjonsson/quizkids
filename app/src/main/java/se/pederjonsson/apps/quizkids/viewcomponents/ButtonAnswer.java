@@ -1,4 +1,4 @@
-package se.pederjonsson.apps.quizkids.components;
+package se.pederjonsson.apps.quizkids.viewcomponents;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -9,16 +9,15 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import se.pederjonsson.apps.quizkids.Objects.Answer;
+import se.pederjonsson.apps.quizkids.data.Answer;
 import se.pederjonsson.apps.quizkids.R;
 import se.pederjonsson.apps.quizkids.fragments.Question.QuestionAnswerContract;
-import se.pederjonsson.apps.quizkids.interfaces.LifecycleInterface;
 
 /**
  * Created by Gaming on 2018-04-01.
  */
 
-public class ButtonAnswer extends LinearLayout implements LifecycleInterface {
+public class ButtonAnswer extends LinearLayout {
 
     @BindView(R.id.btnanswer)
     public Button btnAnswer;
@@ -38,19 +37,8 @@ public class ButtonAnswer extends LinearLayout implements LifecycleInterface {
     public ButtonAnswer(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        //TypedArray typedArrayTitle = context.obtainStyledAttributes(attrs, R.styleable.telavox_view_property);
-        // getTitle(typedArrayTitle);
-
         init(context);
     }
-
-   /* private void getTitle(TypedArray typedArray) {
-        CharSequence s = typedArray.getString(R.styleable.telavox_view_property_title);
-        if (s != null) {
-            mTitleText = s.toString();
-        }
-        typedArray.recycle();
-    }*/
 
     protected void init(Context context) {
         mContext = context;
@@ -105,15 +93,5 @@ public class ButtonAnswer extends LinearLayout implements LifecycleInterface {
         textToSpeechBtnView.setVisibility(GONE);
         btnAnswer.setVisibility(GONE);
 
-    }
-
-    @Override
-    public void onResume() {
-        textToSpeechBtnView.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        textToSpeechBtnView.onPause();
     }
 }

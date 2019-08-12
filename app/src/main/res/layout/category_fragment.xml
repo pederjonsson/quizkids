@@ -6,7 +6,7 @@
     android:background="@color/colorAppBackground"
     android:orientation="vertical">
 
-    <se.pederjonsson.apps.quizkids.components.NavbarView
+    <se.pederjonsson.apps.quizkids.viewcomponents.NavbarView
         android:id="@+id/navbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

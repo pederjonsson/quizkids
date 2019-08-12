@@ -12,12 +12,12 @@ import android.view.ViewGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import se.pederjonsson.apps.quizkids.components.TripleButtonAnswers;
+import se.pederjonsson.apps.quizkids.viewcomponents.TripleButtonAnswers;
+import se.pederjonsson.apps.quizkids.model.question.QuestionEntity;
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
-import se.pederjonsson.apps.quizkids.Objects.Answer;
-import se.pederjonsson.apps.quizkids.Objects.QuestionAnswers;
+import se.pederjonsson.apps.quizkids.data.Answer;
 import se.pederjonsson.apps.quizkids.R;
-import se.pederjonsson.apps.quizkids.components.QuestionView;
+import se.pederjonsson.apps.quizkids.viewcomponents.QuestionView;
 
 /**
  * Created by Gaming on 2018-04-01.
@@ -42,19 +42,19 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
         View view = inflater.inflate(R.layout.question_fragment, container, false);
         unbinder = ButterKnife.bind(this, view);
 
-        QuestionAnswers questionAnswers = (QuestionAnswers) getArguments().getSerializable(QUESTION_DATA);
+        QuestionEntity questionEntity = (QuestionEntity) getArguments().getSerializable(QUESTION_DATA);
 
-        questionView.setUp(questionAnswers.getQuestion(), this);
+        questionView.setUp(questionEntity, this);
         tripleBtnAnswers = view.findViewById(R.id.triplebtnanswers);
-        tripleBtnAnswers.setUp(questionAnswers.getAnswers(), this);
+        tripleBtnAnswers.setUp(questionEntity, this);
 
         return view;
     }
 
-    public static QuestionFragment newInstance(QuestionAnswers questionAnswers, GameControllerContract.QuestionPresenter _gameControllerP) {
+    public static QuestionFragment newInstance(QuestionEntity questionEntity, GameControllerContract.QuestionPresenter _gameControllerP) {
         QuestionFragment questionFragment = new QuestionFragment();
         Bundle args = new Bundle();
-        args.putSerializable(QUESTION_DATA, questionAnswers);
+        args.putSerializable(QUESTION_DATA, questionEntity);
         questionFragment.setArguments(args);
         questionFragment.gameControllerPresenter = _gameControllerP;
         return questionFragment;
@@ -73,15 +73,11 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
         if(stopLoadingAnimationHandler != null && stopLoadingAnimationRunnable != null){
             stopLoadingAnimationHandler.removeCallbacks(stopLoadingAnimationRunnable);
         }
-        questionView.onPause();
-        tripleBtnAnswers.onPause();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        questionView.onResume();
-        tripleBtnAnswers.onResume();
     }
 
     @Override
@@ -152,6 +148,8 @@ public class QuestionFragment extends android.support.v4.app.Fragment implements
         }
     }
 
-
-
+    @Override
+    public GameControllerContract.QuestionActivityView getQActivityView() {
+        return (GameControllerContract.QuestionActivityView) getActivity();
+    }
 }

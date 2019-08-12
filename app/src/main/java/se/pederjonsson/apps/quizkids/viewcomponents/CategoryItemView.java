@@ -1,4 +1,4 @@
-package se.pederjonsson.apps.quizkids.components;
+package se.pederjonsson.apps.quizkids.viewcomponents;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -9,14 +9,12 @@ import android.widget.TextView;
 
 import com.makeramen.roundedimageview.RoundedImageView;
 
-import java.util.logging.Logger;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
-import se.pederjonsson.apps.quizkids.Objects.Profile;
+import se.pederjonsson.apps.quizkids.data.CategoryItem;
 import se.pederjonsson.apps.quizkids.R;
+import se.pederjonsson.apps.quizkids.model.profile.ProfileEntity;
 
 /**
  * Created by Gaming on 2018-04-01.
@@ -36,7 +34,7 @@ public class CategoryItemView extends RelativeLayout {
     private CategoryItem categoryItem;
     private Context mContext;
     private Unbinder unbinder;
-    private Profile playingProfile;
+    private ProfileEntity playingProfile;
 
     public CategoryItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -58,18 +56,19 @@ public class CategoryItemView extends RelativeLayout {
         unbinder = ButterKnife.bind(this);
     }
 
-    public void setUp(CategoryItem _categoryItem, Profile profile) {
+    public void setUp(CategoryItem _categoryItem, ProfileEntity profile) {
         categoryItem = _categoryItem;
         playingProfile = profile;
         title.setText(categoryItem.getCategory().getCategoryTranslated(mContext));
-        Integer point = playingProfile.getPointsByCategory(categoryItem.getCategory());
+        Integer point = playingProfile.getPointsForCategory(categoryItem.getCategory().getCategory());
         Log.i("CIV", "points for category " + categoryItem.getCategory() + " = " + point);
         setIcon();
-        setCheckMark();
+        setCheckMark(point);
     }
 
-    private void setCheckMark(){
-        if(playingProfile.getClearedCategories() != null && playingProfile.getClearedCategories().contains(categoryItem.getCategory())){
+    private void setCheckMark(int points){
+        //if(playingProfile.getClearedCategories() != null && playingProfile.getClearedCategories().contains(categoryItem.getCategory())){
+        if(points == 10){
             checkMark.setVisibility(VISIBLE);
         }
     }

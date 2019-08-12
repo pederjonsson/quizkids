@@ -2,7 +2,6 @@ package se.pederjonsson.apps.quizkids.fragments.category;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +11,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
+import se.pederjonsson.apps.quizkids.data.CategoryItem;
 import se.pederjonsson.apps.quizkids.R;
-import se.pederjonsson.apps.quizkids.components.CategoryItemView;
+import se.pederjonsson.apps.quizkids.viewcomponents.CategoryItemView;
 
 public class CategoryAdapter extends BaseAdapter {
 
