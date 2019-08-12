@@ -1,4 +1,4 @@
-package se.pederjonsson.apps.quizkids.Objects;
+package se.pederjonsson.apps.quizkids.data;
 
 import android.content.Context;
 

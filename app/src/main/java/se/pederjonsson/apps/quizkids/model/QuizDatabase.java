@@ -1,4 +1,4 @@
-package se.pederjonsson.apps.quizkids.components.room;
+package se.pederjonsson.apps.quizkids.model;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
@@ -6,12 +6,12 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 import se.pederjonsson.apps.quizkids.MainActivity;
-import se.pederjonsson.apps.quizkids.components.room.categorypoints.CategoryPointsDao;
-import se.pederjonsson.apps.quizkids.components.room.categorypoints.CategoryPointsEntity;
-import se.pederjonsson.apps.quizkids.components.room.profile.ProfileDao;
-import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity;
-import se.pederjonsson.apps.quizkids.components.room.question.QuestionDao;
-import se.pederjonsson.apps.quizkids.components.room.question.QuestionEntity;
+import se.pederjonsson.apps.quizkids.model.categorypoints.CategoryPointsDao;
+import se.pederjonsson.apps.quizkids.model.categorypoints.CategoryPointsEntity;
+import se.pederjonsson.apps.quizkids.model.profile.ProfileDao;
+import se.pederjonsson.apps.quizkids.model.profile.ProfileEntity;
+import se.pederjonsson.apps.quizkids.model.question.QuestionDao;
+import se.pederjonsson.apps.quizkids.model.question.QuestionEntity;
 
 @Database(entities = { QuestionEntity.class, ProfileEntity.class, CategoryPointsEntity.class}, version = 1)
 public abstract class QuizDatabase extends RoomDatabase {

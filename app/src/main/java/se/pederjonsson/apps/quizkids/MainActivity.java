@@ -18,12 +18,12 @@ import org.jetbrains.annotations.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
-import se.pederjonsson.apps.quizkids.components.NavbarView;
+import se.pederjonsson.apps.quizkids.data.CategoryItem;
+import se.pederjonsson.apps.quizkids.viewcomponents.NavbarView;
 
-import se.pederjonsson.apps.quizkids.components.room.DataHolderForQuerys;
-import se.pederjonsson.apps.quizkids.components.room.RoomQueryAsyncTasks;
-import se.pederjonsson.apps.quizkids.components.room.RoomDBUtil;
+import se.pederjonsson.apps.quizkids.model.DataHolderForQuerys;
+import se.pederjonsson.apps.quizkids.model.RoomQueryAsyncTasks;
+import se.pederjonsson.apps.quizkids.model.RoomDBUtil;
 import se.pederjonsson.apps.quizkids.fragments.MenuFragment;
 import se.pederjonsson.apps.quizkids.fragments.category.CategoryFragment;
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;

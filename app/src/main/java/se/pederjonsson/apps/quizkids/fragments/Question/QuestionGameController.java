@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import se.pederjonsson.apps.quizkids.components.room.RoomDBUtil;
-import se.pederjonsson.apps.quizkids.components.room.categorypoints.CategoryPointsEntity;
-import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity;
-import se.pederjonsson.apps.quizkids.components.room.question.QuestionEntity;
+import se.pederjonsson.apps.quizkids.model.RoomDBUtil;
+import se.pederjonsson.apps.quizkids.model.categorypoints.CategoryPointsEntity;
+import se.pederjonsson.apps.quizkids.model.profile.ProfileEntity;
+import se.pederjonsson.apps.quizkids.model.question.QuestionEntity;
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
-import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
-import se.pederjonsson.apps.quizkids.components.NavbarView;
+import se.pederjonsson.apps.quizkids.data.CategoryItem;
+import se.pederjonsson.apps.quizkids.viewcomponents.NavbarView;
 
 public class QuestionGameController implements GameControllerContract.QuestionPresenter {
 

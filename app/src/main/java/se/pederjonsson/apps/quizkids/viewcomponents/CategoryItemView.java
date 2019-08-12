@@ -1,4 +1,4 @@
-package se.pederjonsson.apps.quizkids.components;
+package se.pederjonsson.apps.quizkids.viewcomponents;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -9,14 +9,12 @@ import android.widget.TextView;
 
 import com.makeramen.roundedimageview.RoundedImageView;
 
-import java.util.logging.Logger;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
+import se.pederjonsson.apps.quizkids.data.CategoryItem;
 import se.pederjonsson.apps.quizkids.R;
-import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity;
+import se.pederjonsson.apps.quizkids.model.profile.ProfileEntity;
 
 /**
  * Created by Gaming on 2018-04-01.

@@ -2,8 +2,8 @@ package se.pederjonsson.apps.quizkids.fragments.category;
 
 import android.content.Context;
 
-import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
-import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity;
+import se.pederjonsson.apps.quizkids.data.CategoryItem;
+import se.pederjonsson.apps.quizkids.model.profile.ProfileEntity;
 import se.pederjonsson.apps.quizkids.interfaces.QueryInterface;
 
 /**

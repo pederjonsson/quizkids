@@ -1,4 +1,4 @@
-package se.pederjonsson.apps.quizkids.components;
+package se.pederjonsson.apps.quizkids.viewcomponents;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import se.pederjonsson.apps.quizkids.Objects.Answer;
+import se.pederjonsson.apps.quizkids.data.Answer;
 import se.pederjonsson.apps.quizkids.R;
 import se.pederjonsson.apps.quizkids.fragments.Question.QuestionAnswerContract;
 

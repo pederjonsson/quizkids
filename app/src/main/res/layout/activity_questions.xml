@@ -7,7 +7,7 @@
 
     tools:context="se.pederjonsson.apps.quizkids.MainActivity">
 
-    <se.pederjonsson.apps.quizkids.components.NavbarView
+    <se.pederjonsson.apps.quizkids.viewcomponents.NavbarView
         android:id="@+id/navbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <se.pederjonsson.apps.quizkids.components.ResultView
+    <se.pederjonsson.apps.quizkids.viewcomponents.ResultView
         android:id="@+id/resultview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

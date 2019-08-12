@@ -12,12 +12,12 @@ import android.view.ViewGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import se.pederjonsson.apps.quizkids.components.TripleButtonAnswers;
-import se.pederjonsson.apps.quizkids.components.room.question.QuestionEntity;
+import se.pederjonsson.apps.quizkids.viewcomponents.TripleButtonAnswers;
+import se.pederjonsson.apps.quizkids.model.question.QuestionEntity;
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
-import se.pederjonsson.apps.quizkids.Objects.Answer;
+import se.pederjonsson.apps.quizkids.data.Answer;
 import se.pederjonsson.apps.quizkids.R;
-import se.pederjonsson.apps.quizkids.components.QuestionView;
+import se.pederjonsson.apps.quizkids.viewcomponents.QuestionView;
 
 /**
  * Created by Gaming on 2018-04-01.

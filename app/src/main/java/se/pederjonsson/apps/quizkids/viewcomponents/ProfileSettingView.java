@@ -1,4 +1,4 @@
-package se.pederjonsson.apps.quizkids.components;
+package se.pederjonsson.apps.quizkids.viewcomponents;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -17,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import se.pederjonsson.apps.quizkids.MenuGameController;
-import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity;
+import se.pederjonsson.apps.quizkids.model.profile.ProfileEntity;
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
 import se.pederjonsson.apps.quizkids.R;
 

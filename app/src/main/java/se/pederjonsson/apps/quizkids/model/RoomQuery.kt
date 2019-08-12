@@ -1,4 +1,4 @@
-package se.pederjonsson.apps.quizkids.components.room
+package se.pederjonsson.apps.quizkids.model
 
 import android.os.AsyncTask
 import se.pederjonsson.apps.quizkids.interfaces.QueryInterface

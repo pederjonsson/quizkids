@@ -1,4 +1,4 @@
-package se.pederjonsson.apps.quizkids.components.room.question;
+package se.pederjonsson.apps.quizkids.model.category;
 
 
 import android.arch.persistence.room.Dao;
@@ -13,48 +13,45 @@ import java.util.List;
 import se.pederjonsson.apps.quizkids.MainActivity;
 
 @Dao
-public interface QuestionDao {
+public interface CategoryDao {
 
 
-    @Query("SELECT * FROM "+ MainActivity.TABLE_NAME_QUESTION)
-    List<QuestionEntity> getAll();
-
-    @Query("SELECT * FROM " + MainActivity.TABLE_NAME_QUESTION + " WHERE category = :category")
-    List<QuestionEntity> getQuestionsByCategory(String category);
+    @Query("SELECT * FROM "+ MainActivity.TABLE_NAME_CATEGORY)
+    List<CategoryEntity> getAll();
 
     /*
      * Insert the object in database
      * @param note, object to be inserted
      */
-    @Insert
-    void insert(QuestionEntity question);
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    void insert(CategoryEntity category);
 
     /*
      * Insert the array of objects into database
      * @param note, array of objects to be inserted
      */
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(List<QuestionEntity> question);
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    void insert(List<CategoryEntity> categories);
 
     /*
      * update the object in database
      * @param note, object to be updated
      */
     @Update
-    void update(QuestionEntity question);
+    void update(CategoryEntity category);
 
     /*
      * delete the object from database
      * @param note, object to be deleted
      */
     @Delete
-    void delete(QuestionEntity question);
+    void delete(CategoryEntity category);
 
     /*
      * delete list of objects from database
      * @param note, array of objects to be deleted
      */
     @Delete
-    void delete(QuestionEntity... question);      // Note... is varargs, here note is an array
+    void delete(CategoryEntity... category);      // Note... is varargs, here note is an array
 
 }

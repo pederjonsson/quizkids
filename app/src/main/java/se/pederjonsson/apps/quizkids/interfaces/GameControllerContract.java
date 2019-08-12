@@ -4,9 +4,9 @@ import android.content.Context;
 
 import java.util.List;
 
-import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
-import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity;
-import se.pederjonsson.apps.quizkids.components.room.question.QuestionEntity;
+import se.pederjonsson.apps.quizkids.data.CategoryItem;
+import se.pederjonsson.apps.quizkids.model.profile.ProfileEntity;
+import se.pederjonsson.apps.quizkids.model.question.QuestionEntity;
 
 /**
  * Created by Gaming on 2018-04-01.

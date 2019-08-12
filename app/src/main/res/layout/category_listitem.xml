@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-   <se.pederjonsson.apps.quizkids.components.CategoryItemView
+   <se.pederjonsson.apps.quizkids.viewcomponents.CategoryItemView
        android:id="@+id/categoryitemview"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content" />

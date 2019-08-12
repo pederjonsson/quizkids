@@ -19,15 +19,15 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import se.pederjonsson.apps.quizkids.components.room.DataHolderForQuerys;
-import se.pederjonsson.apps.quizkids.components.room.RoomDBUtil;
-import se.pederjonsson.apps.quizkids.components.room.RoomQueryAsyncTasks;
-import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity;
+import se.pederjonsson.apps.quizkids.model.DataHolderForQuerys;
+import se.pederjonsson.apps.quizkids.model.RoomDBUtil;
+import se.pederjonsson.apps.quizkids.model.RoomQueryAsyncTasks;
+import se.pederjonsson.apps.quizkids.model.profile.ProfileEntity;
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
-import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
+import se.pederjonsson.apps.quizkids.data.CategoryItem;
 import se.pederjonsson.apps.quizkids.QuestionActivity;
 import se.pederjonsson.apps.quizkids.R;
-import se.pederjonsson.apps.quizkids.components.NavbarView;
+import se.pederjonsson.apps.quizkids.viewcomponents.NavbarView;
 
 /**
  * Created by Gaming on 2018-04-01.

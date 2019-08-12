@@ -2,7 +2,7 @@ package se.pederjonsson.apps.quizkids.fragments.Question;
 
 import android.content.Context;
 
-import se.pederjonsson.apps.quizkids.Objects.Answer;
+import se.pederjonsson.apps.quizkids.data.Answer;
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
 
 /**

@@ -1,4 +1,4 @@
-package se.pederjonsson.apps.quizkids.components.room.profile;
+package se.pederjonsson.apps.quizkids.model.profile;
 
 
 import android.arch.persistence.room.Entity;
@@ -8,11 +8,10 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import se.pederjonsson.apps.quizkids.MainActivity;
-import se.pederjonsson.apps.quizkids.components.room.categorypoints.CategoryPointsEntity;
+import se.pederjonsson.apps.quizkids.model.categorypoints.CategoryPointsEntity;
 
 @Entity(tableName = MainActivity.TABLE_NAME_PROFILE)
 public class ProfileEntity implements Serializable {

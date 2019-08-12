@@ -1,4 +1,4 @@
-package se.pederjonsson.apps.quizkids.components
+package se.pederjonsson.apps.quizkids.viewcomponents
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,11 +7,11 @@ import android.widget.LinearLayout
 
 import java.util.Collections
 
-import se.pederjonsson.apps.quizkids.Objects.Answer
+import se.pederjonsson.apps.quizkids.data.Answer
 import se.pederjonsson.apps.quizkids.R
 import se.pederjonsson.apps.quizkids.fragments.Question.QuestionAnswerContract
 import kotlinx.android.synthetic.main.triplebtnanswers.view.*
-import se.pederjonsson.apps.quizkids.components.room.question.QuestionEntity
+import se.pederjonsson.apps.quizkids.model.question.QuestionEntity
 
 class TripleButtonAnswers(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
 

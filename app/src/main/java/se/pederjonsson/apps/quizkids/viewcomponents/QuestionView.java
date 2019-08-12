@@ -1,4 +1,4 @@
-package se.pederjonsson.apps.quizkids.components;
+package se.pederjonsson.apps.quizkids.viewcomponents;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -10,7 +10,7 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import se.pederjonsson.apps.quizkids.R;
-import se.pederjonsson.apps.quizkids.components.room.question.QuestionEntity;
+import se.pederjonsson.apps.quizkids.model.question.QuestionEntity;
 import se.pederjonsson.apps.quizkids.fragments.Question.QuestionAnswerContract;
 
 /**

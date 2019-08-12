@@ -4,9 +4,9 @@ import android.util.Log;
 
 import java.util.List;
 
-import se.pederjonsson.apps.quizkids.components.NavbarView;
-import se.pederjonsson.apps.quizkids.components.room.RoomDBUtil;
-import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity;
+import se.pederjonsson.apps.quizkids.viewcomponents.NavbarView;
+import se.pederjonsson.apps.quizkids.model.RoomDBUtil;
+import se.pederjonsson.apps.quizkids.model.profile.ProfileEntity;
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
 
 public class MenuGameController implements GameControllerContract.MenuPresenter {

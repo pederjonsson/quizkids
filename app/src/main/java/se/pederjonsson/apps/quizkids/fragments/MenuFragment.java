@@ -13,7 +13,7 @@ import butterknife.Unbinder;
 
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
 import se.pederjonsson.apps.quizkids.R;
-import se.pederjonsson.apps.quizkids.components.ProfileSettingView;
+import se.pederjonsson.apps.quizkids.viewcomponents.ProfileSettingView;
 
 public class MenuFragment extends android.support.v4.app.Fragment {
 

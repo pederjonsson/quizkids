@@ -7,20 +7,20 @@
     android:orientation="vertical"
     tools:context="se.pederjonsson.apps.quizkids.MainActivity">
 
-    <se.pederjonsson.apps.quizkids.components.ButtonAnswer
+    <se.pederjonsson.apps.quizkids.viewcomponents.ButtonAnswer
         android:id="@+id/btnanswer1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
          />
 
 
-    <se.pederjonsson.apps.quizkids.components.ButtonAnswer
+    <se.pederjonsson.apps.quizkids.viewcomponents.ButtonAnswer
         android:id="@+id/btnanswer2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
          />
 
-    <se.pederjonsson.apps.quizkids.components.ButtonAnswer
+    <se.pederjonsson.apps.quizkids.viewcomponents.ButtonAnswer
         android:id="@+id/btnanswer3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -1,4 +1,4 @@
-package se.pederjonsson.apps.quizkids.components
+package se.pederjonsson.apps.quizkids.viewcomponents
 
 import android.content.Context
 import android.util.AttributeSet

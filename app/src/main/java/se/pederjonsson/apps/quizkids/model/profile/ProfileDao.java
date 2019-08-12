@@ -1,4 +1,4 @@
-package se.pederjonsson.apps.quizkids.components.room.categorypoints;
+package se.pederjonsson.apps.quizkids.model.profile;
 
 
 import android.arch.persistence.room.Dao;
@@ -12,50 +12,50 @@ import java.util.List;
 
 import se.pederjonsson.apps.quizkids.MainActivity;
 
-
 @Dao
-public interface CategoryPointsDao {
+public interface ProfileDao {
 
 
-    @Query("SELECT * FROM "+ MainActivity.TABLE_NAME_CATEGORYPOINTS)
-    List<CategoryPointsEntity> getAll();
+    @Query("SELECT * FROM "+ MainActivity.TABLE_NAME_PROFILE)
+    List<ProfileEntity> getAll();
 
-    @Query("SELECT * FROM "+ MainActivity.TABLE_NAME_CATEGORYPOINTS + " WHERE profileid = :profileid")
-    List<CategoryPointsEntity> getAllByProfile(String profileid);
+    @Query("SELECT * FROM "+ MainActivity.TABLE_NAME_PROFILE + " WHERE profilename = :profileid")
+    ProfileEntity getProfileByName(String profileid);
 
     /*
      * Insert the object in database
      * @param note, object to be inserted
      */
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(CategoryPointsEntity categoryPoints);
+
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    void insert(ProfileEntity profile);
 
     /*
      * Insert the array of objects into database
      * @param note, array of objects to be inserted
      */
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(List<CategoryPointsEntity> categoryPointss);
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    void insert(List<ProfileEntity> profiles);
 
     /*
      * update the object in database
      * @param note, object to be updated
      */
     @Update
-    void update(CategoryPointsEntity categoryPoints);
+    void update(ProfileEntity profile);
 
     /*
      * delete the object from database
      * @param note, object to be deleted
      */
     @Delete
-    void delete(CategoryPointsEntity categoryPoints);
+    void delete(ProfileEntity profile);
 
     /*
      * delete list of objects from database
      * @param note, array of objects to be deleted
      */
     @Delete
-    void delete(CategoryPointsEntity... categoryPoints);      // Note... is varargs, here note is an array
+    void delete(ProfileEntity... profile);      // Note... is varargs, here note is an array
 
 }

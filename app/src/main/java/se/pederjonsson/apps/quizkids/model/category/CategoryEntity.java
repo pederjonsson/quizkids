@@ -1,4 +1,4 @@
-package se.pederjonsson.apps.quizkids.components.room.category;
+package se.pederjonsson.apps.quizkids.model.category;
 
 
 import android.arch.persistence.room.ColumnInfo;

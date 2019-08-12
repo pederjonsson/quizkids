@@ -1,11 +1,11 @@
-package se.pederjonsson.apps.quizkids.components.room
+package se.pederjonsson.apps.quizkids.model
 
 import android.content.Context
-import se.pederjonsson.apps.quizkids.Objects.CategoryItem
+import se.pederjonsson.apps.quizkids.data.CategoryItem
 import se.pederjonsson.apps.quizkids.R
-import se.pederjonsson.apps.quizkids.components.room.question.QuestionEntity
-import se.pederjonsson.apps.quizkids.components.room.categorypoints.CategoryPointsEntity
-import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity
+import se.pederjonsson.apps.quizkids.model.question.QuestionEntity
+import se.pederjonsson.apps.quizkids.model.categorypoints.CategoryPointsEntity
+import se.pederjonsson.apps.quizkids.model.profile.ProfileEntity
 import se.pederjonsson.apps.quizkids.interfaces.QueryInterface
 import java.util.ArrayList
 
