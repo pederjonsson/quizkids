@@ -76,47 +76,7 @@
         name="q_buildings_liberty_strings">
         <item>What is the name of this statue?</item><item>Statue of liberty</item><item>Statue of peace</item><item>Statue of equality</item>
     </string-array>
-
-
-    <string name="q_buildings_paris">What is the name of the tower in Paris?</string>
-    <string name="q_buildings_mounteverest">What is the name of the highest mountain in the world?</string>
-    <string name="q_buildings_burjikhalifa">In what city lies the tallest building in the world, Burji khalifa</string>
-
-    <string name="q_buildings_stbasil">In what city lies the st basils cathedral?</string>
-    <string name="q_buildings_stbasil_correctanswer">Moscow</string>
-    <string name="q_buildings_stbasil_answer2">Helsinki</string>
-
-    <string name="q_buildings_sphinx">What is this mysterious building in egypt called?</string>
-    <string name="q_buildings_sphinx_correct_answer">The Sphinx</string>
-    <string name="q_buildings_sphinx_answer2">Cleopatra</string>
-    <string name="q_buildings_sphinx_answer3">The desert lion</string>
-
-    <string name="q_buildings_chinesewall">What is the name of this building?</string>
-    <string name="q_buildings_chinesewall_correct_answer">The great wall of China</string>
-    <string name="q_buildings_chinesewall_answer2">The long wall of Japan</string>
-    <string name="q_buildings_chinesewall_answer3">The strong wall of Taiwan</string>
-
-    <string name="q_buildings_bigben">What is the name of the clocktower in London?</string>
-    <string name="q_buildings_bigben_correct_answer">Big Ben</string>
-    <string name="q_buildings_bigben_answer2">Old Jack</string>
-    <string name="q_buildings_bigben_answer3">Long Thomas</string>
-
-    <string name="q_buildings_colosseum">What is the name of the amphitheater in Rome?</string>
-    <string name="q_buildings_colosseum_correct_answer">Colosseum</string>
-    <string name="q_buildings_colosseum_answer2">Kabanoss</string>
-    <string name="q_buildings_colosseum_answer3">Parthenon</string>
-
-    <string name="q_buildings_angkorwat">What is the name of this temple in Cambodia?</string>
-    <string name="q_buildings_angkorwat_correct_answer">Angkor wat</string>
-    <string name="q_buildings_angkorwat_answer2">Anchor duck</string>
-    <string name="q_buildings_angkorwat_answer3">Waterloo</string>
-
-    <string name="q_buildings_liberty">What is the name of this statue?</string>
-    <string name="q_buildings_liberty_correct_answer">Statue of liberty</string>
-    <string name="q_buildings_liberty_answer2">Statue of peace</string>
-    <string name="q_buildings_liberty_answer3">Statue of equality</string>
-
-
+    
     <!-- ******************* OCEAN ************************* -->
 
     <string name="q_ocean_pacific">What is the largest ocean on the planet?</string>

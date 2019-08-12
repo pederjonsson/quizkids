@@ -36,49 +36,44 @@
 
 
     <string-array
-        name="q_buildings_paris_strings">
-        <item>Vad heter tornet i paris?</item>
-        <item>Eiffel tornet</item>
-        <item>Big Ben</item>
-        <item>lutande tornet</item>
+        name="q_buildings_paris_strings"><item>Vad heter tornet i paris?</item><item>Eiffel tornet</item><item>Big Ben</item><item>lutande tornet</item>
     </string-array>
-
-    <string name="q_buildings_paris">Vad heter tornet i paris?</string>
-    <string name="q_buildings_mounteverest">Vad heter världens högsta berg?</string>
-    <string name="q_buildings_burjikhalifa">I vilken stad ligger världens högsta byggnad, Burji khalifa</string>
-    <string name="q_buildings_stbasil">I vilken stad ligger Vasilijkatedralen</string>
-    <string name="q_buildings_stbasil_correctanswer">Moskva</string>
-    <string name="q_buildings_stbasil_answer2">Helsingfors</string>
-
-    <string name="q_buildings_sphinx">Vad kallas denna mystiska byggnad i egypten</string>
-    <string name="q_buildings_sphinx_correct_answer">Sphinx</string>
-    <string name="q_buildings_sphinx_answer2">Kleopatra</string>
-    <string name="q_buildings_sphinx_answer3">Öken lejonet</string>
-
-    <string name="q_buildings_chinesewall">Vad kallas denna byggnad?</string>
-    <string name="q_buildings_chinesewall_correct_answer">Den kinesiska muren</string>
-    <string name="q_buildings_chinesewall_answer2">Den japanska väggen</string>
-    <string name="q_buildings_chinesewall_answer3">Taiwanesiska djungel muren</string>
-
-    <string name="q_buildings_bigben">Vad heter det stora klocktornet i London?</string>
-    <string name="q_buildings_bigben_correct_answer">Big Ben</string>
-    <string name="q_buildings_bigben_answer2">Höga Jack</string>
-    <string name="q_buildings_bigben_answer3">Långa bananen</string>
-
-    <string name="q_buildings_colosseum">Vad heter amfiteatern in Rom?</string>
-    <string name="q_buildings_colosseum_correct_answer">Colosseum</string>
-    <string name="q_buildings_colosseum_answer2">Kabanoss</string>
-    <string name="q_buildings_colosseum_answer3">Parthenon</string>
-
-    <string name="q_buildings_angkorwat">Vad heter detta tempel i Kambodja?</string>
-    <string name="q_buildings_angkorwat_correct_answer">Angkor wat</string>
-    <string name="q_buildings_angkorwat_answer2">Kor ank wat</string>
-    <string name="q_buildings_angkorwat_answer3">Khmer wat ank</string>
-
-    <string name="q_buildings_liberty">Vad kallas denna staty?</string>
-    <string name="q_buildings_liberty_correct_answer">Frihetsgudinnan</string>
-    <string name="q_buildings_liberty_answer2">Fredsgudinnan</string>
-    <string name="q_buildings_liberty_answer3">Eldgudinnan</string>
+    <string-array
+        name="q_buildings_mounteverest_strings">
+        <item>Vad heter världens högsta berg?</item><item>Mount Everest</item><item>Kilimanjaro</item><item>Big mac</item>
+    </string-array>
+    <string-array
+        name="q_buildings_burjikhalifa_strings">
+        <item>I vilken stad ligger världens högsta byggnad, Burji khalifa?</item><item>Dubai</item><item>London</item><item>New York</item>
+    </string-array>
+    <string-array
+        name="q_buildings_stbasil_strings">
+        <item>I vilken stad ligger Vasilijkatedralen?</item><item>Moskva</item><item>Helsingfors</item><item>Peking</item>
+    </string-array>
+    <string-array
+        name="q_buildings_sphinx_strings">
+        <item>Vad kallas denna mystiska byggnad i egypten?</item><item>Sphinx</item><item>Kleopatra</item><item>Öken lejonet</item>
+    </string-array>
+    <string-array
+        name="q_buildings_chinesewall_strings">
+        <item>Vad kallas denna byggnad?</item><item>Den kinesiska muren</item><item>Den japanska väggen</item><item>Taiwanesiska djungel muren</item>
+    </string-array>
+    <string-array
+        name="q_buildings_bigben_strings">
+        <item>Vad heter det stora klocktornet i London?</item><item>Big Ben</item><item>Gamla Jack</item><item>Långa Tomas</item>
+    </string-array>
+    <string-array
+        name="q_buildings_colosseum_strings">
+        <item>Vad heter denna byggnad in Rom?</item><item>Colosseum</item><item>Kabanoss</item><item>Parthenon</item>
+    </string-array>
+    <string-array
+        name="q_buildings_angkorwat_strings">
+        <item>Vad heter detta tempel i Kambodja?</item><item>Angkor wat</item><item>Kor anka wat</item><item>Kamel wat anka</item>
+    </string-array>
+    <string-array
+        name="q_buildings_liberty_strings">
+        <item>Vad kallas denna staty?</item><item>Frihetsgudinnan</item><item>Fredsgudinnan</item><item>Eld gudinnan</item>
+    </string-array>
 
     <!-- ******************* OCEAN ************************* -->
 
