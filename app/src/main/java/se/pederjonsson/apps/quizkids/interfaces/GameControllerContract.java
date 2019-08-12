@@ -5,7 +5,6 @@ import android.content.Context;
 import java.util.List;
 
 import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
-import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity;
 import se.pederjonsson.apps.quizkids.components.room.question.QuestionEntity;
 
@@ -62,7 +61,7 @@ public interface GameControllerContract {
 
         void questionsLoadedByCategory(CategoryItem category, List<QuestionEntity> questions);
 
-        void addPointsOnCategory(Question.Category clearedCategory, Integer points);
+        void addPointsOnCategory(CategoryItem.Category clearedCategory, Integer points);
 
         void answered(Boolean val);
 

@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 
 import kotlinx.android.synthetic.main.activity_highscore.*
-import se.pederjonsson.apps.quizkids.Objects.Profile
 
 class HighscoreActivity : AppCompatActivity() {
 

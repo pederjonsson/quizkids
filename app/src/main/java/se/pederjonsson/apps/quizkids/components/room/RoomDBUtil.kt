@@ -1,7 +1,7 @@
 package se.pederjonsson.apps.quizkids.components.room
 
 import android.content.Context
-import se.pederjonsson.apps.quizkids.Objects.Question
+import se.pederjonsson.apps.quizkids.Objects.CategoryItem
 import se.pederjonsson.apps.quizkids.R
 import se.pederjonsson.apps.quizkids.components.room.question.QuestionEntity
 import se.pederjonsson.apps.quizkids.components.room.categorypoints.CategoryPointsEntity
@@ -14,7 +14,7 @@ class RoomDBUtil {
 
     /********************************* QUESTIONS *********************************/
 
-    data class Ddbquestion(val arrayid: Int, val drawableid: Int, val context: Context, val category: String = Question.Category.BUILDINGS.category) {
+    data class Ddbquestion(val arrayid: Int, val drawableid: Int, val context: Context, val category: String = CategoryItem.Category.BUILDINGS.category) {
         var stringArray: Array<String> = context.getResources().getStringArray(arrayid)
         var q: String = stringArray.get(0)
         var a1: String = stringArray.get(1)

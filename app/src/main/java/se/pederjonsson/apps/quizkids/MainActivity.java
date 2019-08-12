@@ -15,13 +15,10 @@ import android.view.Gravity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
-import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.components.NavbarView;
 
 import se.pederjonsson.apps.quizkids.components.room.DataHolderForQuerys;
@@ -98,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
     @Override
     public void startQuickQuiz() {
         Intent intent = new Intent(this, QuestionActivity.class);
-        intent.putExtra(QuestionActivity.CATEGORY_ITEM, new CategoryItem(Question.Category.QUICKPLAY));
+        intent.putExtra(QuestionActivity.CATEGORY_ITEM, new CategoryItem(CategoryItem.Category.QUICKPLAY));
         intent.putExtra(QuestionActivity.PROFILE_ITEM, gameControllerMenuPresenter.getPlayingProfile());
         startActivityForResult(intent, 1);
     }

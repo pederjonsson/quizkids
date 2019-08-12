@@ -25,7 +25,6 @@ import se.pederjonsson.apps.quizkids.components.room.RoomQueryAsyncTasks;
 import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity;
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
 import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
-import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.QuestionActivity;
 import se.pederjonsson.apps.quizkids.R;
 import se.pederjonsson.apps.quizkids.components.NavbarView;
@@ -84,7 +83,7 @@ public class CategoryFragment extends android.support.v4.app.Fragment implements
 
     private void getCategoryData() {
         categories = new ArrayList<>();
-        for (Question.Category category : Question.Category.values()) {
+        for (CategoryItem.Category category : CategoryItem.Category.values()) {
             categories.add(new CategoryItem(category));
         }
         if (categories != null) {

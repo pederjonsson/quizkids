@@ -13,7 +13,6 @@ import se.pederjonsson.apps.quizkids.components.room.profile.ProfileEntity;
 import se.pederjonsson.apps.quizkids.components.room.question.QuestionEntity;
 import se.pederjonsson.apps.quizkids.interfaces.GameControllerContract;
 import se.pederjonsson.apps.quizkids.Objects.CategoryItem;
-import se.pederjonsson.apps.quizkids.Objects.Question;
 import se.pederjonsson.apps.quizkids.components.NavbarView;
 
 public class QuestionGameController implements GameControllerContract.QuestionPresenter {
@@ -22,7 +21,7 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
 
     private List<QuestionEntity> currentCategoryQAList;
     private ProfileEntity playingProfile;
-    private Question.Category currentCategory;
+    private CategoryItem.Category currentCategory;
     private CategoryItem currentCategoryItem;
     int currentQuestionInCategory = 0;
     private List<Boolean> currentAnswers;
@@ -49,7 +48,7 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
     @Override
     public void nextQuestion() {
 
-        if (currentCategory == Question.Category.QUICKPLAY) {
+        if (currentCategory == CategoryItem.Category.QUICKPLAY) {
             Log.i("QGC", "yes it is quickplay");
             if (currentQuestionInCategory == MAX_QUESTIONS_TOTAL - 1) {
                 countAndShowResult();
@@ -100,7 +99,7 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
     }
 
     @Override
-    public void addPointsOnCategory(Question.Category category, Integer points) {
+    public void addPointsOnCategory(CategoryItem.Category category, Integer points) {
         if(playingProfile.getPointsForCategory(category.getCategory()) < points ){
             Log.i("ROOM", "addPointsOnCategory from qcontroller " + points + " for " + category);
             dbUtil.insertCategoryPoints(questionActivityView.getViewContext(),questionActivityView, new CategoryPointsEntity(category.getCategory(), playingProfile.getProfilename(), points));
@@ -140,7 +139,7 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
             navbarView.showTitle(currentCategory.getCategoryTranslated(questionActivityView.getViewContext()));
             navbarView.show(true);
             navbarView.clearScore();
-            if (currentCategory != Question.Category.QUICKPLAY) {
+            if (currentCategory != CategoryItem.Category.QUICKPLAY) {
                 navbarView.showScore(true);
             } else {
                 navbarView.showScore(false);
