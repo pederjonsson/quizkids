@@ -13,7 +13,7 @@ import se.pederjonsson.apps.quizkids.model.profile.ProfileEntity;
 import se.pederjonsson.apps.quizkids.model.question.QuestionDao;
 import se.pederjonsson.apps.quizkids.model.question.QuestionEntity;
 
-@Database(entities = { QuestionEntity.class, ProfileEntity.class, CategoryPointsEntity.class}, version = 1)
+@Database(entities = { QuestionEntity.class, ProfileEntity.class, CategoryPointsEntity.class}, version = 2)
 public abstract class QuizDatabase extends RoomDatabase {
 
     public abstract QuestionDao getQuestionDao();
@@ -32,7 +32,7 @@ public abstract class QuizDatabase extends RoomDatabase {
     private static QuizDatabase buildDatabaseInstance(Context context) {
         return Room.databaseBuilder(context,
                 QuizDatabase.class,
-                MainActivity.DB_NAME).build();
+                MainActivity.DB_NAME).fallbackToDestructiveMigration().build();
     }
 
     public void cleanUp(){
