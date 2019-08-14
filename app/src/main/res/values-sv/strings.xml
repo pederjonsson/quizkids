@@ -35,95 +35,152 @@
     <string name="quickplay">blandade frågor</string>
 
 
-    <string-array
-        name="q_buildings_paris_strings"><item>Vad heter tornet i paris?</item><item>Eiffel tornet</item><item>Big Ben</item><item>lutande tornet</item>
+    <string-array name="q_buildings_paris_strings">
+        <item>Vad heter tornet i paris?</item>
+        <item>Eiffel tornet</item>
+        <item>Big Ben</item>
+        <item>lutande tornet</item>
     </string-array>
-    <string-array
-        name="q_buildings_mounteverest_strings">
-        <item>Vad heter världens högsta berg?</item><item>Mount Everest</item><item>Kilimanjaro</item><item>Big mac</item>
+    <string-array name="q_buildings_mounteverest_strings">
+        <item>Vad heter världens högsta berg?</item>
+        <item>Mount Everest</item>
+        <item>Kilimanjaro</item>
+        <item>Big mac</item>
     </string-array>
-    <string-array
-        name="q_buildings_burjikhalifa_strings">
-        <item>I vilken stad ligger världens högsta byggnad, Burji khalifa?</item><item>Dubai</item><item>London</item><item>New York</item>
+    <string-array name="q_buildings_burjikhalifa_strings">
+        <item>I vilken stad ligger världens högsta byggnad, Burji khalifa?</item>
+        <item>Dubai</item>
+        <item>London</item>
+        <item>New York</item>
     </string-array>
-    <string-array
-        name="q_buildings_stbasil_strings">
-        <item>I vilken stad ligger Vasilijkatedralen?</item><item>Moskva</item><item>Helsingfors</item><item>Peking</item>
+    <string-array name="q_buildings_stbasil_strings">
+        <item>I vilken stad ligger Vasilijkatedralen?</item>
+        <item>Moskva</item>
+        <item>Helsingfors</item>
+        <item>Peking</item>
     </string-array>
-    <string-array
-        name="q_buildings_sphinx_strings">
-        <item>Vad kallas denna mystiska byggnad i egypten?</item><item>Sphinx</item><item>Kleopatra</item><item>Öken lejonet</item>
+    <string-array name="q_buildings_sphinx_strings">
+        <item>Vad kallas denna mystiska byggnad i egypten?</item>
+        <item>Sphinx</item>
+        <item>Kleopatra</item>
+        <item>Öken lejonet</item>
     </string-array>
-    <string-array
-        name="q_buildings_chinesewall_strings">
-        <item>Vad kallas denna byggnad?</item><item>Den kinesiska muren</item><item>Den japanska väggen</item><item>Taiwanesiska djungel muren</item>
+    <string-array name="q_buildings_chinesewall_strings">
+        <item>Vad kallas denna byggnad?</item>
+        <item>Den kinesiska muren</item>
+        <item>Den japanska väggen</item>
+        <item>Taiwanesiska djungel muren</item>
     </string-array>
-    <string-array
-        name="q_buildings_bigben_strings">
-        <item>Vad heter det stora klocktornet i London?</item><item>Big Ben</item><item>Gamla Jack</item><item>Långa Tomas</item>
+    <string-array name="q_buildings_bigben_strings">
+        <item>Vad heter det stora klocktornet i London?</item>
+        <item>Big Ben</item>
+        <item>Gamla Jack</item>
+        <item>Långa Tomas</item>
     </string-array>
-    <string-array
-        name="q_buildings_colosseum_strings">
-        <item>Vad heter denna byggnad in Rom?</item><item>Colosseum</item><item>Kabanoss</item><item>Parthenon</item>
+    <string-array name="q_buildings_colosseum_strings">
+        <item>Vad heter denna byggnad in Rom?</item>
+        <item>Colosseum</item>
+        <item>Kabanoss</item>
+        <item>Parthenon</item>
     </string-array>
-    <string-array
-        name="q_buildings_angkorwat_strings">
-        <item>Vad heter detta tempel i Kambodja?</item><item>Angkor wat</item><item>Kor anka wat</item><item>Kamel wat anka</item>
+    <string-array name="q_buildings_angkorwat_strings">
+        <item>Vad heter detta tempel i Kambodja?</item>
+        <item>Angkor wat</item>
+        <item>Kor anka wat</item>
+        <item>Kamel wat anka</item>
     </string-array>
-    <string-array
-        name="q_buildings_liberty_strings">
-        <item>Vad kallas denna staty?</item><item>Frihetsgudinnan</item><item>Fredsgudinnan</item><item>Eld gudinnan</item>
+    <string-array name="q_buildings_liberty_strings">
+        <item>Vad kallas denna staty?</item>
+        <item>Frihetsgudinnan</item>
+        <item>Fredsgudinnan</item>
+        <item>Eld gudinnan</item>
     </string-array>
 
     <!-- ******************* OCEAN ************************* -->
 
-    <string name="q_ocean_pacific">Vad heter det största havet på vår planet?</string>
-    <string name="q_ocean_pacific_correct_answer">Stilla havet</string>
-    <string name="q_ocean_pacific_answer2">Atlanten</string>
-    <string name="q_ocean_pacific_answer3">Indiska oceanen</string>
+    <string-array name="q_ocean_pacific_strings">
+        <item>Vad heter det största havet på vår planet?</item>
+        <item>Stilla havet</item>
+        <item>Atlanten</item>
+        <item>Indiska oceanen</item>
+    </string-array>
 
-    <string name="q_ocean_size">Hur mycket av jordens yta är täckt av hav?</string>
-    <string name="q_ocean_size_correct_answer">70%</string>
-    <string name="q_ocean_size_answer2">50%</string>
-    <string name="q_ocean_size_answer3">90%</string>
+    <string-array name="q_ocean_size_strings">
+        <item>Hur mycket av jordens yta är täckt av hav?</item>
+        <item>70%</item>
+        <item>50%</item>
+        <item>90%</item>
+    </string-array>
 
-    <string name="q_ocean_whale">Hur kommer det sig att valar kan prata med varann över väldigt långa avstånd?</string>
-    <string name="q_ocean_whale_correct_answer">Ljud färdas snabbare och längre i vatten än i luften</string>
-    <string name="q_ocean_whale_answer2">Valar är så stora så dom kan skrika väldigt högt</string>
-    <string name="q_ocean_whale_answer3">Valar har jättestora öron</string>
+    <string-array name="q_ocean_whale_strings">
+        <item>Hur kommer det sig att valar kan prata med varann över väldigt långa avstånd?</item>
+        <item>Ljud färdas snabbare och längre i vatten än i luften</item>
+        <item>Valar är så stora så dom kan skrika väldigt högt</item>
+        <item>Valar har jättestora öron</item>
+    </string-array>
 
-    <string name="q_ocean_ebb">Vad kallas tidsperioden när havsnivån sjunker?</string>
-    <string name="q_ocean_ebb_correct_answer">Ebb</string>
-    <string name="q_ocean_ebb_answer2">Flod</string>
-    <string name="q_ocean_ebb_answer3">Öken</string>
+    <string-array name="q_ocean_ebb_strings">
+        <item>Vad kallas tidsperioden när havsnivån sjunker?</item>
+        <item>Ebb</item>
+        <item>Flod</item>
+        <item>Öken</item>
+    </string-array>
 
-    <string name="q_ocean_tide">Varför sjunker och stiger havets vatten nivå?</string>
-    <string name="q_ocean_tide_correct_answer">Det är månens och solens dragningskraft</string>
-    <string name="q_ocean_tide_answer2">För att det regnar</string>
-    <string name="q_ocean_tide_answer3">För att fiskarna somnar på natten</string>
+    <string-array name="q_ocean_tide_strings">
+        <item>Varför sjunker och stiger havets vatten nivå?</item>
+        <item>Det är månens och solens dragningskraft</item>
+        <item>För att det regnar</item>
+        <item>För att fiskarna somnar på natten</item>
+    </string-array>
 
-    <string name="q_ocean_manet">Vad kallas denna varelse?</string>
-    <string name="q_ocean_manet_correct_answer">manet</string>
-    <string name="q_ocean_manet_answer2">Magnet</string>
-    <string name="q_ocean_manet_answer3">Slajm fisk</string>
+    <string-array name="q_ocean_manet_strings">
+        <item>Vad kallas denna varelse?</item>
+        <item>manet</item>
+        <item>Magnet</item>
+        <item>Slajm fisk</item>
+    </string-array>
 
-    <string name="q_ocean_deadsea">Varför är det så lätt att flyta i Döda havet?</string>
-    <string name="q_ocean_deadsea_correct_answer">För att det är så mycket salt i vattnet</string>
-    <string name="q_ocean_deadsea_answer2">för att det är dött och då blir man som en ängel när man badar där</string>
-    <string name="q_ocean_deadsea_answer3">för att det är så mycket luft i vattnet</string>
+    <string-array name="q_ocean_deadsea_strings">
+        <item>Varför är det så lätt att flyta i Döda havet?</item>
+        <item>För att det är så mycket salt i vattnet</item>
+        <item>för att det är dött och då blir man som en ängel när man badar där</item>
+        <item>för att det är så mycket luft i vattnet</item>
+    </string-array>
 
-    <string name="q_ocean_boat">Vad betyder det när en båt har kapsejsat?</string>
-    <string name="q_ocean_boat_correct_answer">Båten har fallit omkull och håller på att sjunka</string>
-    <string name="q_ocean_boat_answer2">Någon har bestämt att de ska vara kapten på båten</string>
-    <string name="q_ocean_boat_answer3">Båten har blivit kapad av pirater</string>
+    <string-array name="q_ocean_boat_strings">
+        <item>Vad betyder det när en båt har kapsejsat?</item>
+        <item>Båten har fallit omkull och håller på att sjunka</item>
+        <item>Någon har bestämt att de ska vara kapten på båten</item>
+        <item>Båten har blivit kapad av pirater</item>
+    </string-array>
 
-    <string name="q_ocean_pearl">Av vilket material börjar musslan skapa en pärla?</string>
-    <string name="q_ocean_pearl_correct_answer">Ett korn av sand</string>
-    <string name="q_ocean_pearl_answer2">Ett korn av guld</string>
-    <string name="q_ocean_pearl_answer3">Ett korn av salt</string>
+    <string-array name="q_ocean_pearl_strings">
+        <item>Av vilket material börjar musslan skapa en pärla?</item>
+        <item>Ett korn av sand</item>
+        <item>Ett korn av guld</item>
+        <item>Ett korn av salt</item>
+    </string-array>
 
-    <string name="q_ocean_oxygen">Varannat andetag vi kan ta är tack vare havet, vad är det som skapar syre i havet?</string>
-    <string name="q_ocean_oxygen_correct_answer">Alger</string>
-    <string name="q_ocean_oxygen_answer2">Fiskar</string>
-    <string name="q_ocean_oxygen_answer3">Sand</string>
+    <string-array name="q_ocean_oxygen_strings">
+        <item>Varannat andetag vi kan ta är tack vare havet, vad är det som skapar syre i havet?</item>
+        <item>Alger</item>
+        <item>Fiskar</item>
+        <item>Sand</item>
+    </string-array>
+
+
+    <!-- ******************* ANIMALS ************************* -->
+    <string-array name="q_animals_cow_strings">
+        <item>Hur många magar har en ko?</item>
+        <item>fyra</item>
+        <item>en</item>
+        <item>noll</item>
+    </string-array>
+
+    <string-array name="q_animals_pig_strings">
+        <item>Vad kallas grisens barn?</item>
+        <item>Kulting</item>
+        <item>Kalv</item>
+        <item>Föl</item>
+    </string-array>
 </resources>

@@ -12,8 +12,8 @@ import se.pederjonsson.apps.quizkids.MainActivity;
 @Entity(tableName = MainActivity.TABLE_NAME_QUESTION)
 public class QuestionEntity implements Serializable {
 
-    @PrimaryKey(autoGenerate = true)
-    private int qid;
+    @PrimaryKey
+    private int arrayid;
 
     @ColumnInfo(name = "drawableid")
     private int drawableid;
@@ -33,7 +33,8 @@ public class QuestionEntity implements Serializable {
     @ColumnInfo(name = "anwer3")
     private String answer3;
 
-    public QuestionEntity(String questiontext, int drawableid, String category, String trueanswer, String answer2, String answer3) {
+    public QuestionEntity(int arrayid, String questiontext, int drawableid, String category, String trueanswer, String answer2, String answer3) {
+        this.arrayid = arrayid;
         this.category = category;
         this.questiontext = questiontext;
         this.drawableid = drawableid;
@@ -42,12 +43,12 @@ public class QuestionEntity implements Serializable {
         this.answer3 = answer3;
     }
 
-    public int getQid() {
-        return qid;
+    public int getArrayid() {
+        return arrayid;
     }
 
-    public void setQid(int _qid) {
-        this.qid = _qid;
+    public void setArrayid(int _qid) {
+        this.arrayid = _qid;
     }
 
     public String getQuestiontext() {
@@ -65,7 +66,7 @@ public class QuestionEntity implements Serializable {
 
         QuestionEntity question = (QuestionEntity) o;
 
-        if (qid != question.qid) return false;
+        if (arrayid != question.arrayid) return false;
         return questiontext != null ? questiontext.equals(question.questiontext) : question.questiontext == null;
     }
 
@@ -73,7 +74,7 @@ public class QuestionEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = qid;
+        int result = arrayid;
         result = 31 * result + (questiontext != null ? questiontext.hashCode() : 0);
         return result;
     }
@@ -81,7 +82,7 @@ public class QuestionEntity implements Serializable {
     @Override
     public String toString() {
         return "QuestionEntity{" +
-                "qid=" + qid +
+                "arrayid=" + arrayid +
                 ", questiontext ='" + questiontext + '\'' +
                 ", trueanswer ='" + trueanswer + '\'' +
                 ", answer2 ='" + answer2 + '\'' +

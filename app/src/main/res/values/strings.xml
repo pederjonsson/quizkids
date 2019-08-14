@@ -36,99 +36,153 @@
     <string name="start">Start</string>
 
     <!-- ******************** BUILDINGS ************************** -->
-    <string-array
-        name="q_buildings_paris_strings">
-        <item>What is the name of the tower in Paris?</item><item>Eiffel tower</item><item>Big Ben</item><item>Baguette tower</item>
+    <string-array name="q_buildings_paris_strings">
+        <item>What is the name of the tower in Paris?</item>
+        <item>Eiffel tower</item>
+        <item>Big Ben</item>
+        <item>Baguette tower</item>
     </string-array>
-    <string-array
-        name="q_buildings_mounteverest_strings">
-        <item>What is the name of the highest mountain in the world?</item><item>Mount Everest</item><item>Kilimanjaro</item><item>Big mac</item>
+    <string-array name="q_buildings_mounteverest_strings">
+        <item>What is the name of the highest mountain in the world?</item>
+        <item>Mount Everest</item>
+        <item>Kilimanjaro</item>
+        <item>Big mac</item>
     </string-array>
-    <string-array
-        name="q_buildings_burjikhalifa_strings">
-        <item>In what city lies the tallest building in the world, Burji khalifa?</item><item>Dubai</item><item>London</item><item>New York</item>
+    <string-array name="q_buildings_burjikhalifa_strings">
+        <item>In what city lies the tallest building in the world, Burji khalifa?</item>
+        <item>Dubai</item>
+        <item>London</item>
+        <item>New York</item>
     </string-array>
-    <string-array
-        name="q_buildings_stbasil_strings">
-        <item>In what city lies the st basils cathedral?</item><item>Moscow</item><item>Helsinki</item><item>Amsterdam</item>
+    <string-array name="q_buildings_stbasil_strings">
+        <item>In what city lies the st basils cathedral?</item>
+        <item>Moscow</item>
+        <item>Helsinki</item>
+        <item>Amsterdam</item>
     </string-array>
-    <string-array
-        name="q_buildings_sphinx_strings">
-        <item>What is this mysterious building in egypt called?</item><item>The Sphinx</item><item>Cleopatra</item><item>The desert lion</item>
+    <string-array name="q_buildings_sphinx_strings">
+        <item>What is this mysterious building in egypt called?</item>
+        <item>The Sphinx</item>
+        <item>Cleopatra</item>
+        <item>The desert lion</item>
     </string-array>
-    <string-array
-        name="q_buildings_chinesewall_strings">
-        <item>What is the name of this building?</item><item>The great wall of China</item><item>The long wall of Japan</item><item>The strong wall of Taiwan</item>
+    <string-array name="q_buildings_chinesewall_strings">
+        <item>What is the name of this building?</item>
+        <item>The great wall of China</item>
+        <item>The long wall of Japan</item>
+        <item>The strong wall of Taiwan</item>
     </string-array>
-    <string-array
-        name="q_buildings_bigben_strings">
-        <item>What is the name of the clocktower in London?</item><item>Big Ben</item><item>Old Jack</item><item>Long Thomas</item>
+    <string-array name="q_buildings_bigben_strings">
+        <item>What is the name of the clocktower in London?</item>
+        <item>Big Ben</item>
+        <item>Old Jack</item>
+        <item>Long Thomas</item>
     </string-array>
-    <string-array
-        name="q_buildings_colosseum_strings">
-        <item>What is the name of the amphitheater in Rome?</item><item>Colosseum</item><item>Kabanoss</item><item>Parthenon</item>
+    <string-array name="q_buildings_colosseum_strings">
+        <item>What is the name of the amphitheater in Rome?</item>
+        <item>Colosseum</item>
+        <item>Kabanoss</item>
+        <item>Parthenon</item>
     </string-array>
-    <string-array
-        name="q_buildings_angkorwat_strings">
-        <item>What is the name of this temple in Cambodia?</item><item>Angkor wat</item><item>Anchor duck</item><item>Waterloo</item>
+    <string-array name="q_buildings_angkorwat_strings">
+        <item>What is the name of this temple in Cambodia?</item>
+        <item>Angkor wat</item>
+        <item>Anchor duck</item>
+        <item>Waterloo</item>
     </string-array>
-    <string-array
-        name="q_buildings_liberty_strings">
-        <item>What is the name of this statue?</item><item>Statue of liberty</item><item>Statue of peace</item><item>Statue of equality</item>
+    <string-array name="q_buildings_liberty_strings">
+        <item>What is the name of this statue?</item>
+        <item>Statue of liberty</item>
+        <item>Statue of peace</item>
+        <item>Statue of equality</item>
     </string-array>
-    
+
     <!-- ******************* OCEAN ************************* -->
 
-    <string name="q_ocean_pacific">What is the largest ocean on the planet?</string>
-    <string name="q_ocean_pacific_correct_answer">Pacific ocean</string>
-    <string name="q_ocean_pacific_answer2">Atlantic ocean</string>
-    <string name="q_ocean_pacific_answer3">Indian ocean</string>
+    <string-array name="q_ocean_pacific_strings">
+        <item>What is the largest ocean on the planet?</item>
+        <item>Pacific ocean</item>
+        <item>Atlantic ocean</item>
+        <item>Indian ocean</item>
+    </string-array>
 
-    <string name="q_ocean_size">How much of the earths surface is covered by the ocean?</string>
-    <string name="q_ocean_size_correct_answer">70%</string>
-    <string name="q_ocean_size_answer2">50%</string>
-    <string name="q_ocean_size_answer3">90%</string>
+    <string-array name="q_ocean_size_strings">
+        <item>How much of the earths surface is covered by the ocean?</item>
+        <item>70%</item>
+        <item>50%</item>
+        <item>90%</item>
+    </string-array>
 
-    <string name="q_ocean_whale">How come whales can communicate over very long distances?</string>
-    <string name="q_ocean_whale_correct_answer">Sound travels faster and longer in water then in air</string>
-    <string name="q_ocean_whale_answer2">Whales are big so they can scream very loud</string>
-    <string name="q_ocean_whale_answer3">whales have very large ears</string>
+    <string-array name="q_ocean_whale_strings">
+        <item>How come whales can communicate over very long distances?</item>
+        <item>Sound travels faster and longer in water then in air</item>
+        <item>Whales are big so they can scream very loud</item>
+        <item>whales have very large ears</item>
+    </string-array>
 
-    <string name="q_ocean_ebb">What is the time period called when the sea level is sinking?</string>
-    <string name="q_ocean_ebb_correct_answer">Ebb</string>
-    <string name="q_ocean_ebb_answer2">Flood</string>
-    <string name="q_ocean_ebb_answer3">Desert</string>
+    <string-array name="q_ocean_ebb_strings">
+        <item>What is the time period called when the sea level is sinking?</item>
+        <item>Ebb</item>
+        <item>Flood</item>
+        <item>Desert</item>
+    </string-array>
 
-    <string name="q_ocean_tide">Why is the sea level rising and sinking?</string>
-    <string name="q_ocean_tide_correct_answer">Because of the sun and the moons gravitational forces</string>
-    <string name="q_ocean_tide_answer2">Because of the rain</string>
-    <string name="q_ocean_tide_answer3">Because the fishes are falling asleep during the night</string>
+    <string-array name="q_ocean_tide_strings">
+        <item>Why is the sea level rising and sinking?</item>
+        <item>Because of the sun and the moons gravitational forces</item>
+        <item>Because of the rain</item>
+        <item>Because the fishes are falling asleep during the night</item>
+    </string-array>
 
-    <string name="q_ocean_manet">What is this creature called?</string>
-    <string name="q_ocean_manet_correct_answer">Jellyfish</string>
-    <string name="q_ocean_manet_answer2">Jollyfish</string>
-    <string name="q_ocean_manet_answer3">Blobfish</string>
+    <string-array name="q_ocean_manet_strings">What is this creature called?
+        <item>Jellyfish</item>
+        <item>Jollyfish</item>
+        <item>Blobfish</item>
+    </string-array>
 
-    <string name="q_ocean_deadsea">Why is floating so easy in the dead sea?</string>
-    <string name="q_ocean_deadsea_correct_answer">because it has so much salt in it</string>
-    <string name="q_ocean_deadsea_answer2">because it is dead and you become an angel when you swim there</string>
-    <string name="q_ocean_deadsea_answer3">because it has so much air in it</string>
+    <string-array name="q_ocean_deadsea_strings">
+        <item>Why is floating so easy in the dead sea?</item>
+        <item>because it has so much salt in it</item>
+        <item>because it is dead and you become an angel when you swim there</item>
+        <item>because it has so much air in it</item>
+    </string-array>
 
-    <string name="q_ocean_boat">What does it mean when a boat is capsized?</string>
-    <string name="q_ocean_boat_correct_answer">The boat has fallen on its side and is about to sink</string>
-    <string name="q_ocean_boat_answer2">Someone has decided that they are captain on the boat</string>
-    <string name="q_ocean_boat_answer3">The boat has been captured by pirates</string>
+    <string-array name="q_ocean_boat_strings">
+        <item>What does it mean when a boat is capsized?</item>
+        <item>The boat has fallen on its side and is about to sink</item>
+        <item>Someone has decided that they are captain on the boat</item>
+        <item>The boat has been captured by pirates</item>
+    </string-array>
 
-    <string name="q_ocean_pearl">From what material does the clam start to create a pearl?</string>
-    <string name="q_ocean_pearl_correct_answer">A grain of sand</string>
-    <string name="q_ocean_pearl_answer2">A grain of gold</string>
-    <string name="q_ocean_pearl_answer3">A grain of salt</string>
-
-    <string name="q_ocean_oxygen">Every second breath we take is because of the sea, what creates the oxygen in the sea?</string>
-    <string name="q_ocean_oxygen_correct_answer">Algae</string>
-    <string name="q_ocean_oxygen_answer2">Fishes</string>
-    <string name="q_ocean_oxygen_answer3">Sand</string>
+    <string-array name="q_ocean_pearl_strings">
+        <item>From what material does the clam start to create a pearl?</item>
+        <item>A grain of sand</item>
+        <item>A grain of gold</item>
+        <item>A grain of salt</item>
+    </string-array>
+    <string-array name="q_ocean_oxygen_strings">
+        <item>Every second breath we take is because of the sea, what creates the oxygen in the sea?</item>
+        <item>Algae</item>
+        <item>Fishes</item>
+        <item>Sand</item>
+    </string-array>
 
 
     <!-- ******************* GEOGRAPHY ************************* -->
+
+    <!-- ******************* ANIMALS ************************* -->
+    <string-array name="q_animals_cow_strings">
+        <item>How many stomachs does a cow have?</item>
+        <item>four</item>
+        <item>one</item>
+        <item>zero</item>
+    </string-array>
+
+    <string-array name="q_animals_pig_strings">
+        <item>What is a pigs child called?</item>
+        <item>Piglet</item>
+        <item>Calf</item>
+        <item>Foal</item>
+    </string-array>
+
 </resources>

@@ -19,6 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import se.pederjonsson.apps.quizkids.data.CategoryItem;
+import se.pederjonsson.apps.quizkids.highscore.HighscoreActivity;
 import se.pederjonsson.apps.quizkids.viewcomponents.NavbarView;
 
 import se.pederjonsson.apps.quizkids.model.DataHolderForQuerys;
@@ -67,6 +68,8 @@ public class MainActivity extends AppCompatActivity implements GameControllerCon
         dbUtil = new RoomDBUtil();
         //dbUtil.generateQABuildingsRoom(this, this);
         dbUtil.populateDbWithQuestions(this, this, dbUtil.generateQABuildings(this));
+        dbUtil.populateDbWithQuestions(this, this, dbUtil.generateQAOceans(this));
+        dbUtil.populateDbWithQuestions(this, this, dbUtil.generateQAAnimals(this));
     }
 
     private void playSound(int resId) {

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="49dp">
+
+        <TextView
+            android:id="@+id/key"
+            style="@style/BubblesFontSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/margin_small"
+            android:layout_toLeftOf="@+id/value"
+            android:ellipsize="end"
+            android:maxLines="2" />
+
+        <ImageView
+            android:id="@+id/right_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin_small"
+            android:src="@drawable/ic_navigate_next_black_24dp" />
+
+        <TextView
+            android:id="@+id/value"
+            style="@style/BubblesFontSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/right_arrow"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin_tiny"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:visibility="gone"/>
+
+        <View
+            android:id="@+id/value_separator"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_divider_height"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimaryDark" />
+
+
+
+</RelativeLayout>

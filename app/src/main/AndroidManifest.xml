@@ -27,7 +27,7 @@
             android:windowSoftInputMode="adjustResize" />
 
         <activity
-            android:name=".HighscoreActivity"
+            android:name=".highscore.HighscoreActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"

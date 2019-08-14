@@ -14,7 +14,8 @@ class RoomDBUtil {
 
     /********************************* QUESTIONS *********************************/
 
-    data class Ddbquestion(val arrayid: Int, val drawableid: Int, val context: Context, val category: String = CategoryItem.Category.BUILDINGS.category) {
+    data class Ddbquestion(val _arrayid: Int, val drawableid: Int, val context: Context, val category: String = CategoryItem.Category.BUILDINGS.category) {
+        var arrayid = _arrayid
         var stringArray: Array<String> = context.getResources().getStringArray(arrayid)
         var q: String = stringArray.get(0)
         var a1: String = stringArray.get(1)
@@ -37,7 +38,50 @@ class RoomDBUtil {
                 Ddbquestion(R.array.q_buildings_liberty_strings, R.drawable.q_liberty, c)
         )
         for (d in dbArr){
-            qaList.add(QuestionEntity(d.q, d.drawableid, d.category, d.a1, d.a2, d.a3))
+            qaList.add(QuestionEntity(d.arrayid, d.q, d.drawableid, d.category, d.a1, d.a2, d.a3))
+        }
+        return qaList
+    }
+
+    fun generateQAOceans(c: Context): ArrayList<QuestionEntity> {
+        val qaList = ArrayList<QuestionEntity>()
+        val category = CategoryItem.Category.OCEAN.category
+        val dbArr = arrayOf(
+                Ddbquestion(R.array.q_ocean_pacific_strings, R.drawable.q_pacific, c, category),
+                Ddbquestion(R.array.q_ocean_size_strings, R.drawable.q_ocean_size, c, category),
+                Ddbquestion(R.array.q_ocean_whale_strings, R.drawable.q_ocean_whale, c, category),
+                Ddbquestion(R.array.q_ocean_ebb_strings, R.drawable.q_ocean_ebbflow, c,category),
+                Ddbquestion(R.array.q_ocean_tide_strings, R.drawable.q_ocean_ebbflow, c,category),
+                Ddbquestion(R.array.q_ocean_manet_strings, R.drawable.q_manet, c, category),
+                Ddbquestion(R.array.q_ocean_deadsea_strings, R.drawable.q_deadsea, c, category),
+                Ddbquestion(R.array.q_ocean_boat_strings, R.drawable.q_boat, c, category),
+                Ddbquestion(R.array.q_ocean_pearl_strings, R.drawable.q_pearl, c, category),
+                Ddbquestion(R.array.q_ocean_oxygen_strings, R.drawable.q_oxygen, c, category)
+        )
+        for (d in dbArr){
+            qaList.add(QuestionEntity(d.arrayid, d.q, d.drawableid, d.category, d.a1, d.a2, d.a3))
+        }
+        return qaList
+    }
+
+    fun generateQAAnimals(c: Context): ArrayList<QuestionEntity> {
+        val qaList = ArrayList<QuestionEntity>()
+        val category = CategoryItem.Category.ANIMALS.category
+        val dbArr = arrayOf(
+                Ddbquestion(R.array.q_animals_cow_strings, R.drawable.q_ko, c, category),
+                Ddbquestion(R.array.q_animals_pig_strings, R.drawable.q_kulting, c, category)
+                /*Ddbquestion(R.array.q_ocean_size_strings, R.drawable.q_ocean_size, c, category),
+                Ddbquestion(R.array.q_ocean_whale_strings, R.drawable.q_ocean_whale, c, category),
+                Ddbquestion(R.array.q_ocean_ebb_strings, R.drawable.q_ocean_ebbflow, c,category),
+                Ddbquestion(R.array.q_ocean_tide_strings, R.drawable.q_ocean_ebbflow, c,category),
+                Ddbquestion(R.array.q_ocean_manet_strings, R.drawable.q_manet, c, category),
+                Ddbquestion(R.array.q_ocean_deadsea_strings, R.drawable.q_deadsea, c, category),
+                Ddbquestion(R.array.q_ocean_boat_strings, R.drawable.q_boat, c, category),
+                Ddbquestion(R.array.q_ocean_pearl_strings, R.drawable.q_pearl, c, category),
+                Ddbquestion(R.array.q_ocean_oxygen_strings, R.drawable.q_oxygen, c, category)*/
+        )
+        for (d in dbArr){
+            qaList.add(QuestionEntity(d.arrayid, d.q, d.drawableid, d.category, d.a1, d.a2, d.a3))
         }
         return qaList
     }
