@@ -134,7 +134,8 @@
         <item>Because the fishes are falling asleep during the night</item>
     </string-array>
 
-    <string-array name="q_ocean_manet_strings">What is this creature called?
+    <string-array name="q_ocean_manet_strings">
+        <item>What is this creature called?</item>
         <item>Jellyfish</item>
         <item>Jollyfish</item>
         <item>Blobfish</item>
