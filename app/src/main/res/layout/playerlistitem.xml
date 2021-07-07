@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_height="wrap_content">
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnplayername"
         style="@style/quizbtnstylemenuplayers"
         android:layout_width="match_parent"

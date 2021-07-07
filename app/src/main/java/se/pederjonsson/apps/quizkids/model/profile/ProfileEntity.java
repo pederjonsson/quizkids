@@ -1,10 +1,10 @@
 package se.pederjonsson.apps.quizkids.model.profile;
 
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import java.io.Serializable;
@@ -74,11 +74,11 @@ public class ProfileEntity implements Serializable {
                 if (c.getCategoryid().equals(category)) {
                     return c.getPoints();
                 } else {
-                    Log.i("tempcheck", c.getCategoryid() + " was not same as " + category);
+                    Log.i("CIV", c.getCategoryid() + " was not same as " + category);
                 }
             }
         } else {
-            Log.i("ROOM", "categorypointslist null in profileentity");
+            Log.i("CIV", "categorypointslist null in profileentity");
         }
         return 0;
     }

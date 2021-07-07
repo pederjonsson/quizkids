@@ -41,7 +41,7 @@
             android:maxLines="1"
             android:textColor="@color/colorTurquoise" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/startgamebtn"
             style="@style/quizbtnstylemenuplayers"
             android:layout_width="match_parent"

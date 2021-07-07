@@ -42,6 +42,8 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
     @Override
     public void answered(Boolean val) {
         currentAnswers.add(val);
+        Log.i("CIV", "correctnswer added " + val + " total answers " + currentAnswers.size());
+
         navbarView.setScore(val, currentQuestionInCategory);
     }
 
@@ -79,6 +81,7 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
 
         navbarView.clearScore();
         hideMainNavbar();
+        Log.i("CIV", "countAndShowResult correctanswers " + correctCounter);
         addPointsOnCategory(currentCategory, correctCounter);
         questionActivityView.showResultView(currentCategoryItem, playingProfile, correctCounter, allcorrect);
     }
@@ -101,10 +104,10 @@ public class QuestionGameController implements GameControllerContract.QuestionPr
     @Override
     public void addPointsOnCategory(CategoryItem.Category category, Integer points) {
         if(playingProfile.getPointsForCategory(category.getCategory()) < points ){
-            Log.i("ROOM", "addPointsOnCategory from qcontroller " + points + " for " + category);
+            Log.i("CIV", "addPointsOnCategory from qcontroller " + points + " for " + category);
             dbUtil.insertCategoryPoints(questionActivityView.getViewContext(),questionActivityView, new CategoryPointsEntity(category.getCategory(), playingProfile.getProfilename(), points));
         } else {
-            Log.i("ROOM", "no new record with " + points + " for " + category);
+            Log.i("CIV", "no new record with " + points + " for " + category);
         }
     }
 
