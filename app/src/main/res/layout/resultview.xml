@@ -36,7 +36,7 @@
             android:id="@+id/resultcategoryview"
             android:layout_height="wrap_content" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnresultcontinue"
             android:layout_alignParentBottom="true"
             style="@style/quizbtnstylemenuplayers"

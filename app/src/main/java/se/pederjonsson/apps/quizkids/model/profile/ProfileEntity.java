@@ -74,11 +74,11 @@ public class ProfileEntity implements Serializable {
                 if (c.getCategoryid().equals(category)) {
                     return c.getPoints();
                 } else {
-                    Log.i("tempcheck", c.getCategoryid() + " was not same as " + category);
+                    Log.i("CIV", c.getCategoryid() + " was not same as " + category);
                 }
             }
         } else {
-            Log.i("ROOM", "categorypointslist null in profileentity");
+            Log.i("CIV", "categorypointslist null in profileentity");
         }
         return 0;
     }

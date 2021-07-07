@@ -128,6 +128,12 @@ class CategoryFragment : Fragment(), CategoryContract.View {
         if (dh != null) {
             if (dh.requestType === DataHolderForQuerys.RequestType.GETCATEGORYPOINTSFORUSER) {
                 Log.i("ROOM", "categorypoints for user " + dh.categoryPointsEntityList + " for " + dh.profileid)
+                dh.categoryPointsEntityList?.let {
+                    for(c in it){
+                        Log.i("CIV", "categoryfragment catpoint " + c.points)
+                    }
+                }
+
                 if (mGameControllerMenuPresenter!!.playingProfile != null) {
                     mGameControllerMenuPresenter!!.playingProfile.categoryPointsList = dh.categoryPointsEntityList
                     setupAdapter()

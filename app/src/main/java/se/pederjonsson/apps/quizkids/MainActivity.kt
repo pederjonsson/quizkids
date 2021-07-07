@@ -169,6 +169,11 @@ class MainActivity : AppCompatActivity(), MainActivityView {
                 //dbUtil.getAllCategoryPointsForUser(this, this, "testcreateuser");
             } else if (dh.requestType === DataHolderForQuerys.RequestType.GETCATEGORYPOINTSFORUSER) {
                 Log.i("ROOM", "categorypoints for user " + dh.categoryPointsEntityList + " for " + dh.profileid)
+                dh.categoryPointsEntityList?.let {
+                    for(c in it){
+                        Log.i("CIV", " mainactivity catpoint " + c.points)
+                    }
+                }
                 if (gameControllerMenuPresenter!!.playingProfile != null) {
                     gameControllerMenuPresenter!!.playingProfile.categoryPointsList = dh.categoryPointsEntityList
                 }

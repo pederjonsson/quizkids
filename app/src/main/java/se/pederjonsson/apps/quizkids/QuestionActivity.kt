@@ -143,15 +143,26 @@ class QuestionActivity : AppCompatActivity(), QuestionActivityView {
             roomDBUtil!!.getAllCategoryPointsForUser(this, this, gameControllerPresenter!!.playingProfile.profilename)
         } else if (dh!!.requestType === DataHolderForQuerys.RequestType.GETCATEGORYPOINTSFORUSER) {
             Log.i("ROOM", "categorypoints for user " + dh!!.categoryPointsEntityList + " for " + dh.profileid)
+            dh.categoryPointsEntityList?.let {
+                for(c in it){
+                    Log.i("CIV", "questionactivity catpoint " + c.points)
+                }
+            }
             if (gameControllerPresenter!!.playingProfile != null) {
                 gameControllerPresenter!!.playingProfile.categoryPointsList = dh.categoryPointsEntityList
             }
         }
     }
 
-    override fun onFail(dataHolder: DataHolderForQuerys?) {
+    override fun onFail(dh: DataHolderForQuerys?) {
+        if (dh != null) {
+            Log.i("ROOM", "ONFAIL FOR REQUEST " + dh.requestType + " error " + dh.errorMsg)
+        } else {
+            Log.i("ROOM", "ONFAIL")
+        }
     }
     override fun speekText(speechString: String) {
+
         if (textToSpeech != null) {
             val speechStatus = textToSpeech!!.speak(speechString, TextToSpeech.QUEUE_FLUSH, null, null)
             if (speechStatus == TextToSpeech.ERROR) {
@@ -163,7 +174,7 @@ class QuestionActivity : AppCompatActivity(), QuestionActivityView {
     }
 
     private fun setupTextToSpeech() {
-        textToSpeech = TextToSpeech(this) { i ->
+        textToSpeech = TextToSpeech(this, { i ->
             if (i == TextToSpeech.SUCCESS) {
                 val result = textToSpeech!!.setLanguage(Locale.getDefault())
                 if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
@@ -172,8 +183,10 @@ class QuestionActivity : AppCompatActivity(), QuestionActivityView {
                     Log.i("TTS", "Language Supported")
                 }
                 Log.i("TTS", "Initialization success.")
+            } else {
+                Log.i("TTS", "Initialization FAIL.")
             }
-        }
+        }, "com.google.android.tts")
     }
 
     override fun onPause() {

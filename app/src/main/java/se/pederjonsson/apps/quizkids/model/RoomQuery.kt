@@ -1,6 +1,7 @@
 package se.pederjonsson.apps.quizkids.model
 
 import android.os.AsyncTask
+import android.util.Log
 import se.pederjonsson.apps.quizkids.interfaces.QueryInterface
 import java.lang.Exception
 
@@ -96,11 +97,14 @@ class RoomQueryAsyncTasks {
                     }
 
                     DataHolderForQuerys.RequestType.INSERTCATEGORYPOINTS -> {
-                        dh.categoryPointsEntity?.let {
+                        dh.categoryPointsEntity?.let { cpe ->
                             try {
-                                quizDatabase.categoryPointsDao.insert(dh.categoryPointsEntity)
+                                quizDatabase.categoryPointsDao.deleteByProfileAndCategory(cpe.profileid, cpe.categoryid)
+                                quizDatabase.categoryPointsDao.insert(cpe)
+                                Log.i("CIV", " SUCCESS INSERTCATEGORYPOINTS " + cpe.points + " for id " + cpe.profileid)
                                 return true
                             } catch (e: Exception) {
+                                Log.i("CIV", " error INSERTCATEGORYPOINTS " + e.message)
                                 e.message?.let { dh.errorMsg = it }
                                 return false
                             }

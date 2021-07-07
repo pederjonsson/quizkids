@@ -2,10 +2,13 @@ package se.pederjonsson.apps.quizkids.viewcomponents
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.question_view.view.*
 import se.pederjonsson.apps.quizkids.R
 import se.pederjonsson.apps.quizkids.fragments.Question.QuestionAnswerContract.MainView
+import se.pederjonsson.apps.quizkids.ktextensions.afterMeasured
 import se.pederjonsson.apps.quizkids.model.question.QuestionEntity
 
 /**
@@ -21,8 +24,9 @@ class QuestionView(context: Context?, attrs: AttributeSet?) : LinearLayout(conte
         inflate()
     }
 
-    protected fun inflate() {
+    private fun inflate() {
         inflate(mContext, R.layout.question_view, this)
+
     }
 
     fun setUp(_question: QuestionEntity?, _mainView: MainView?) {
@@ -30,7 +34,17 @@ class QuestionView(context: Context?, attrs: AttributeSet?) : LinearLayout(conte
         mainView = _mainView
         text_question.text = question?.questiontext;
         if (question!!.drawableid > 0) {
-            imageView1.setImageDrawable(resources.getDrawable(question?.drawableid!!));
+
+
+
+            //imageView1.requestLayout()
+            imageView1.setImageDrawable(ContextCompat.getDrawable(mContext!!, question?.drawableid!!)) //resources.getDrawable(question?.drawableid!!))
+            /*imageView1.afterMeasured{
+                Log.i("bug", "aftermeasured fix height")
+                imageView1.layoutParams.height = this.width
+                imageView1.requestLayout()
+                imageView1.setImageDrawable(resources.getDrawable(question?.drawableid!!))
+            }*/
         }
         texttospeechbtn.setUp(question?.questiontext!!, mainView!!);
     }

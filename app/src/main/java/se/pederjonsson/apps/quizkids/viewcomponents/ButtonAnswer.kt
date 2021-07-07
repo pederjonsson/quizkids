@@ -13,15 +13,7 @@ import se.pederjonsson.apps.quizkids.fragments.Question.QuestionAnswerContract.M
  * Created by Gaming on 2018-04-01.
  */
 class ButtonAnswer(context: Context?, attrs: AttributeSet?) : LinearLayout(context, attrs) {
-    /*@BindView(R.id.btnanswer)
-    public Button btnAnswer;
 
-    @BindView(R.id.response)
-    public TextView response;
-
-    @BindView(R.id.texttospeechbtn)
-    public TextToSpeechBtnViewSmall textToSpeechBtnView;
-*/
     private var mContext: Context? = null
     private var mAnswer: Answer? = null
     private var mainView: MainView? = null
@@ -38,7 +30,7 @@ class ButtonAnswer(context: Context?, attrs: AttributeSet?) : LinearLayout(conte
 
     fun setUp(answer: Answer?, _mainView: MainView?) {
         mAnswer = answer
-        btnanswer.setText(mAnswer!!.textAnswer);
+        btnanswer.text = mAnswer!!.textAnswer;
         mainView = _mainView
         texttospeechbtn.setUp(mAnswer!!.textAnswer, mainView!!);
         setupListener()

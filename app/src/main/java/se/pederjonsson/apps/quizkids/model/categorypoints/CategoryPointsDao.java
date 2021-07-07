@@ -23,6 +23,9 @@ public interface CategoryPointsDao {
     @Query("SELECT * FROM "+ MainActivity.TABLE_NAME_CATEGORYPOINTS + " WHERE profileid = :profileid")
     List<CategoryPointsEntity> getAllByProfile(String profileid);
 
+    @Query("DELETE FROM " + MainActivity.TABLE_NAME_CATEGORYPOINTS + " WHERE profileid = :profileid AND categoryid = :categoryid")
+    void deleteByProfileAndCategory(String profileid, String categoryid);
+
     /*
      * Insert the object in database
      * @param note, object to be inserted
@@ -41,7 +44,7 @@ public interface CategoryPointsDao {
      * update the object in database
      * @param note, object to be updated
      */
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     void update(CategoryPointsEntity categoryPoints);
 
     /*
