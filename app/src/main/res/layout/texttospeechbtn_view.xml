@@ -6,7 +6,7 @@
     android:layout_height="@dimen/xxlarge"
     android:background="@drawable/circle_play_btn_background">
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/texttospeechbtnimageview"
         android:layout_width="@dimen/xxlarge"
         android:layout_height="@dimen/xxlarge"

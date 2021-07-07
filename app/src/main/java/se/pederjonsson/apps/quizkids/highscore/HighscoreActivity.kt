@@ -1,7 +1,7 @@
 package se.pederjonsson.apps.quizkids.highscore
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_highscore.*
 import se.pederjonsson.apps.quizkids.R
